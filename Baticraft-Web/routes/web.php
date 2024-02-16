@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route Cek Tampilan 
+Route::view('index','admin.users.index')->name('user.index');
+Route::view('create','admin.users.create')->name('user.create');
+Route::view('show','admin.users.show')->name('user.show');
+Route::view('edit','admin.users.edit')->name('user.edit');
