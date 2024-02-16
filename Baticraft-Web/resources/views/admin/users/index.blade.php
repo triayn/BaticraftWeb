@@ -1,7 +1,1 @@
-@extends('layouts.main')
-
-@section('title', 'Index')
-
-@section('content')
-
-@endsection
+@extends('admin.layouts.main')
