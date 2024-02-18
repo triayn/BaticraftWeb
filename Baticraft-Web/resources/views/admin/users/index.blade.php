@@ -19,12 +19,13 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title"><center>Data Pengguna</center></h4>
+                <h4 class="header-title">
+                    <center>Data Pengguna</center>
+                </h4>
                 <p class="text-muted font-14"></p>
                 <ul class="nav nav-tabs nav-bordered mb-3">
                     <li class="nav-item">
-                        <a href="#state-saving-preview" data-bs-toggle="tab" aria-expanded="false" 
-                        class="nav-link">
+                        <a href="#state-saving-preview" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
                         </a>
                     </li>
                 </ul> <!-- end nav-->
@@ -32,7 +33,7 @@
                     <div class="tab-pane show active" id="state-saving-preview">
                         <table id="state-saving-datatable" class="table table-striped activate-select 
                         dt-responsive nowrap w-100">
-                            <a href="{{ route('user.create') }}" class="btn btn-success btn-sm">
+                            <a href="" class="btn btn-success btn-sm">
                                 Tambah Pengguna</a>
                             <thead>
                                 <tr>
@@ -46,21 +47,24 @@
                             </thead>
 
                             <tbody>
+                                @php $i = 1; @endphp
+                                @foreach ($data as $row)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Tiger Binleon</td>
-                                    <td>089765437282</td>
-                                    <td>Admin</td>
-                                    <td>tigerlion@gmail.com</td>
+                                    <td>{{ $i++ }}</td>
+                                    <td>{{ $row->nama }}</td>
+                                    <td>{{ $row->no_telpon }}</td>
+                                    <td>{{ $row->role }}</td>
+                                    <td>{{ $row->email }}</td>
                                     <td>
-                                        <a href="" class="btn btn-info"><i class="mdi mdi-keyboard"> 
-                                        </i>Lihat</a>
+                                        <a href="" class="btn btn-info"><i class="mdi mdi-keyboard">
+                                            </i>Lihat</a>
                                         <a href="" class="btn btn-success">
                                             <i class="mdi mdi-thumb-up-outline"></i> Edit</a>
                                         <button type="button" class="btn btn-danger">
                                             <i class="mdi mdi-window-close"> Hapus</i></button>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
