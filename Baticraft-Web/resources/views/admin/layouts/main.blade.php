@@ -10,6 +10,7 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/admin/images/favicon.ico') }}">
     <!-- Quill css -->
+    <link href="{{ asset('assets/admin/css/vendor/dataTables.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/admin/css/vendor/quill.bubble.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/admin/css/vendor/quill.core.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/admin/css/vendor/quill.snow.css') }}" rel="stylesheet" type="text/css" />
@@ -19,8 +20,7 @@
 </head>
 
 
-<body class="loading" data-layout-color="light" data-leftbar-theme="dark" data-layout-mode="fluid" 
-data-rightbar-onstart="true">
+<body class="loading" data-layout-color="light" data-leftbar-theme="dark" data-layout-mode="fluid" data-rightbar-onstart="true">
     <div class="wrapper">
         <div class="leftside-menu">
             <a href="index.html" class="logo text-center logo-light">
@@ -39,48 +39,8 @@ data-rightbar-onstart="true">
                     <img src="{{ asset ('assets/images/logo_sm_dark.png') }}" alt="" height="16">
                 </span>
             </a>
-            <div class="h-100" id="leftside-menu-container" data-simplebar>
-
-                <!--- Sidemenu -->
-                <ul class="side-nav">
-                    <li class="side-nav-title side-nav-item"></li>
-                    <li class="side-nav-item">
-                        <a href="apps-calendar.html" class="side-nav-link">
-                            <i class="uil-calender"></i>
-                            <span> Beranda </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="apps-chat.html" class="side-nav-link">
-                            <i class="uil-comments-alt"></i>
-                            <span> Pengguna </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="apps-social-feed.html" class="side-nav-link">
-                            <i class="uil-rss"></i>
-                            <span> Produk </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="apps-file-manager.html" class="side-nav-link">
-                            <i class="uil-folder-plus"></i>
-                            <span> Pesanan </span>
-                        </a>
-                    </li>
-                    <li class="side-nav-item">
-                        <a href="widgets.html" class="side-nav-link">
-                            <i class="uil-layer-group"></i>
-                            <span> Laporan </span>
-                        </a>
-                    </li>
-                </ul>
-
-                <!-- End Sidebar -->
-
-                <div class="clearfix"></div>
-
-            </div>
+            
+            @include('admin.layouts.sidebar')
             <!-- Sidebar -left -->
 
         </div>
@@ -90,79 +50,78 @@ data-rightbar-onstart="true">
         <!-- Start Page Content here -->
         <!-- ============================================================== -->
         <div class="content-page">
-                <div class="content">
-                    <div class="navbar-custom">
-                        <ul class="list-unstyled topbar-menu float-end mb-0">
-                            <li class="dropdown notification-list">
-                                <a class="nav-link dropdown-toggle nav-user arrow-none me-0" 
-                                data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
-                                    aria-expanded="false">
-                                    <span class="account-user-avatar"> 
-                                        <img src="assets/images/users/avatar-1.jpg" alt="user-image" 
-                                        class="rounded-circle">
-                                    </span>
-                                    <span>
-                                        <span class="account-user-name">Nama Pengguna</span>
-                                    </span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated 
+            <div class="content">
+                <div class="navbar-custom">
+                    <ul class="list-unstyled topbar-menu float-end mb-0">
+                        <li class="dropdown notification-list">
+                            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <span class="account-user-avatar">
+                                    <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                                </span>
+                                <span>
+                                    <span class="account-user-name">Nama Pengguna</span>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated 
                                 topbar-dropdown-menu profile-dropdown">
-                                    <div class=" dropdown-header noti-title">
-                                        <h6 class="text-overflow m-0">Welcome !</h6>
-                                    </div>
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="mdi mdi-account-circle me-1"></i>
-                                        <span>My Account</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="mdi mdi-account-edit me-1"></i>
-                                        <span>Settings</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="mdi mdi-logout me-1"></i>
-                                        <span>Logout</span>
-                                    </a>
+                                <div class=" dropdown-header noti-title">
+                                    <h6 class="text-overflow m-0">Welcome !</h6>
                                 </div>
-                            </li>
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-account-circle me-1"></i>
+                                    <span>My Account</span>
+                                </a>
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-account-edit me-1"></i>
+                                    <span>Settings</span>
+                                </a>
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-logout me-1"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
 
-                        </ul>
-                        <button class="button-menu-mobile open-left">
-                            <i class="mdi mdi-menu"></i>
-                        </button>
+                    </ul>
+                    <button class="button-menu-mobile open-left">
+                        <i class="mdi mdi-menu"></i>
+                    </button>
+                </div>
+                <!-- end Topbar -->
+
+                <!-- Start Content-->
+                @yield ('content')
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script> © Hyper - Coderthemes.com
                     </div>
-                    <!-- end Topbar -->
-
-                    <!-- Start Content-->
-                    @yield ('content')
-                    </div> <!-- container -->
-
-                </div> <!-- content -->
-
-                <!-- Footer Start -->
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <script>document.write(new Date().getFullYear())</script> © Hyper - Coderthemes.com
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-md-end footer-links d-none d-md-block">
-                                    <a href="javascript: void(0);">About</a>
-                                    <a href="javascript: void(0);">Support</a>
-                                    <a href="javascript: void(0);">Contact Us</a>
-                                </div>
-                            </div>
+                    <div class="col-md-6">
+                        <div class="text-md-end footer-links d-none d-md-block">
+                            <a href="javascript: void(0);">About</a>
+                            <a href="javascript: void(0);">Support</a>
+                            <a href="javascript: void(0);">Contact Us</a>
                         </div>
                     </div>
-                </footer>
-                <!-- end Footer -->
-
+                </div>
             </div>
+        </footer>
+        <!-- end Footer -->
+
+    </div>
 
 
-        <!-- ============================================================== -->
-        <!-- End Page content -->
-        <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
 
 
     </div>
