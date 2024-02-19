@@ -39,7 +39,7 @@
                     <img src="{{ asset ('assets/images/logo_sm_dark.png') }}" alt="" height="16">
                 </span>
             </a>
-            
+
             @include('admin.layouts.sidebar')
             <!-- Sidebar -left -->
 
@@ -223,6 +223,8 @@
     <!-- bundle -->
     <script src="{{ asset ('assets/admin/js/vendor.min.js') }}"></script>
     <script src="{{ asset ('assets/admin/js/app.min.js') }}"></script>
+    <script src="assets/js/vendor/dataTables.bootstrap5.js"></script>
+    <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
 
     <!-- quill js -->
     <script src="{{ asset ('assets/admin/js/vendor/quill.min.js') }}"></script>
