@@ -46,7 +46,7 @@
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody align="center">
                                 @php $i = 1; @endphp
                                 @foreach ($data as $row)
                                 <tr>
