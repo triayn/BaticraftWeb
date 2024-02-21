@@ -114,7 +114,7 @@
   <!-- Vendor Styles-->
   <link rel="stylesheet" media="screen" href="{{ asset('assets/customer/vendor/simplebar/dist/simplebar.min.css') }}" />
   <!-- Main Theme Styles + Bootstrap-->
-  <link rel="stylesheet" media="screen" href="{{ asset('assets/customer/css/theme.min.css') }}s">
+  <link rel="stylesheet" media="screen" href="{{ asset('assets/customer/css/theme.min.css') }}">
   <!-- Google Tag Manager-->
   <script>
     (function (w, d, s, l, i) {
