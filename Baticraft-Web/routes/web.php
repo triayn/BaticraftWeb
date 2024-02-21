@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
 Route::get('user/index', [UserController::class, 'index'])->name('user.index');
 Route::get('user/create', [UserController::class, 'create'])->name('user.create');
 
@@ -26,3 +29,6 @@ Route::get('user/create', [UserController::class, 'create'])->name('user.create'
 // Route::view('create','admin.users.create')->name('user.create');
 // Route::view('show','admin.users.show')->name('user.show');
 // Route::view('edit','admin.users.edit')->name('user.edit');
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

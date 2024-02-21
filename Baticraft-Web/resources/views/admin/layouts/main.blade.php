@@ -10,10 +10,15 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/admin/images/favicon.ico') }}">
     <!-- Quill css -->
-    <link href="{{ asset('assets/admin/css/vendor/dataTables.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/admin/css/vendor/quill.bubble.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/admin/css/vendor/quill.core.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/admin/css/vendor/quill.snow.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/admin/vendor/dataTables.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/admin/vendor/responsive.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/admin/vendor/buttons.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/admin/vendor/select.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/admin/vendor/fixedHeader.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/admin/vendor/fixedColumns.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
     <!-- App css -->
     <link href="{{ asset('assets/admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/admin/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
@@ -223,8 +228,19 @@
     <!-- bundle -->
     <script src="{{ asset ('assets/admin/js/vendor.min.js') }}"></script>
     <script src="{{ asset ('assets/admin/js/app.min.js') }}"></script>
-    <script src="assets/js/vendor/dataTables.bootstrap5.js"></script>
-    <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
+    <script src="{{ asset ('assets/admin/js/vendor/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset ('assets/admin/vendor/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset ('assets/admin/js/vendor/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset ('assets/admin/js/vendor/responsive.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset ('assets/admin/js/vendor/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset ('assets/admin/js/vendor/buttons.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset ('assets/admin/js/vendor/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset ('assets/admin/js/vendor/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset ('assets/admin/js/vendor/buttons.print.min.js') }}"></script>
+    <script src="{{ asset ('assets/admin/js/vendor/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset ('assets/admin/js/vendor/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset ('assets/admin/js/vendor/fixedColumns.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset ('assets/admin/js/vendor/fixedHeader.bootstrap5.min.js') }}"></script>
 
     <!-- quill js -->
     <script src="{{ asset ('assets/admin/js/vendor/quill.min.js') }}"></script>
