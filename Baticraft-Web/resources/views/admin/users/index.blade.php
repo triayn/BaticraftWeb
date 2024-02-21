@@ -33,8 +33,9 @@
                     <div class="tab-pane show active" id="state-saving-preview">
                         <table id="state-saving-datatable" class="table table-striped activate-select 
                         dt-responsive nowrap w-100">
-                            <a href="" class="btn btn-success btn-sm">
-                                Tambah Pengguna</a>
+                        <a href="" class="btn btn-success btn-sm">
+                            <i class="uil uil-user-plus"></i> Tambah Pengguna
+                        </a>
                             <thead>
                                 <tr>
                                     <th style="text-align: center;">No</th>
@@ -46,7 +47,7 @@
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody align="center">
                                 @php $i = 1; @endphp
                                 @foreach ($data as $row)
                                 <tr>
@@ -56,12 +57,12 @@
                                     <td>{{ $row->role }}</td>
                                     <td>{{ $row->email }}</td>
                                     <td>
-                                        <a href="" class="btn btn-info"><i class="mdi mdi-keyboard">
+                                        <a href="" class="btn btn-info"><i class="uil-eye">
                                             </i>Lihat</a>
                                         <a href="" class="btn btn-success">
-                                            <i class="mdi mdi-thumb-up-outline"></i> Edit</a>
-                                        <button type="button" class="btn btn-danger">
-                                            <i class="mdi mdi-window-close"> Hapus</i></button>
+                                            <i class="uil-pen"></i> Edit</a>
+                                        <a href="" class="btn btn-danger">
+                                            <i class="mdi mdi-window-close"></i> Hapus</a>  
                                     </td>
                                 </tr>
                                 @endforeach
