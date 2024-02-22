@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
 <div class="container-fluid d-flex h-100 align-items-center justify-content-center py-4 py-sm-5">
     <div class="card card-body" style="max-width: 940px"><a class="position-absolute top-0 end-0 nav-link fs-sm py-1 px-2 mt-3 me-3" href="#" onclick="window.history.go(-1); return false;"><i class="fi-arrow-long-left fs-base me-2"></i>Kembali</a>
@@ -8,7 +9,7 @@
                 <div class="mt-4 mt-sm-5">Belum Punya Akun? <a href="signup-light.html">Daftar Disini</a></div>
             </div>
             <div class="col-md-6 px-2 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5"><a class="btn btn-outline-info w-100 mb-3" href="#">
-                <i class="fi-google fs-lg me-1"></i>Sign in with Google</a>
+                    <i class="fi-google fs-lg me-1"></i>Sign in with Google</a>
                 <div class="d-flex align-items-center py-3 mb-3">
                     <hr class="w-100">
                     <div class="px-3">Atau</div>
@@ -28,13 +29,13 @@
                     </div>
                     <div class="mb-4">
                         <div class="d-flex align-items-center justify-content-between mb-2">
-                            <label class="form-label mb-0" for="signin-password">{{ __('Password') }}</label><a class="fs-sm" href="#">Forgot
-                                password?</a>
+                            <label class="form-label mb-0" for="signin-password">{{ __('Kata Sandi') }}</label><a class="fs-sm" href="#">Lupa
+                                Kata Sandi?</a>
 
 
                         </div>
                         <div class="password-toggle">
-                        <input id="signin-password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <input id="signin-password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                             <!-- <input class="form-control" type="password" id="signin-password" placeholder="Enter password" required> -->
                             <label class="password-toggle-btn" aria-label="Show/hide password">
                                 @error('password')
