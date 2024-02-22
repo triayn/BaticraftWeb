@@ -1,17 +1,17 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid d-flex h-100 align-items-center justify-content-center py-4 py-sm-5">
-    <div class="card card-body" style="max-width: 940px"><a class="position-absolute top-0 end-0 nav-link fs-sm py-1 px-2 mt-3 me-3" href="#" onclick="window.history.go(-1); return false;"><i class="fi-arrow-long-left fs-base me-2"></i>Go back</a>
+    <div class="card card-body" style="max-width: 940px"><a class="position-absolute top-0 end-0 nav-link fs-sm py-1 px-2 mt-3 me-3" href="#" onclick="window.history.go(-1); return false;"><i class="fi-arrow-long-left fs-base me-2"></i>Kembali</a>
         <div class="row mx-0 align-items-center">
             <div class="col-md-6 border-end-md p-2 p-sm-5">
-                <h2 class="h3 mb-4 mb-sm-5">Hey there!<br>Welcome back.</h2><img class="d-block mx-auto" src="img/signin-modal/signin.svg" width="344" alt="Illustartion">
-                <div class="mt-4 mt-sm-5">Don't have an account? <a href="signup-light.html">Sign up here</a></div>
+                <h2 class="h3 mb-4 mb-sm-5">B A T I C R A F T !<br>Selamat Datang Kembali.</h2><img class="d-block mx-auto" src="{{ asset('assets/customer/images/login.png') }}" width="344" alt="Illustartion">
+                <div class="mt-4 mt-sm-5">Belum Punya Akun? <a href="signup-light.html">Daftar Disini</a></div>
             </div>
-            <div class="col-md-6 px-2 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5"><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-google fs-lg me-1"></i>Sign in with Google</a><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-facebook fs-lg me-1"></i>Sign in with
-                    Facebook</a>
+            <div class="col-md-6 px-2 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5"><a class="btn btn-outline-info w-100 mb-3" href="#">
+                <i class="fi-google fs-lg me-1"></i>Sign in with Google</a>
                 <div class="d-flex align-items-center py-3 mb-3">
                     <hr class="w-100">
-                    <div class="px-3">Or</div>
+                    <div class="px-3">Atau</div>
                     <hr class="w-100">
                 </div>
                 <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate>
@@ -34,10 +34,9 @@
 
                         </div>
                         <div class="password-toggle">
-                            <input class="form-control" type="password" id="signin-password" placeholder="Enter password" required>
+                        <input id="signin-password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <!-- <input class="form-control" type="password" id="signin-password" placeholder="Enter password" required> -->
                             <label class="password-toggle-btn" aria-label="Show/hide password">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -47,7 +46,7 @@
                         </div>
                     </div>
                     <div>
-                        <button class="btn btn-primary btn-lg w-100" type="submit">{{ __('Login') }}</button>
+                        <button class="btn btn-info btn-lg w-100" type="submit">{{ __('Login') }}</button>
                         @if (Route::has('password.request'))
                         <a class="btn btn-link" href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
