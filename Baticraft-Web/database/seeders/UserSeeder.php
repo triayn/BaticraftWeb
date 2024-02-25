@@ -14,16 +14,32 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'nama'          => 'Tria Yunita',
-            'no_telpon'     => '+62895342743004',
-            'alamat'        => 'Kabupaten Nganjuk, Jawa Timur',
-            'jenis_kelamin' => 'perempuan',
-            'tempat_lahir'  => 'Nganjuk',
-            'tanggal_lahir' => '2003-06-04',
-            'role'          => 'admin',
-            'email'         => 'triaynta@gmail.com',
-            'password'      => Hash::make('yaudah')
-        ]);
+        User::updateOrCreate(
+            ['email' => 'triaynta@gmail.com'],
+            [
+                'nama'          => 'Tria Yunita',
+                'no_telpon'     => '+62895342743004',
+                'alamat'        => 'Kabupaten Nganjuk, Jawa Timur',
+                'jenis_kelamin' => 'perempuan',
+                'tempat_lahir'  => 'Nganjuk',
+                'tanggal_lahir' => '2003-06-04',
+                'role'          => 'admin',
+                'password'      => Hash::make('yaudah')
+            ]
+        );
+
+        User::updateOrCreate(
+            ['email' => 'tria@gmail.com'],
+            [
+                'nama'          => 'Tria Aja',
+                'no_telpon'     => '+6289122743004',
+                'alamat'        => 'Kabupaten Nganjuk, Jawa Timur',
+                'jenis_kelamin' => 'perempuan',
+                'tempat_lahir'  => 'Nganjuk',
+                'tanggal_lahir' => '2003-06-04',
+                'role'          => 'pembeli',
+                'password'      => Hash::make('yaudah')
+            ]
+        );
     }
 }
