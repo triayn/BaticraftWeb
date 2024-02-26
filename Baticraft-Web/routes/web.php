@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('MainPage.first');
 });
 
 // Auth::routes();
@@ -28,6 +28,11 @@ Auth::routes();
 // Rute yang hanya dapat diakses oleh pengguna dengan role 'admin'
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/home/admin', [HomeController::class, 'admin'])->name('home.admin');
+
+    // CRUD User
+    Route::get('/pengguna/admin/index', [UserController::class, 'index'])->name('user.index');
+    Route::get('/pengguna/admin/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/pengguna/admin/store', [UserController::class, 'store'])->name('user.store');
 });
 
 // Rute yang hanya dapat diakses oleh pengguna dengan role 'pembeli'
@@ -36,8 +41,8 @@ Route::middleware(['auth', 'role:pembeli'])->group(function () {
 });
 
 
-Route::get('user/index', [UserController::class, 'index'])->name('user.index');
-Route::get('user/create', [UserController::class, 'create'])->name('user.create');
+// Route::get('user/index', [UserController::class, 'index'])->name('user.index');
+// Route::get('user/create', [UserController::class, 'create'])->name('user.create');
 
 // Route Cek Tampilan 
 // Route::view('index','admin.users.index')->name('user.index');

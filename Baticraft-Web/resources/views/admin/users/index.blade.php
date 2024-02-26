@@ -33,7 +33,7 @@
                     <div class="tab-pane show active" id="state-saving-preview">
                         <table id="state-saving-datatable" class="table table-striped activate-select 
                         dt-responsive nowrap w-100">
-                        <a href="" class="btn btn-success btn-sm">
+                        <a href="{{ route('user.create') }}" class="btn btn-success btn-sm">
                             <i class="uil uil-user-plus"></i> Tambah Pengguna
                         </a>
                             <thead>

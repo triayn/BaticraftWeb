@@ -26,9 +26,9 @@
                         </span>
                         @enderror
                     </div>
-                    <div class="mb-4" hidden>
+                    <!-- <div class="mb-4" hidden>
                         <input id="signup-role" type="text" class="form-control @error('role') is-invalid @enderror" value="pembeli" required autocomplete="role">
-                    </div>
+                    </div> -->
                     <div class="mb-4">
                         <label class="form-label" for="signup-email">No Handphone</label>
                         <input id="signup-phone" type="text" class="form-control @error('no_telpon') is-invalid @enderror" name="no_telpon" value="" required autocomplete="no_telpon" placeholder="+62">

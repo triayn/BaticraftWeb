@@ -28,7 +28,8 @@
                 </ul> <!-- end nav-->
                 <div class="tab-content">
                     <div class="tab-pane show active" id="label-sizing-preview">
-                        <form>
+                        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Nama Lengkap</label>
                                 <div class="col-sm-10">
@@ -75,10 +76,7 @@
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Role</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select form-select-sm mb-3">
-                                        <option value="1">Laki-laki</option>
-                                        <option value="2">Perempuan</option>
-                                    </select> 
+                                <input class="form-control" id="example-date" type="text" name="date" readonly placeholder="admin"> 
                                 </div>
                             </div>
                             <div class="mb-2 row">
