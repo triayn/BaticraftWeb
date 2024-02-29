@@ -6,7 +6,7 @@
         <li class="side-nav-item">
             <a href="apps-calendar.html" class="side-nav-link">
                 <i class="uil-home-alt"></i>
-                <span> Beranda </span>
+                <span>Dashboard </span>
             </a>
         </li>
         <li class="side-nav-item">
@@ -18,10 +18,10 @@
             <div class="collapse" id="sidebarSecondLevel">
                 <ul class="side-nav-third-level">
                     <li>
-                        <a href="javascript: void(0);">Customer</a>
+                        <a href="{{ route('user.index') }}">Admin</a>
                     </li>
                     <li>
-                        <a href="javascript: void(0);">Admin</a>
+                        <a href="javascript: void(0);">Customer</a>
                     </li>
                 </ul>
             </div>
@@ -41,10 +41,10 @@
             <div class="collapse" id="sidebarThirdLevel">
                 <ul class="side-nav-third-level">
                     <li>
-                        <a href="javascript: void(0);">Kasir</a>
+                        <a href="javascript: void(0);">Pesanan</a>
                     </li>
                     <li>
-                        <a href="javascript: void(0);">Pesanan</a>
+                        <a href="javascript: void(0);">Riwayat</a>
                     </li>
                 </ul>
             </div>
@@ -66,15 +66,7 @@
                 </ul>
             </div>
         </li>
-        <li class="side-nav-item">
-            <a href="" class="side-nav-link">
-                <i class="mdi mdi-logout me-1"></i>
-                <span> Keluar </span>
-            </a>
-        </li>
     </ul>
     <!-- End Sidebar -->
-
-    <div class="clearfix"></div>
 
 </div>

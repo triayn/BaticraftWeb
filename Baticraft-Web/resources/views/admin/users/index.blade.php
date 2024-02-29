@@ -1,4 +1,5 @@
 @extends('admin.layouts.main')
+
 @section('content')
 <!-- start page title -->
 <div class="row">
@@ -6,7 +7,7 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item active"><a href="javascript: void(0);">Pengguna</a></li>
+                    <li class="breadcrumb-item active">Pengguna / <a href="javascript: void(0);">Admin</a></li>
                 </ol>
             </div>
             <h4 class="page-title">Pengguna</h4>
@@ -20,7 +21,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title">
-                    <center>Data Pengguna</center>
+                    <center>Data Pengguna Admin</center>
                 </h4>
                 <p class="text-muted font-14"></p>
                 <ul class="nav nav-tabs nav-bordered mb-3">
@@ -33,9 +34,9 @@
                     <div class="tab-pane show active" id="state-saving-preview">
                         <table id="state-saving-datatable" class="table table-striped activate-select 
                         dt-responsive nowrap w-100">
-                        <a href="{{ route('user.create') }}" class="btn btn-success btn-sm">
-                            <i class="uil uil-user-plus"></i> Tambah Pengguna
-                        </a>
+                            <a href="{{ route('user.create') }}" class="btn btn-success btn-sm" style="margin-bottom: 1.5em;">
+                                <i class="uil uil-user-plus"></i> Tambah Pengguna
+                            </a>
                             <thead>
                                 <tr>
                                     <th style="text-align: center;">No</th>
@@ -57,12 +58,10 @@
                                     <td>{{ $row->role }}</td>
                                     <td>{{ $row->email }}</td>
                                     <td>
-                                        <a href="" class="btn btn-info"><i class="uil-eye">
+                                        <a href="{{ route('user.show') }}" class="btn btn-info"><i class="uil-eye">
                                             </i>Lihat</a>
-                                        <a href="" class="btn btn-success">
-                                            <i class="uil-pen"></i> Edit</a>
                                         <a href="" class="btn btn-danger">
-                                            <i class="mdi mdi-window-close"></i> Hapus</a>  
+                                            <i class="mdi mdi-window-close"></i> Hapus</a>
                                     </td>
                                 </tr>
                                 @endforeach

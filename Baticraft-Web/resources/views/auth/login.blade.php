@@ -6,7 +6,7 @@
         <div class="row mx-0 align-items-center">
             <div class="col-md-6 border-end-md p-2 p-sm-5">
                 <h2 class="h3 mb-4 mb-sm-5">B A T I C R A F T !<br>Selamat Datang Kembali.</h2><img class="d-block mx-auto" src="{{ asset('assets/customer/images/login.png') }}" width="344" alt="Illustartion">
-                <div class="mt-4 mt-sm-5">Belum Punya Akun? <a href="signup-light.html">Daftar Disini</a></div>
+                <div class="mt-4 mt-sm-5">Belum Punya Akun? <a href="{{ route('register') }}">Daftar Disini</a></div>
             </div>
             <div class="col-md-6 px-2 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5"><a class="btn btn-outline-info w-100 mb-3" href="#">
                     <i class="fi-google fs-lg me-1"></i>Sign in with Google</a>

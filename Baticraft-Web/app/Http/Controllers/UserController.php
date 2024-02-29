@@ -53,5 +53,13 @@ class UserController extends Controller
 
         return redirect()->route('user.index')->with(['success', "Data Berhasil Ditambahkan"]);
     }
+
+    public function show() {
+        return view('admin.users.show');
+    }
+
+    public function edit() {
+        return view('admin.users.edit');
+    }
     
 }

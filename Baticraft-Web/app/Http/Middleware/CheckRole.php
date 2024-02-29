@@ -19,7 +19,7 @@ class CheckRole
         }
 
         // Redirect atau berikan respons sesuai kebijakan akses yang diinginkan
-        return redirect()->route('home')->
+        return redirect()->route('MainPage.first')->
         with('error', 'Unauthorized. You do not have the necessary permissions.');
     }
 }

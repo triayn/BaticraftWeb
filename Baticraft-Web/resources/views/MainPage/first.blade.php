@@ -133,7 +133,7 @@
         <div class="container"><a class="navbar-brand me-2 me-xl-4" href="#">Baticraft</a>
           <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
           aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
-        </button><a class="btn btn-primary btn-sm rounded-pill ms-2 order-md-3" href="https://themes.getbootstrap.com/product/finder-directory-listings-template-ui-kit/" target="_blank" rel="noopener"><i class="fi-cart fs-base me-2"></i>Masuk</a>
+        </button><a class="btn btn-primary btn-sm rounded-pill ms-2 order-md-3" href="{{ route('login') }}" target="_blank" rel="noopener"><i class="fi-cart fs-base me-2"></i>Masuk</a>
           <div class="collapse navbar-collapse order-md-2" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
