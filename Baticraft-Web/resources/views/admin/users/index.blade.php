@@ -34,7 +34,7 @@
                     <div class="tab-pane show active" id="state-saving-preview">
                         <table id="state-saving-datatable" class="table table-striped activate-select 
                         dt-responsive nowrap w-100">
-                            <a href="{{ route('user.create') }}" class="btn btn-success btn-sm" style="margin-bottom: 1.5em;">
+                            <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm" style="margin-bottom: 1.5em;">
                                 <i class="uil uil-user-plus"></i> Tambah Pengguna
                             </a>
                             <thead>
@@ -58,10 +58,18 @@
                                     <td>{{ $row->role }}</td>
                                     <td>{{ $row->email }}</td>
                                     <td>
-                                        <a href="{{ route('user.show') }}" class="btn btn-info"><i class="uil-eye">
+                                        <a href="{{ route('user.show', $row->id) }}" class="btn btn-info"><i class="uil-eye">
                                             </i>Lihat</a>
-                                        <a href="" class="btn btn-danger">
-                                            <i class="mdi mdi-window-close"></i> Hapus</a>
+                                        <a href="{{ route('user.edit', $row->id) }}" class="btn btn-success">
+                                            <i class="mdi mdi-pencil"></i> Edit</a>
+                                        <form action="{{ route('user.delete', $row->id) }}" method="POST" style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" 
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">
+                                                <i class="mdi mdi-window-close"></i> Hapus
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

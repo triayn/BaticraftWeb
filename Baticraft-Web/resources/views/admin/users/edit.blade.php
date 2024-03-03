@@ -19,7 +19,9 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title"><center>Formulir Edit Data Pengguna</center></h4>
+                <h4 class="header-title">
+                    <center>Edit Data Pengguna</center>
+                </h4>
                 <ul class="nav nav-tabs nav-bordered mb-3">
                     <li class="nav-item">
                         <a href="#label-sizing-preview" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
@@ -28,90 +30,125 @@
                 </ul> <!-- end nav-->
                 <div class="tab-content">
                     <div class="tab-pane show active" id="label-sizing-preview">
-                        <form>
+                        <form action="{{ route('user.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Nama Lengkap</label>
                                 <div class="col-sm-10">
-                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                    <input type="text" class="form-control form-control-sm @error('nama') is-invalid @enderror" value="{{ old('nama', $data->nama) }}" name="nama" id="colFormLabelSm" placeholder="Nama Lengkap">
+                                    @error('nama')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">No. Telepon</label>
                                 <div class="col-sm-10">
-                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                    <input type="text" class="form-control form-control-sm @error('no_telpon') is-invalid @enderror" value="{{ $data->no_telpon }}" name="no_telpon" id="colFormLabelSm" placeholder="No. Telepon">
+                                    @error('no_telpon')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Alamat</label>
                                 <div class="col-sm-10">
-                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                    <input type="text" class="form-control form-control-sm @error('alamat') is-invalid @enderror" name="alamat" value="{{ $data->alamat }}" id="colFormLabelSm" placeholder="Alamat">
+                                    @error('alamat')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Jenis Kelamin</label>
                                 <div class="col-sm-10">
-                                    <div class="form-check">
-                                        <input type="radio" id="customRadio1" name="customRadio" class="form-check-input">
-                                        <label class="form-check-label" for="customRadio1">Laki-laki</label>
+                                    <input type="text" class="form-control form-control-sm @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ $data->jenis_kelamin }}" id="colFormLabelSm" readonly>
+                                    @error('jenis_kelamin')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
                                     </div>
-                                    <div class="form-check">
-                                        <input type="radio" id="customRadio2" name="customRadio" class="form-check-input">
-                                        <label class="form-check-label" for="customRadio2">Perempuan</label>
-                                    </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Tempat Lahir</label>
                                 <div class="col-sm-10">
-                                <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                    <input type="text" class="form-control form-control-sm @error('tempat_lahir') is-invalid @enderror" value="{{ $data->tempat_lahir }}" name="tempat_lahir" id="colFormLabelSm" placeholder="Tempat Lahir">
+                                    @error('tempat_lahir')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Tanggal Lahir</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" id="example-date" type="date" name="date">
+                                    <input type="date" name="tanggal_lahir" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="example-date" value="{{ $data->tanggal_lahir }}">
+                                    @error('tanggal_lahir')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Role</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select form-select-sm mb-3">
-                                        <option value="1">Laki-laki</option>
-                                        <option value="2">Perempuan</option>
-                                    </select> 
+                                    <input type="text" class="form-control" name="role" id="example-date" placeholder="Role" value="{{ $data->role }}" readonly>
+                                    @error('role')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Email</label>
                                 <div class="col-sm-10">
-                                <input type="email" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
-                                </div>
-                            </div>
-                            <div class="mb-2 row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Password</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                        <input type="password" id="password" class="form-control" placeholder="">
-                                        <div class="input-group-text" data-password="false">
-                                            <span class="password-eye"></span>
-                                        </div>
+                                    <input type="email" class="form-control form-control-sm @error('email') is-invalid @enderror" name="email" value="{{ $data->email }}" id="colFormLabelSm" placeholder="example@gmail.com">
+                                    @error('email')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
                                     </div>
+                                    @enderror
                                 </div>
                             </div>
+
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Foto</label>
                                 <div class="col-sm-10">
                                     <div class="mb-3">
-                                        <input type="file" id="example-fileinput" class="form-control">
+                                        <input type="file" id="example-fileinput" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ $data->image }}">
+                                        @error('image')
+                                        <div class="alert alert-danger mt-2">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-12 text-center">
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <button type="submit" class="btn btn-primary">Edit Data</button>
                                 </div>
                             </div>
-                        </form>                                        
+                        </form>
                     </div> <!-- end preview-->
                 </div> <!-- end tab-content-->
             </div> <!-- end card-body -->

@@ -7,110 +7,56 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="index">Pengguna</a></li>
-                    <li class="breadcrumb-item active">Lihat Pengguna</li>
+                    <li class="breadcrumb-item active">Detail Data Pengguna</li>
                 </ol>
             </div>
-            <h4 class="page-title">Lihat Pengguna</h4>
+            <h4 class="page-title">Detail Data Pengguna</h4>
         </div>
     </div>
 </div>
 <!-- end page title -->
 <div class="row">
-    <div class="col-12">
+    <div class="col-8">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title"><center>Data Pengguna</center></h4>
-                <ul class="nav nav-tabs nav-bordered mb-3">
-                    <li class="nav-item">
-                        <a href="#label-sizing-preview" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
-                        </a>
-                    </li>
-                </ul> <!-- end nav-->
-                <div class="tab-content">
-                    <div class="tab-pane show active" id="label-sizing-preview">
-                        <form>
-                            <div class="mb-2 row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Nama Lengkap</label>
-                                <div class="col-sm-10">
-                                    <input type="text" id="example-readonly" class="form-control" readonly="" value="">
-                                </div>
-                            </div>
-                            <div class="mb-2 row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">No. Telepon</label>
-                                <div class="col-sm-10">
-                                <input type="text" id="example-readonly" class="form-control" readonly="" value="">
-                                </div>
-                            </div>
-                            <div class="mb-2 row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Alamat</label>
-                                <div class="col-sm-10">
-                                    <input type="text" id="example-readonly" class="form-control" readonly="" value="">
-                                </div>
-                            </div>
-                            <div class="mb-2 row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Jenis Kelamin</label>
-                                <div class="col-sm-10">
-                                    <div class="form-check">
-                                        <input type="radio" id="customRadio1" name="customRadio" class="form-check-input">
-                                        <label class="form-check-label" for="customRadio1">Laki-laki</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="radio" id="customRadio2" name="customRadio" class="form-check-input">
-                                        <label class="form-check-label" for="customRadio2">Perempuan</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-2 row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Tempat Lahir</label>
-                                <div class="col-sm-10">
-                                    <input type="text" id="example-readonly" class="form-control" readonly="" value="">
-                                </div>
-                            </div>
-                            <div class="mb-2 row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Tanggal Lahir</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" id="example-date" type="date" name="date" readonly>
-                                </div>
-                            </div>
-                            <div class="mb-2 row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Role</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select form-select-sm mb-3">
-                                        <option value="1">Laki-laki</option>
-                                        <option value="2">Perempuan</option>
-                                    </select> 
-                                </div>
-                            </div>
-                            <div class="mb-2 row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Email</label>
-                                <div class="col-sm-10">
-                                    <input type="email" id="example-readonly" class="form-control" readonly="" value="">
-                                </div>
-                            </div>
-                            <div class="mb-2 row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Password</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group input-group-merge">
-                                        <input type="password" id="password" class="form-control" placeholder="" readonly>
-                                        <div class="input-group-text" data-password="false">
-                                            <span class="password-eye"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-2 row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Foto</label>
-                                <div class="col-sm-10">
-                                    <div class="mb-3">
-                                        <input type="file" id="example-fileinput" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>                                        
-                    </div> <!-- end preview-->
-                </div> <!-- end tab-content-->
+                <div class="mt-3">
+                    <hr class="" />
+
+                    <p class="mt-4 mb-1"><strong><i class='uil uil-envelope-add me-1'></i> Email:</strong></p>
+                    <p>{{ $data->email }}</p>
+
+                    <p class="mt-3 mb-1"><strong><i class='uil uil-phone'></i> Nomor Handphone:</strong></p>
+                    <p>{{ $data->no_telpon }}</p>
+
+                    <p class="mt-3 mb-1"><strong><i class='uil uil-location'></i> Alamat:</strong></p>
+                    <p>{{ $data->alamat }}</p>
+
+                    <p class="mt-3 mb-1"><strong><i class='uil uil-globe'></i> Tempat, Tanggal Lahir:</strong></p>
+                    <p>{{ $data->tempat_lahir }}, {{ $data->tanggal_lahir }}</p>
+
+                    <p class="mt-3 mb-2"><strong><i class='uil uil-users-alt'></i> Jenis Kelamin:</strong></p>
+                    <p>
+                        @if($data->jenis_kelamin == 'Laki-laki')
+                        <span class="badge badge-success-lighten p-1 font-14">{{ $data->jenis_kelamin }}</span>
+                        @else($data->jenis_kelamin == 'Perempuan')
+                        <span class="badge badge-primary-lighten p-1 font-14">{{ $data->jenis_kelamin }}</span>
+                        @endif
+                    </p>
+                </div>
             </div> <!-- end card-body -->
-        </div> <!-- end card-->
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="mt-3 text-center">
+                    <img src="{{ asset('storage/user/' .$data->image) }}" class="img-thumbnail avatar-lg 
+                    rounded-circle" />
+                    <h4>{{ $data->nama }}</h4>
+                    <button class="btn btn-info btn-sm mt-1"><i class='uil uil-at'></i> {{ $data->role }}</button>
+                </div>
+            </div>
+        </div>
     </div> <!-- end col -->
 </div>
 <!-- end row -->

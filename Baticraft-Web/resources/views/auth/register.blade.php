@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-6 px-2 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5">
                 <form class="needs-validation" novalidate method="POST" action="{{ route('register') }}">
-                @csrf
+                    @csrf
                     <div class="mb-4">
                         <label class="form-label" for="signup-name">Nama Lengkap</label>
                         <input id="signup-name" type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" required autocomplete="name" autofocus>
@@ -26,9 +26,9 @@
                         </span>
                         @enderror
                     </div>
-                    <!-- <div class="mb-4" hidden>
-                        <input id="signup-role" type="text" class="form-control @error('role') is-invalid @enderror" value="pembeli" required autocomplete="role">
-                    </div> -->
+                    <div class="mb-4" hidden>
+                        <input id="signup-role" type="text" class="form-control @error('role') is-invalid @enderror" value="admin" required autocomplete="role">
+                    </div>
                     <div class="mb-4">
                         <label class="form-label" for="signup-email">No Handphone</label>
                         <input id="signup-phone" type="text" class="form-control @error('no_telpon') is-invalid @enderror" name="no_telpon" value="" required autocomplete="no_telpon" placeholder="+62">
@@ -66,7 +66,7 @@
                     <div class="mb-4">
                         <label class="form-label" for="signup-password-confirm">Konfirmasi Kata Sandi</label>
                         <div class="password-toggle">
-                        <input id="signup-password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" minlength="8">
+                            <input id="signup-password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" minlength="8">
                             <label class="password-toggle-btn" aria-label="Show/hide password">
                                 <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                             </label>
@@ -75,7 +75,7 @@
                     <div class="form-check mb-4">
                         <input class="form-check-input" type="checkbox" id="agree-to-terms" required>
                         <label class="form-check-label" for="agree-to-terms">Dengan bergabung, saya menyetujui Ketentuan Penggunaan dan Kebijakan Privasi</label>
-                    </div> 
+                    </div>
                     <button class="btn btn-info btn-lg w-100" type="submit">{{ __('Register') }}</button>
                 </form>
             </div>

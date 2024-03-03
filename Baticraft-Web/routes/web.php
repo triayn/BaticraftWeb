@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('MainPage.second');
+    return view('welcome');
 });
 
 // Auth::routes();
@@ -26,13 +26,15 @@ Route::get('/', function () {
 Auth::routes();
 
 // CRUD User
-Route::get('/pengguna/admin/index', [UserController::class, 'index'])->name('user.index');
-Route::get('/pengguna/admin/show', [UserController::class, 'show'])->name('user.show');
-Route::get('/pengguna/admin/create', [UserController::class, 'create'])->name('user.create');
-Route::post('/pengguna/admin/store', [UserController::class, 'store'])->name('user.store');
-Route::get('/pengguna/admin/edit', [UserController::class, 'edit'])->name('user.edit');
-Route::put('/pengguna/admin/update/{id}', [UserController::class, 'update'])->name('user.update');
-Route::delete('/pengguna/admin/destroy/{id}', [UserController::class, 'destroy'])->name('user.delete');
+Route::prefix('/pengguna/admin')->group(function () {
+    Route::get('/index', [UserController::class, 'index'])->name('user.index');
+    Route::get('/show/{id}', [UserController::class, 'show'])->name('user.show');
+    Route::get('/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/store', [UserController::class, 'store'])->name('user.store');
+    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/update/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('user.delete');
+});
 
 // Rute yang hanya dapat diakses oleh pengguna dengan role 'admin'
 Route::middleware(['auth', 'role:admin'])->group(function () {

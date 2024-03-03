@@ -250,6 +250,7 @@
     <script src="{{ asset('assets/admin/js/vendor/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/vendor/responsive.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/vendor/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/vendor/dataTables.checkboxes.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/vendor/buttons.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/vendor/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/vendor/buttons.flash.min.js') }}"></script>
