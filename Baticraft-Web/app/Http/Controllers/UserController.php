@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
+    // PENGGUNA ADMIN
     public  function index()
     {
         $data = User::where('role', 'admin')->get();
@@ -138,5 +139,28 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('user.index')->with(['success' => 'Data Berhasil Dihapus']);
+    }
+
+    // PENGGUNA CUSTOMER
+    public  function index_customer()
+    {
+        $data = User::where('role', 'pembeli')->get();
+
+        return view('admin.customer.index', compact('data'));
+    }
+
+    public function destroy_customer(string $id): RedirectResponse
+    {
+        $user = User::findOrFail($id);
+
+        // Hapus file gambar dari penyimpanan jika ada
+        if (Storage::exists('public/user/' . $user->image)) {
+            Storage::delete('public/user/' . $user->image);
+        }
+
+        // Hapus data pengguna
+        $user->delete();
+
+        return redirect()->route('customer.index')->with(['success' => 'Data Berhasil Dihapus']);
     }
 }

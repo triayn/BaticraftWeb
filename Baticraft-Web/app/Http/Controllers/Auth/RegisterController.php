@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -29,7 +31,22 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/login';
+    // In your App\Http\Controllers\Auth\RegisterController.php
+
+    protected function redirectTo()
+    {
+        $user = auth()->user();
+
+        if ($user->role == 'admin') {
+            return route('home.admin');
+        } elseif ($user->role == 'pembeli') {
+            return route('home.pembeli');
+        } else {
+            return route('login');
+        }
+    }
+
+    protected $redirectTo = 'App\Http\Controllers\Auth\RegisterController@redirectTo';
 
     /**
      * Create a new controller instance.
@@ -51,7 +68,6 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'nama' => ['required', 'string', 'max:255'],
-            'role' => ['required', Rule::in(['pembeli'])],
             'no_telpon' => ['required', 'numeric'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -66,14 +82,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // \Log::info('Data yang dikirim ke create:', $data);
-
-        // Atur nilai default untuk field 'role'
-        $data['role'] = 'pembeli';
-
         return User::create([
             'nama' => $data['nama'],
-            'role' => $data['role'],
             'no_telpon' => $data['no_telpon'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

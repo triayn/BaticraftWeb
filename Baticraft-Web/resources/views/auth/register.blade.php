@@ -18,16 +18,13 @@
                     @csrf
                     <div class="mb-4">
                         <label class="form-label" for="signup-name">Nama Lengkap</label>
-                        <input id="signup-name" type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" required autocomplete="name" autofocus>
+                        <input id="signup-name" type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="name" autofocus>
 
                         @error('nama')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
-                    </div>
-                    <div class="mb-4" hidden>
-                        <input id="signup-role" type="text" class="form-control @error('role') is-invalid @enderror" value="admin" required autocomplete="role">
                     </div>
                     <div class="mb-4">
                         <label class="form-label" for="signup-email">No Handphone</label>
@@ -41,7 +38,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label" for="signup-email">Email</label>
-                        <input id="signup-email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="" required autocomplete="email">
+                        <input id="signup-email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                         @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -74,7 +71,6 @@
                     </div>
                     <div class="form-check mb-4">
                         <input class="form-check-input" type="checkbox" id="agree-to-terms" required>
-                        <label class="form-check-label" for="agree-to-terms">Dengan bergabung, saya menyetujui Ketentuan Penggunaan dan Kebijakan Privasi</label>
                     </div>
                     <button class="btn btn-info btn-lg w-100" type="submit">{{ __('Register') }}</button>
                 </form>

@@ -21,13 +21,13 @@
                         <a href="{{ route('user.index') }}">Admin</a>
                     </li>
                     <li>
-                        <a href="javascript: void(0);">Customer</a>
+                        <a href="{{ route('customer.index') }}">Customer</a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="side-nav-item">
-            <a href="apps-social-feed.html" class="side-nav-link">
+            <a href="{{ route('produk.index') }}" class="side-nav-link">
                 <i class="uil-cart"></i>
                 <span> Produk </span>
             </a>

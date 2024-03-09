@@ -20,16 +20,6 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title">
-                    <center>Data Pengguna Admin</center>
-                </h4>
-                <p class="text-muted font-14"></p>
-                <ul class="nav nav-tabs nav-bordered mb-3">
-                    <li class="nav-item">
-                        <a href="#state-saving-preview" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
-                        </a>
-                    </li>
-                </ul> <!-- end nav-->
                 <div class="tab-content">
                     <div class="tab-pane show active" id="state-saving-preview">
                         <table id="state-saving-datatable" class="table table-striped activate-select 

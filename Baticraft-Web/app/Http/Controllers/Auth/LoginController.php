@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -53,6 +56,34 @@ class LoginController extends Controller
 
         return $this->sendFailedLoginResponse($request);
     }
+
+    public function loginPath()
+    {
+        return property_exists($this, 'loginPath') ? $this->loginPath() : '/login';
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        $request->flash();
+
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            $errors = ['email' => 'Email yang anda masukkan belum terdaftar. Silakan daftar terlebih dahulu.'];
+        } elseif (!password_verify($password, $user->password)) {
+            $errors = ['password' => 'Kata Sandi yang anda masukkan salah. Silakan coba lagi.'];
+        } else {
+            // Sisipkan logika lain jika diperlukan
+            $errors = ['email' => 'Terjadi kesalahan. Silakan coba lagi.'];
+        }
+
+        throw ValidationException::withMessages($errors)
+            ->redirectTo($this->loginPath());
+    }
+
 
     /**
      * The user has been authenticated.
