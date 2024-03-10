@@ -66,6 +66,15 @@
                 </ul>
             </div>
         </li>
+        <li class="side-nav-item">
+            <a href="{{ route('logout') }}" class="side-nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="mdi mdi-logout me-1"></i>
+                <span> Logout </span>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </li>
     </ul>
     <!-- End Sidebar -->
 
