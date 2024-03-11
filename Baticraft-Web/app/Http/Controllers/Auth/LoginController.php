@@ -76,7 +76,6 @@ class LoginController extends Controller
         } elseif (!password_verify($password, $user->password)) {
             $errors = ['password' => 'Kata Sandi yang anda masukkan salah. Silakan coba lagi.'];
         } else {
-            // Sisipkan logika lain jika diperlukan
             $errors = ['email' => 'Terjadi kesalahan. Silakan coba lagi.'];
         }
 
@@ -94,7 +93,6 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        // Check user's role and redirect accordingly
         if ($user->role == 'admin') {
             return redirect()->route('home.admin');
         } elseif ($user->role == 'pembeli') {

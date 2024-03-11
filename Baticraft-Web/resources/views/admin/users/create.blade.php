@@ -35,7 +35,8 @@
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Nama Lengkap</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm @error('nama') is-invalid @enderror" name="nama" id="colFormLabelSm" placeholder="Nama Lengkap">
+                                    <input type="text" class="form-control form-control-sm @error('nama') is-invalid @enderror" 
+                                    name="nama" id="colFormLabelSm" placeholder="Nama Lengkap">
                                     @error('nama')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -45,9 +46,10 @@
                             </div>
 
                             <div class="mb-2 row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">No. Telepon</label>
+                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Nomor</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm @error('no_telpon') is-invalid @enderror" name="no_telpon" id="colFormLabelSm" placeholder="No. Telepon">
+                                    <input type="text" class="form-control form-control-sm @error('no_telpon') is-invalid @enderror" 
+                                    name="no_telpon" id="colFormLabelSm" placeholder="No. Telepon">
                                     @error('no_telpon')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -59,7 +61,8 @@
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Alamat</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm @error('alamat') is-invalid @enderror" name="alamat" id="colFormLabelSm" placeholder="Alamat">
+                                    <input type="text" class="form-control form-control-sm @error('alamat') is-invalid @enderror" 
+                                    name="alamat" id="colFormLabelSm" placeholder="Alamat">
                                     @error('alamat')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}

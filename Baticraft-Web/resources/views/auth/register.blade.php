@@ -69,9 +69,6 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-check mb-4">
-                        <input class="form-check-input" type="checkbox" id="agree-to-terms" required>
-                    </div>
                     <button class="btn btn-info btn-lg w-100" type="submit">{{ __('Register') }}</button>
                 </form>
             </div>

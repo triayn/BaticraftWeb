@@ -34,17 +34,38 @@ class UserController extends Controller
             'tempat_lahir'      => 'required',
             'tanggal_lahir'     => 'required|date',
             'role'              => 'required',
-            'email'             => 'required',
+            'email'             => 'required|unique',
             'password'          => 'required|min:6',
             'image'             => 'required|image|mimes:jpeg,jpg,png|max:2048'
+        ], [
+            'nama.required'             => 'Kolom nama wajib diisi.',
+            'nama.min'                  => 'Panjang nama minimal 3 karakter.',
+            'no_telpon.required'        => 'Kolom nomor telepon wajib diisi.',
+            'no_telpon.max'             => 'Panjang nomor telepon maksimal 15 karakter.',
+            'no_telpon.min'             => 'Panjang nomor telepon minimal 11 karakter.',
+            'alamat.required'           => 'Kolom alamat wajib diisi.',
+            'alamat.max'                => 'Panjang alamat maksimal 50 karakter.',
+            'jenis_kelamin.required'    => 'Jenis kelamin wajib diisi.',
+            'tempat_lahir.required'     => 'Kolom tempat lahir wajib diisi.',
+            'tanggal_lahir.required'    => 'Kolom tanggal lahir wajib diisi.',
+            'tanggal_lahir.date'        => 'Format tanggal lahir tidak valid.',
+            'role.required'             => 'Kolom role wajib diisi.',
+            'email.required'            => 'Kolom email wajib diisi.',
+            'email.email'               => 'Format email tidak valid.',
+            'email.unique'              => 'Email sudah digunakan.',
+            'password.required'         => 'Kolom password wajib diisi.',
+            'password.min'              => 'Panjang password minimal 6 karakter.',
+            'image.required'            => 'Kolom gambar wajib diisi.',
+            'image.image'               => 'File harus berupa gambar.',
+            'image.mimes'               => 'Format gambar tidak valid. Hanya diperbolehkan: jpeg, jpg, png.',
+            'image.max'                 => 'Ukuran gambar maksimal 2048 KB.',
         ]);
 
         $image = $request->file('image');
         try {
             $image->storeAs('public/user', $image->hashName());
         } catch (\Exception $e) {
-            return redirect()->route('user.index')->
-            with('error', "Gagal menyimpan gambar. Error: " . $e->getMessage());
+            return redirect()->route('user.index')->with('error', "Gagal menyimpan gambar. Error: " . $e->getMessage());
         }
 
         User::create([
