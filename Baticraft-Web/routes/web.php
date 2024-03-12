@@ -23,7 +23,16 @@ Route::get('/', function () {
 // Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+// CRUD User
+Route::prefix('/pengguna/admin')->group(function () {
+    Route::get('/index', [UserController::class, 'index'])->name('user.index');
+    Route::get('/show/{id}', [UserController::class, 'show'])->name('user.show');
+    Route::get('/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/store', [UserController::class, 'store'])->name('user.store');
+    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/update/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('user.delete');
+});
 
 // CRUD Produk
 Route::prefix('/produk')->group(function () {
@@ -49,16 +58,6 @@ Auth::routes();
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/home/admin', [HomeController::class, 'admin'])->name('home.admin');
 
-    // CRUD User
-    Route::prefix('/pengguna/admin')->group(function () {
-        Route::get('/index', [UserController::class, 'index'])->name('user.index');
-        Route::get('/show/{id}', [UserController::class, 'show'])->name('user.show');
-        Route::get('/create', [UserController::class, 'create'])->name('user.create');
-        Route::post('/store', [UserController::class, 'store'])->name('user.store');
-        Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
-        Route::put('/update/{id}', [UserController::class, 'update'])->name('user.update');
-        Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('user.delete');
-    });
 });
 
 // Rute yang hanya dapat diakses oleh pengguna dengan role 'pembeli'

@@ -88,7 +88,8 @@
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Tempat Lahir</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" id="colFormLabelSm" placeholder="Tempat Lahir">
+                                    <input type="text" class="form-control form-control-sm @error('tempat_lahir') is-invalid @enderror" 
+                                    name="tempat_lahir" id="colFormLabelSm" placeholder="Tempat Lahir">
                                     @error('tempat_lahir')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -100,7 +101,8 @@
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Tanggal Lahir</label>
                                 <div class="col-sm-10">
-                                    <input type="date" name="tanggal_lahir" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="example-date">
+                                    <input type="date" name="tanggal_lahir" 
+                                    class="form-control @error('tanggal_lahir') is-invalid @enderror" id="example-date">
                                     @error('tanggal_lahir')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -122,7 +124,8 @@
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control form-control-sm @error('email') is-invalid @enderror" name="email" id="colFormLabelSm" placeholder="example@gmail.com">
+                                    <input type="email" class="form-control form-control-sm @error('email') is-invalid @enderror" 
+                                    name="email" id="colFormLabelSm" placeholder="example@gmail.com">
                                     @error('email')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -135,7 +138,8 @@
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Password</label>
                                 <div class="col-sm-10">
                                     <div class="input-group input-group-merge">
-                                        <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
+                                        <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" 
+                                        name="password" placeholder="Password">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
                                         </div>
@@ -152,7 +156,8 @@
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Foto</label>
                                 <div class="col-sm-10">
                                     <div class="mb-3">
-                                        <input type="file" id="example-fileinput" class="form-control @error('image') is-invalid @enderror" name="image">
+                                        <input type="file" id="example-fileinput" 
+                                        class="form-control @error('image') is-invalid @enderror" name="image">
                                         @error('image')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}

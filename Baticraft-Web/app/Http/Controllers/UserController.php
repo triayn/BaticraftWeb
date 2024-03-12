@@ -34,7 +34,7 @@ class UserController extends Controller
             'tempat_lahir'      => 'required',
             'tanggal_lahir'     => 'required|date',
             'role'              => 'required',
-            'email'             => 'required|unique',
+            'email'             => 'required|email|unique:users,email',
             'password'          => 'required|min:6',
             'image'             => 'required|image|mimes:jpeg,jpg,png|max:2048'
         ], [
