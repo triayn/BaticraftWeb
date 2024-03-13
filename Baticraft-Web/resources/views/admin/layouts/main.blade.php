@@ -54,7 +54,7 @@
                 <div class="navbar-custom">
                     <ul class="list-unstyled topbar-menu float-end mb-0">
                         <li class="dropdown notification-list">
-                            <!-- <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <span class="account-user-avatar">
                                     <img src="{{ asset('storage/user/' . auth()->user()->image) }}" alt="user-image" class="rounded-circle">
                                 </span>
@@ -62,8 +62,8 @@
                                     <span class="account-user-name">{{ auth()->user()->nama }}</span>
                                     <span class="account-position">{{ auth()->user()->role }}</span>
                                 </span>
-                            </a> -->
-                            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            </a>
+                            <!-- <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <span class="account-user-avatar">
                                     <img src="#" alt="user-image" class="rounded-circle">
                                 </span>
@@ -71,7 +71,7 @@
                                     <span class="account-user-name">Tria Yunita</span>
                                     <span class="account-position">admin</span>
                                 </span>
-                            </a>
+                            </a> -->
                         </li>
 
                     </ul>
@@ -213,6 +213,9 @@
     <div class="rightbar-overlay"></div>
     <!-- /End-bar -->
 
+    <!-- Drag and Drop Image (Create.User) -->
+    
+    @yield ('scripts')
     <script src="{{ asset('assets/admin/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/app.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/vendor/apexcharts.min.js') }}"></script>

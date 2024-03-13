@@ -133,7 +133,13 @@
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Foto</label>
                                 <div class="col-sm-10">
                                     <div class="mb-3">
-                                        <input type="file" id="example-fileinput" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ $data->image }}">
+                                        <!-- Input file tersembunyi -->
+                                        <input type="file" id="image" class="form-control" name="image" style="display: none;">
+                                        <!-- Area drag and drop -->
+                                        <div id="dragDropArea" class="border border-primary rounded p-5">
+                                            <p class="text-center text-muted">Drag and drop gambar di sini atau klik untuk memilih</p>
+                                        </div>
+                                        <!-- Pesan error -->
                                         @error('image')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
@@ -156,4 +162,69 @@
     </div> <!-- end col -->
 </div>
 <!-- end row -->
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const dragDropArea = document.getElementById('dragDropArea');
+        const imageInput = document.getElementById('image');
+
+        // Prevent default behavior saat file dijatuhkan pada area drag and drop
+        dragDropArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            dragDropArea.classList.add('border-primary');
+        });
+
+        // Remove border saat file tidak lagi dijatuhkan
+        dragDropArea.addEventListener('dragleave', function() {
+            dragDropArea.classList.remove('border-primary');
+        });
+
+        // Handle file saat dijatuhkan pada area drag and drop
+        dragDropArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            dragDropArea.classList.remove('border-primary');
+
+            // Ambil file yang dijatuhkan
+            const file = e.dataTransfer.files[0];
+
+            // Simpan file ke dalam input file
+            imageInput.files = e.dataTransfer.files;
+
+            // Tampilkan preview gambar jika file adalah gambar
+            if (file.type.match('image.*')) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    dragDropArea.innerHTML = '<img src="' + e.target.result + '" class="img-fluid rounded">';
+                }
+
+                reader.readAsDataURL(file);
+            } else {
+                dragDropArea.innerHTML = '<p class="text-center text-muted">File harus berupa gambar</p>';
+            }
+        });
+
+        // Handle klik pada area drag and drop untuk memilih gambar
+        dragDropArea.addEventListener('click', function() {
+            imageInput.click();
+        });
+
+        // Handle perubahan pada input file untuk menampilkan preview gambar
+        imageInput.addEventListener('change', function() {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    dragDropArea.innerHTML = '<img src="' + e.target.result + '" class="img-fluid rounded">';
+                }
+
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
 @endsection
