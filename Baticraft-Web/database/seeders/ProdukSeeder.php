@@ -14,16 +14,16 @@ class ProdukSeeder extends Seeder
     public function run(): void
     {
         Produk::updateOrCreate(
-            // [
-            //     'nama'          => 'Tria Yunita',
-            //     'deskripsi'     => '+62895342743004',
-            //     'harga'        => 'Kabupaten Nganjuk, Jawa Timur',
-            //     'stok' => 'perempuan',
-            //     'tempat_lahir'  => 'Nganjuk',
-            //     'tanggal_lahir' => '2003-06-04',
-            //     'role'          => 'admin',
-            //     'password'      => Hash::make('yaudah')
-            // ]
+            [
+                'nama' => 'Batik Sarimbitan',
+                'deskripsi' => 'Batik Sarimbit adalah jenis batik yang dijual berpasangan untuk dipakai berpasangan pula, biasanya oleh suami istri. Pasangan batik tersebut biasanya memiliki kesamaan dari segi corak atau warna.',
+                'kategori' => 'Kain',
+                'harga' => 150000,
+                'stok' => 10,
+                'ukuran' => '2.5 m',
+                'bahan' => 'Katun Primis',
+                'status' => 'tersedia',
+            ]
         );
     }
 }

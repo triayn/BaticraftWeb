@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -36,13 +37,13 @@ Route::prefix('/pengguna/admin')->group(function () {
 
 // CRUD Produk
 Route::prefix('/produk')->group(function () {
-    Route::get('/index', [UserController::class, 'index'])->name('produk.index');
-    Route::get('/show/{id}', [UserController::class, 'show'])->name('produk.show');
-    Route::get('/create', [UserController::class, 'create'])->name('produk.create');
-    Route::post('/store', [UserController::class, 'store'])->name('produk.store');
-    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('produk.edit');
-    Route::put('/update/{id}', [UserController::class, 'update'])->name('produk.update');
-    Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('produk.delete');
+    Route::get('/index', [ProdukController::class, 'index'])->name('produk.index');
+    Route::get('/show/{id}', [ProdukController::class, 'show'])->name('produk.show');
+    Route::get('/create', [ProdukController::class, 'create'])->name('produk.create');
+    Route::post('/store', [ProdukController::class, 'store'])->name('produk.store');
+    Route::get('/edit/{id}', [ProdukController::class, 'edit'])->name('produk.edit');
+    Route::put('/update/{id}', [ProdukController::class, 'update'])->name('produk.update');
+    Route::delete('/destroy/{id}', [ProdukController::class, 'destroy'])->name('produk.delete');
 });
 
 // CRUD Customer

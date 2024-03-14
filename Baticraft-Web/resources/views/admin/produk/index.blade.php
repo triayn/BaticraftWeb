@@ -22,11 +22,10 @@
             <div class="card-body">
                 <div class="tab-content">
                     <div class="tab-pane show active" id="state-saving-preview">
-                        <table id="state-saving-datatable" class="table table-striped activate-select 
-                        dt-responsive nowrap w-100">
-                            <a href="#" class="btn btn-primary btn-sm" style="margin-bottom: 1.5em;">
-                                <i class="uil uil-user-plus"></i> Tambah Produk
-                            </a>
+                        <a href="{{ route('produk.create') }}" class="btn btn-primary btn-sm" style="margin-bottom: 1.5em;">
+                            <i class="uil uil-user-plus"></i> Tambah Produk
+                        </a>
+                        <table id="state-saving-datatable" class="table table-striped activate-select dt-responsive nowrap w-100">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -38,49 +37,43 @@
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
-                            <tr>
-                                <td>1. </td>
-                                <td>
-                                    <img src="{{ asset('assets/customer/images/login.png') }}" alt="contact-img" title="contact-img" class="rounded me-3" height="48" />
-                                    <p class="m-0 d-inline-block align-middle font-16">
-                                        <a href="apps-ecommerce-products-details.html" class="text-body">Amazing Modern
-                                            Chair</a>
-                                    </p>
-                                </td>
-                                <td>
-                                    Aeron Chairs
-                                </td>
-                                <td>
-                                    $148.66
-                                </td>
 
-                                <td>
-                                    254
-                                </td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                                <!-- <td>
-                                    <a href="#" class="btn btn-info"><i class="uil-eye">
-                                        </i>Lihat</a>
-                                    <a href="#" class="btn btn-success">
-                                        <i class="mdi mdi-pencil"></i> Edit</a>
-                                    <form action="#" method="POST" style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">
-                                            <i class="mdi mdi-window-close"></i> Hapus
-                                        </button>
-                                    </form>
-                                </td> -->
-                                <td class="table-action">
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                </td>
-                            </tr>
                             <tbody align="center">
-
+                                @php $i = 1; @endphp
+                                @foreach ($data as $row)
+                                <tr>
+                                    <td>{{ $i++ }}</td>
+                                    <td>
+                                        <!-- <img src="{{ asset('assets/customer/images/login.png') }}" alt="contact-img" title="contact-img" class="rounded me-3" height="48" /> -->
+                                        <p class="m-0 d-inline-block align-middle font-16">
+                                            <a href="apps-ecommerce-products-details.html" class="text-body">{{ $row->nama }}</a>
+                                        </p>
+                                    </td>
+                                    <td>{{ $row->kategori }}</td>
+                                    <td>Rp. {{ $row->harga }}</td>
+                                    <td>{{ $row->stok }} pcs</td>
+                                    <td>
+                                        @if ($row->status == 'Tersedia')
+                                        <span class="badge bg-success">{{ $row->status }}</span>
+                                        @else
+                                        <span class="badge bg-danger">{{ $row->status }}</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="#" class="btn btn-info"><i class="uil-eye"></i> Lihat</a>
+                                        <a href="#" class="btn btn-success">
+                                            <i class="mdi mdi-pencil"></i> Edit
+                                        </a>
+                                        <form action="#" method="POST" style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">
+                                                <i class="mdi mdi-window-close"></i> Hapus
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
