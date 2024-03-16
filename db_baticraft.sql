@@ -14,24 +14,22 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table db_baticraft.detail_transactions
-CREATE TABLE IF NOT EXISTS `detail_transactions` (
+-- Dumping structure for table db_baticraft.carts
+CREATE TABLE IF NOT EXISTS `carts` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `transaksi_id` bigint unsigned NOT NULL,
-  `produk_id` bigint unsigned NOT NULL,
-  `nama_produk` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jumlah_barang` int NOT NULL,
-  `harga_total` int NOT NULL,
+  `user_id` bigint unsigned NOT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `jumlah` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `detail_transactions_transaksi_id_foreign` (`transaksi_id`),
-  KEY `detail_transactions_produk_id_foreign` (`produk_id`),
-  CONSTRAINT `detail_transactions_produk_id_foreign` FOREIGN KEY (`produk_id`) REFERENCES `produks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `detail_transactions_transaksi_id_foreign` FOREIGN KEY (`transaksi_id`) REFERENCES `transactions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `carts_user_id_foreign` (`user_id`),
+  KEY `carts_product_id_foreign` (`product_id`),
+  CONSTRAINT `carts_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `carts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_baticraft.detail_transactions: ~0 rows (approximately)
+-- Dumping data for table db_baticraft.carts: ~0 rows (approximately)
 
 -- Dumping structure for table db_baticraft.failed_jobs
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
@@ -48,19 +46,19 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
 
 -- Dumping data for table db_baticraft.failed_jobs: ~0 rows (approximately)
 
--- Dumping structure for table db_baticraft.gambar_produks
-CREATE TABLE IF NOT EXISTS `gambar_produks` (
+-- Dumping structure for table db_baticraft.image_products
+CREATE TABLE IF NOT EXISTS `image_products` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `produk_id` bigint unsigned NOT NULL,
-  `gambar_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `image_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `gambar_produks_produk_id_foreign` (`produk_id`),
-  CONSTRAINT `gambar_produks_produk_id_foreign` FOREIGN KEY (`produk_id`) REFERENCES `produks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `image_products_product_id_foreign` (`product_id`),
+  CONSTRAINT `image_products_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_baticraft.gambar_produks: ~0 rows (approximately)
+-- Dumping data for table db_baticraft.image_products: ~0 rows (approximately)
 
 -- Dumping structure for table db_baticraft.informations
 CREATE TABLE IF NOT EXISTS `informations` (
@@ -82,32 +80,15 @@ CREATE TABLE IF NOT EXISTS `informations` (
 
 -- Dumping data for table db_baticraft.informations: ~0 rows (approximately)
 
--- Dumping structure for table db_baticraft.keranjangs
-CREATE TABLE IF NOT EXISTS `keranjangs` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` bigint unsigned NOT NULL,
-  `produk_id` bigint unsigned NOT NULL,
-  `jumlah` int NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `keranjangs_user_id_foreign` (`user_id`),
-  KEY `keranjangs_produk_id_foreign` (`produk_id`),
-  CONSTRAINT `keranjangs_produk_id_foreign` FOREIGN KEY (`produk_id`) REFERENCES `produks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `keranjangs_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Dumping data for table db_baticraft.keranjangs: ~0 rows (approximately)
-
 -- Dumping structure for table db_baticraft.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_baticraft.migrations: ~17 rows (approximately)
+-- Dumping data for table db_baticraft.migrations: ~22 rows (approximately)
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
 	(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
@@ -125,7 +106,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(14, '2024_03_15_154008_create_transactions_tables', 11),
 	(15, '2024_03_15_154640_create_trigger_kurangstok_tables', 12),
 	(16, '2024_03_15_155654_create_trigger_kurangstok_tables', 13),
-	(17, '2024_03_15_155807_add_columns_to_produks_table', 14);
+	(17, '2024_03_15_155807_add_columns_to_produks_table', 14),
+	(18, '2024_03_16_052936_create_image_products_table', 15),
+	(19, '2024_03_16_053905_create_transaction_details_table', 16),
+	(20, '2024_03_16_054129_create_image_products_table', 17),
+	(21, '2024_03_16_054359_create_carts_table', 18),
+	(22, '2024_03_16_054756_create_transaction_details_table', 19);
 
 -- Dumping structure for table db_baticraft.password_resets
 CREATE TABLE IF NOT EXISTS `password_resets` (
@@ -166,10 +152,10 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
 
 -- Dumping data for table db_baticraft.personal_access_tokens: ~0 rows (approximately)
 
--- Dumping structure for table db_baticraft.produks
-CREATE TABLE IF NOT EXISTS `produks` (
+-- Dumping structure for table db_baticraft.products
+CREATE TABLE IF NOT EXISTS `products` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `kode_produk` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kode_product` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `deskripsi` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `harga` int NOT NULL,
@@ -187,14 +173,14 @@ CREATE TABLE IF NOT EXISTS `produks` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_baticraft.produks: ~1 rows (approximately)
-INSERT INTO `produks` (`id`, `kode_produk`, `nama`, `deskripsi`, `harga`, `kategori`, `stok`, `ukuran`, `panjang_kain`, `lebar_kain`, `jenis_batik`, `bahan`, `jenis_lengan`, `status`, `created_at`, `updated_at`) VALUES
+-- Dumping data for table db_baticraft.products: ~1 rows (approximately)
+INSERT INTO `products` (`id`, `kode_product`, `nama`, `deskripsi`, `harga`, `kategori`, `stok`, `ukuran`, `panjang_kain`, `lebar_kain`, `jenis_batik`, `bahan`, `jenis_lengan`, `status`, `created_at`, `updated_at`) VALUES
 	(1, '', 'Batik Sarimbitan', 'Batik Sarimbit adalah jenis batik yang dijual berpasangan untuk dipakai berpasangan pula, biasanya oleh suami istri. Pasangan batik tersebut biasanya memiliki kesamaan dari segi corak atau warna.', 150000, 'kain', 10, '2.5 m', 0, 0, '', 'Katun Primis', NULL, 'tersedia', '2024-03-12 20:00:24', '2024-03-12 20:00:24');
 
 -- Dumping structure for table db_baticraft.transactions
 CREATE TABLE IF NOT EXISTS `transactions` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `kode_transaksi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kode_transactions` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint unsigned NOT NULL,
   `jenis_transaksi` enum('pesan','langsung') COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_item` int NOT NULL,
@@ -212,6 +198,25 @@ CREATE TABLE IF NOT EXISTS `transactions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table db_baticraft.transactions: ~0 rows (approximately)
+
+-- Dumping structure for table db_baticraft.transaction_details
+CREATE TABLE IF NOT EXISTS `transaction_details` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `transaction_id` bigint unsigned NOT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `nama_product` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jumlah_barang` int NOT NULL,
+  `harga_total` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `transaction_details_transaction_id_foreign` (`transaction_id`),
+  KEY `transaction_details_product_id_foreign` (`product_id`),
+  CONSTRAINT `transaction_details_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `transaction_details_transaction_id_foreign` FOREIGN KEY (`transaction_id`) REFERENCES `transactions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table db_baticraft.transaction_details: ~0 rows (approximately)
 
 -- Dumping structure for table db_baticraft.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -234,21 +239,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_baticraft.users: ~2 rows (approximately)
+-- Dumping data for table db_baticraft.users: ~3 rows (approximately)
 INSERT INTO `users` (`id`, `nama`, `no_telpon`, `alamat`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `role`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `image`) VALUES
 	(1, 'Tria Yunita', '+62895342743004', 'Kabupaten Nganjuk, Jawa Timur', 'perempuan', 'Nganjuk', '2003-06-04', 'admin', 'triaynta@gmail.com', NULL, '$2y$10$OqWunGAGjb60QCj3c6idfe0vkwrBg1Yy57EdiKLxsJ5WgoZxKiyTu', NULL, '2024-02-17 11:29:59', '2024-03-12 19:07:20', 'cyVEas6NkjCQlFeKiffkLmOhidsa8HTdh5cT6Yil.jpg'),
 	(2, 'Tria Aja', '+6289122743004', 'Kabupaten Nganjuk, Jawa Timur', 'perempuan', 'Nganjuk', '2003-06-04', 'pembeli', 'tria@gmail.com', NULL, '$2y$10$ciTRQA/KLH6exlEpDvXOA.nbRNitgMB1OS6ItsGdBfbAreHlAxEm6', NULL, '2024-02-24 21:08:38', '2024-02-24 21:08:38', NULL);
-
--- Dumping structure for trigger db_baticraft.kurang_stok
-SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-DELIMITER //
-CREATE TRIGGER `kurang_stok` AFTER INSERT ON `detail_transactions` FOR EACH ROW BEGIN
-                UPDATE produks
-                SET stok = stok - NEW.jumlah_barang
-                WHERE id = NEW.produk_id;
-            END//
-DELIMITER ;
-SET SQL_MODE=@OLDTMP_SQL_MODE;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
