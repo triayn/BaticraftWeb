@@ -23,12 +23,12 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // LandingPage
-Route::get('/', [LandingpageController::class, 'index'])->name('home');
+Route::get('/', [LandingpageController::class, 'index'])->name('page.satu');
 
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home/pembeli', [HomeController::class, 'pembeli'])->name('home.pembeli');
+    Route::get('/home', [HomeController::class, 'pembeli'])->name('home');
 
 
     // Rute yang hanya dapat diakses oleh pengguna dengan role 'admin'
