@@ -16,33 +16,20 @@ class CreateTransactionsTables extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->string('kode_transaksi');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('kasir');
             $table->enum('jenis_transaksi', ['pesan', 'langsung']);
             $table->integer('total_item');
             $table->integer('total_harga');
-            $table->string('metode_pembayaran');
+            $table->string('metode_pembayaran')->nullable();
             $table->string('catatan_customer')->nullable();
             $table->enum('status_transaksi', ['diproses', 'ditolak', 'selesai']);
             $table->string('catatan_admin')->nullable();
-            $table->date('tanggal');
+            $table->date('tanggal_konfirmasi');
             $table->timestamps();
 
             // Foreign key constraints
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-        });
-
-        Schema::create('detail_transactions', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('transaksi_id');
-            $table->unsignedBigInteger('produk_id');
-            $table->string('nama_produk', 50);
-            $table->integer('jumlah_barang');
-            $table->integer('harga_total');
-            $table->timestamps();
-
-            // Foreign key constraints
-            $table->foreign('transaksi_id')->references('id')->on('transactions')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('produk_id')->references('id')->on('produks')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -54,6 +41,5 @@ class CreateTransactionsTables extends Migration
     public function down()
     {
         Schema::dropIfExists('transactions');
-        Schema::dropIfExists('detail_transactions');
     }
 }

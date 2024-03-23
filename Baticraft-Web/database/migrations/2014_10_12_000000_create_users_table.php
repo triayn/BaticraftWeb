@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
             $table->string('tempat_lahir', 20);
             $table->date('tanggal_lahir');
-            $table->enum('role', ['pembeli', 'karyawan']);
+            $table->enum('role', ['pembeli', 'admin']);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
