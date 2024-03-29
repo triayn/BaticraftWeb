@@ -30,8 +30,16 @@
                 </ul> <!-- end nav-->
                 <div class="tab-content">
                     <div class="tab-pane show active" id="label-sizing-preview">
-                        <form action="{{ route('produk.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            <div class="mb-2 row">
+                                <label for="nama" class="col-sm-2 col-form-label col-form-label-sm">Kode Produk</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="kode_product" id="kode_product" value="{{ $nextProductId }}" class="form-control" readonly>
+                                </div>
+                            </div>
+
+
                             <div class="mb-2 row">
                                 <label for="nama" class="col-sm-2 col-form-label col-form-label-sm">Nama Produk</label>
                                 <div class="col-sm-10">
@@ -42,25 +50,7 @@
                             <div class="mb-2 row">
                                 <label for="nama" class="col-sm-2 col-form-label col-form-label-sm">Deskripsi Produk</label>
                                 <div class="col-sm-10">
-                                    <input type="texarea" class="form-control form-control-sm" name="nama" id="nama" placeholder="Nama Produk">
-                                </div>
-                            </div>
-
-                            <div class="mb-2 row">
-                                <label class="col-sm-2 col-form-label col-form-label-sm">Kategori</label>
-                                <div class="col-sm-10">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="kategori" id="kain" value="kain">
-                                        <label class="form-check-label" for="kain">Kain</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="kategori" id="kaos" value="kaos">
-                                        <label class="form-check-label" for="kaos">Kaos</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="kategori" id="kemeja" value="kemeja">
-                                        <label class="form-check-label" for="kemeja">Kemeja</label>
-                                    </div>
+                                    <input type="textarea" class="form-control form-control-sm" name="nama" id="nama" placeholder="Nama Produk">
                                 </div>
                             </div>
 
@@ -88,6 +78,24 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="status" id="tidak-tersedia" value="tidak tersedia">
                                         <label class="form-check-label" for="tidak-tersedia">Tidak Tersedia</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-2 row">
+                                <label class="col-sm-2 col-form-label col-form-label-sm">Kategori</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="kategori" id="kain" value="kain">
+                                        <label class="form-check-label" for="kain">Kain</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="kategori" id="kaos" value="kaos">
+                                        <label class="form-check-label" for="kaos">Kaos</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="kategori" id="kemeja" value="kemeja">
+                                        <label class="form-check-label" for="kemeja">Kemeja</label>
                                     </div>
                                 </div>
                             </div>
@@ -123,18 +131,8 @@
                                     <div class="mb-3">
                                         <!-- Input file tersembunyi -->
                                         <input type="file" id="image" class="form-control" name="image[]" style="display: none;" multiple>
-                                        <!-- Area drag and drop -->
-                                        <div id="dragDropArea" class="border border-primary rounded p-5">
-                                            <p class="text-center text-muted">Drag and drop gambar di sini atau klik untuk memilih</p>
-                                        </div>
-                                        <!-- Tombol untuk menambahkan gambar baru -->
-                                        <button type="button" id="addImageButton" class="btn btn-primary mt-3">Tambah Gambar Baru</button>
-                                        <!-- Pesan error -->
-                                        @error('image')
-                                        <div class="alert alert-danger mt-2">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
+                                        <!-- Tombol untuk menambahkan gambar -->
+                                        <button type="button" id="addImageButton" class="btn btn-primary mt-3">Tambah Gambar</button>
                                     </div>
                                 </div>
                             </div>
@@ -156,6 +154,7 @@
 @endsection
 
 @section('scripts')
+<!-- Kategori -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const kategoriRadios = document.querySelectorAll('input[name="kategori"]');
@@ -184,14 +183,22 @@
     });
 </script>
 
+<!-- Tmabh Gambar -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const dragDropArea = document.getElementById('dragDropArea');
         const imageInput = document.getElementById('image');
         const addImageButton = document.getElementById('addImageButton');
+        const MAX_IMAGES = 5;
 
         // Function untuk menampilkan input file ketika tombol tambah gambar ditekan
         addImageButton.addEventListener('click', function() {
+            // Jika sudah mencapai jumlah maksimal gambar, hentikan fungsi
+            if (document.querySelectorAll('.img-fluid').length >= MAX_IMAGES) {
+                alert('Maksimal 5 gambar sudah tercapai');
+                return;
+            }
+
             const newImageInput = document.createElement('input');
             newImageInput.setAttribute('type', 'file');
             newImageInput.setAttribute('class', 'form-control mt-3');
@@ -223,6 +230,12 @@
             // Tampilkan preview gambar jika file adalah gambar
             for (const file of files) {
                 if (file.type.match('image.*')) {
+                    // Jika sudah mencapai jumlah maksimal gambar, hentikan fungsi
+                    if (document.querySelectorAll('.img-fluid').length >= MAX_IMAGES) {
+                        alert('Maksimal 5 gambar sudah tercapai');
+                        return;
+                    }
+
                     const reader = new FileReader();
 
                     reader.onload = function(e) {
@@ -254,6 +267,12 @@
             // Tampilkan preview gambar jika file adalah gambar
             for (const file of files) {
                 if (file.type.match('image.*')) {
+                    // Jika sudah mencapai jumlah maksimal gambar, hentikan fungsi
+                    if (document.querySelectorAll('.img-fluid').length >= MAX_IMAGES) {
+                        alert('Maksimal 5 gambar sudah tercapai');
+                        return;
+                    }
+
                     const reader = new FileReader();
 
                     reader.onload = function(e) {
@@ -270,69 +289,6 @@
                     textElement.textContent = 'File harus berupa gambar';
                     dragDropArea.appendChild(textElement);
                 }
-            }
-        });
-    });
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const dragDropArea = document.getElementById('dragDropArea');
-        const imageInput = document.getElementById('image');
-
-        // Prevent default behavior saat file dijatuhkan pada area drag and drop
-        dragDropArea.addEventListener('dragover', function(e) {
-            e.preventDefault();
-            dragDropArea.classList.add('border-primary');
-        });
-
-        // Remove border saat file tidak lagi dijatuhkan
-        dragDropArea.addEventListener('dragleave', function() {
-            dragDropArea.classList.remove('border-primary');
-        });
-
-        // Handle file saat dijatuhkan pada area drag and drop
-        dragDropArea.addEventListener('drop', function(e) {
-            e.preventDefault();
-            dragDropArea.classList.remove('border-primary');
-
-            // Ambil file yang dijatuhkan
-            const file = e.dataTransfer.files[0];
-
-            // Simpan file ke dalam input file
-            imageInput.files = e.dataTransfer.files;
-
-            // Tampilkan preview gambar jika file adalah gambar
-            if (file.type.match('image.*')) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    dragDropArea.innerHTML = '<img src="' + e.target.result + '" class="img-fluid rounded">';
-                }
-
-                reader.readAsDataURL(file);
-            } else {
-                dragDropArea.innerHTML = '<p class="text-center text-muted">File harus berupa gambar</p>';
-            }
-        });
-
-        // Handle klik pada area drag and drop untuk memilih gambar
-        dragDropArea.addEventListener('click', function() {
-            imageInput.click();
-        });
-
-        // Handle perubahan pada input file untuk menampilkan preview gambar
-        imageInput.addEventListener('change', function() {
-            const file = this.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    dragDropArea.innerHTML = '<img src="' + e.target.result + '" class="img-fluid rounded">';
-                }
-
-                reader.readAsDataURL(file);
             }
         });
     });

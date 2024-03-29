@@ -10,6 +10,12 @@
             </a>
         </li>
         <li class="side-nav-item">
+            <a href="#" class="side-nav-link">
+                <i class="uil-shop"></i>
+                <span> Informasi Toko </span>
+            </a>
+        </li>
+        <li class="side-nav-item">
             <a data-bs-toggle="collapse" href="#sidebarSecondLevel" aria-expanded="false" aria-controls="sidebarSecondLevel" class="side-nav-link" >
                 <i class="uil-users-alt"></i>
                 <span> Pengguna </span>
@@ -27,7 +33,7 @@
             </div>
         </li>
         <li class="side-nav-item">
-            <a href="{{ route('produk.index') }}" class="side-nav-link">
+            <a href="{{ route('product.index') }}" class="side-nav-link">
                 <i class="uil-cart"></i>
                 <span> Produk </span>
             </a>

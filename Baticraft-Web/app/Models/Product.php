@@ -9,15 +9,10 @@ class Product extends Model
 {
     use HasFactory;
 
-    // protected $fillable = [
-    //     'id',
-    //     'nama',
-    //     'deskripsi',
-    //     'harga',
-    //     'stok',
-    //     'ukuran', 
-    //     'bahan',
-    //     'jenis_lengan',
-    //     'jenis_kerah'
-    // ];
+    // public function getKodeProdukAttribute()
+    // {
+    //     $id = $this->id;
+    //     $kode_produk = 'BTK' . str_pad($id, 3, '0', STR_PAD_LEFT);
+    //     return $kode_produk;
+    // }
 }

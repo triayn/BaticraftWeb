@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Mar 2024 pada 07.34
+-- Waktu pembuatan: 27 Mar 2024 pada 03.51
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -80,6 +80,7 @@ CREATE TABLE `informations` (
   `deskripsi` text NOT NULL,
   `no_telpon` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `akun_ig` varchar(255) NOT NULL,
   `akun_fb` varchar(255) NOT NULL,
   `akun_tiktok` varchar(255) NOT NULL,
@@ -179,7 +180,6 @@ CREATE TABLE `products` (
   `lebar_kain` int(11) NOT NULL,
   `jenis_batik` varchar(255) NOT NULL,
   `jenis_lengan` enum('pendek','panjang') DEFAULT NULL,
-  `jenis_kerah` varchar(255) DEFAULT NULL,
   `status` enum('tersedia','tidak tersedia') NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -245,13 +245,13 @@ DELIMITER ;
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `nama` varchar(255) NOT NULL,
   `no_telpon` varchar(15) NOT NULL,
-  `alamat` varchar(100) NOT NULL,
-  `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
-  `tempat_lahir` varchar(20) NOT NULL,
-  `tanggal_lahir` date NOT NULL,
-  `role` enum('pembeli','admin') NOT NULL,
+  `alamat` varchar(100) DEFAULT NULL,
+  `jenis_kelamin` enum('laki-laki','perempuan') DEFAULT NULL,
+  `tempat_lahir` varchar(20) DEFAULT NULL,
+  `tanggal_lahir` date DEFAULT NULL,
+  `role` enum('pembeli','admin') DEFAULT 'pembeli',
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
@@ -260,6 +260,14 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `nama`, `no_telpon`, `alamat`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `role`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `image`) VALUES
+(1, 'Tria Yunita', '+62895342743004', 'Nganjuk, Jawa Timur', 'perempuan', 'Nganjuk', '2003-06-04', 'admin', 'triaynta@gmail.com', NULL, '$2y$10$ZojyOCDPWONUsFmi2.Z9V.G5RSURHebHNwouOBT/AITGh2fRI87Hq', NULL, '2024-03-22 23:45:37', '2024-03-24 22:52:34', 'RaEuQh0nsxyJf8vVSKdUFhEPeG51rCWgcFZt99Z7.png'),
+(3, 'Tria', '089564321234', NULL, NULL, NULL, NULL, 'pembeli', 'admin@email.com', NULL, '$2y$10$Q0FYnkyd8hCIU096WtYrGO7HbQsQ7DXdmctStYjom5EoVo2Lttkum', NULL, '2024-03-22 23:59:53', '2024-03-22 23:59:53', NULL);
 
 --
 -- Indexes for dumped tables
@@ -410,7 +418,7 @@ ALTER TABLE `transaction_details`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

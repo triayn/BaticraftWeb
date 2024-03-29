@@ -22,7 +22,7 @@
             <div class="card-body">
                 <div class="tab-content">
                     <div class="tab-pane show active" id="state-saving-preview">
-                        <a href="{{ route('produk.create') }}" class="btn btn-primary btn-sm" style="margin-bottom: 1.5em;">
+                        <a href="{{ route('product.create') }}" class="btn btn-primary btn-sm" style="margin-bottom: 1.5em;">
                             <i class="uil uil-user-plus"></i> Tambah Produk
                         </a>
                         <table id="state-saving-datatable" class="table table-striped activate-select dt-responsive nowrap w-100">

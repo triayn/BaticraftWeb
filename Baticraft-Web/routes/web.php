@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandingpageController;
-use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -53,15 +53,15 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/destroy/{id}', [UserController::class, 'destroy_customer'])->name('customer.delete');
         });
 
-        // CRUD Produk
-        Route::prefix('/produk')->group(function () {
-            Route::get('/index', [ProdukController::class, 'index'])->name('produk.index');
-            Route::get('/show/{id}', [ProdukController::class, 'show'])->name('produk.show');
-            Route::get('/create', [ProdukController::class, 'create'])->name('produk.create');
-            Route::post('/store', [ProdukController::class, 'store'])->name('produk.store');
-            Route::get('/edit/{id}', [ProdukController::class, 'edit'])->name('produk.edit');
-            Route::put('/update/{id}', [ProdukController::class, 'update'])->name('produk.update');
-            Route::delete('/destroy/{id}', [ProdukController::class, 'destroy'])->name('produk.delete');
+        // CRUD Product
+        Route::prefix('/product')->group(function () {
+            Route::get('/index', [ProductController::class, 'index'])->name('product.index');
+            Route::get('/show/{id}', [ProductController::class, 'show'])->name('product.show');
+            Route::get('/create', [ProductController::class, 'create'])->name('product.create');
+            Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+            Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+            Route::put('/update/{id}', [ProductController::class, 'update'])->name('product.update');
+            Route::delete('/destroy/{id}', [ProductController::class, 'destroy'])->name('product.delete');
         });
     });
 });
