@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InformationController;
 use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -62,6 +63,12 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
             Route::put('/update/{id}', [ProductController::class, 'update'])->name('product.update');
             Route::delete('/destroy/{id}', [ProductController::class, 'destroy'])->name('product.delete');
+        });
+
+        // CRUD Information
+        Route::prefix( '/information' )->group( function(){
+            Route::get('/', [InformationController::class,'index'])->name('information.index');
+            Route::get('/edit/{id}', [InformationController::class , 'edit'] )->name('information.edit');
         });
     });
 });

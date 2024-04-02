@@ -102,7 +102,7 @@
                         <div class="col-md-6">
                             <div class="text-md-end footer-links d-none d-md-block">
                                 <a href="https://www.instagram.com/baticraft.app?igsh=N3gxNGVlNjI3dXps">Instagram</a>
-                                <a href="https://github.com/triayn/BaticraftWeb">Github</a>
+                                <!-- <a href="https://github.com/triayn/BaticraftWeb">Github</a> -->
                                 <a href="javascript: void(0);">Contact Us</a>
                             </div>
                         </div>
@@ -214,7 +214,7 @@
     <!-- /End-bar -->
 
     <!-- Drag and Drop Image (Create.User) -->
-    
+
     @yield ('scripts')
     <script src="{{ asset('assets/admin/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/app.min.js') }}"></script>
@@ -238,6 +238,8 @@
     <script src="{{ asset('assets/admin/js/vendor/fixedHeader.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/pages/demo.datatable-init.js') }}"></script>
     <script src="{{ asset('assets/admin/js/pages/demo.products.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/vendor/gmaps.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/pages/demo.google-maps.js') }}"></script>
 </body>
 
 <!-- Mirrored from coderthemes.com/hyper/saas/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 29 Jul 2022 10:20:07 GMT -->

@@ -10,7 +10,7 @@
             </a>
         </li>
         <li class="side-nav-item">
-            <a href="#" class="side-nav-link">
+            <a href="{{ route('information.index') }}" class="side-nav-link">
                 <i class="uil-shop"></i>
                 <span> Informasi Toko </span>
             </a>
