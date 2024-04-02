@@ -50,14 +50,18 @@
                             <div class="mb-2 row">
                                 <label for="nama" class="col-sm-2 col-form-label col-form-label-sm">Deskripsi Produk</label>
                                 <div class="col-sm-10">
-                                    <input type="textarea" class="form-control form-control-sm" name="nama" id="nama" placeholder="Nama Produk">
+                                    <textarea class="form-control" placeholder="Deskripsi Produk" name="deskripsi" id="deskripsi" style="height: 100px;"></textarea>
                                 </div>
                             </div>
 
                             <div class="mb-2 row">
                                 <label for="harga" class="col-sm-2 col-form-label col-form-label-sm">Harga</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm" name="harga" id="harga" placeholder="Harga">
+                                <div class="col-auto">
+                                    <label class="visually-hidden" for="inlineFormInputGroup">Harga</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-text">Rp. </div>
+                                        <input type="text" class="form-control" name="harga" id="harga" placeholder="Harga">
+                                    </div>
                                 </div>
                             </div>
 
@@ -65,6 +69,20 @@
                                 <label for="stok" class="col-sm-2 col-form-label col-form-label-sm">Stok</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control form-control-sm" name="stok" id="stok" placeholder="Stok">
+                                </div>
+                            </div>
+
+                            <div class="mb-2 row">
+                                <label for="bahan" class="col-sm-2 col-form-label col-form-label-sm">Bahan</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control form-control-sm" name="bahan" id="bahan" placeholder="Bahan">
+                                </div>
+                            </div>
+
+                            <div class="mb-2 row">
+                                <label for="jenis_batik" class="col-sm-2 col-form-label col-form-label-sm">Jenis Batik</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control form-control-sm" name="jenis_batik" id="jenis_batik" placeholder="Jenis Batik">
                                 </div>
                             </div>
 
@@ -100,29 +118,34 @@
                                 </div>
                             </div>
 
-                            <div id="ukuran-section" class="mb-2 row" style="display: none;">
+                            <div class="mb-2 row">
                                 <label for="ukuran" class="col-sm-2 col-form-label col-form-label-sm">Ukuran</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select form-select-sm" name="ukuran" id="ukuran">
-                                        <!-- Option ukuran akan ditambahkan melalui JavaScript -->
-                                    </select>
+                                    <input type="text" class="form-control form-control-sm" name="ukuran" id="ukuran" placeholder="Ukuran">
                                 </div>
                             </div>
 
-                            <div id="jenis-section" class="mb-2 row" style="display: none;">
+                            <div class="mb-2 row">
+                                <label for="panjang_kain" class="col-sm-2 col-form-label col-form-label-sm">Panjang Kain</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control form-control-sm" name="panjang_kain" id="panjang_kain" placeholder="Panjang Kain">
+                                </div>
+                            </div>
+
+                            <div class="mb-2 row">
+                                <label for="lebar_kain" class="col-sm-2 col-form-label col-form-label-sm">Lebar Kain</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control form-control-sm" name="lebar_kain" id="lebar_kain" placeholder="Lebar Kain">
+                                </div>
+                            </div>
+
+                            <div class="mb-2 row">
                                 <label for="jenis_lengan" class="col-sm-2 col-form-label col-form-label-sm">Jenis Lengan</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select form-select-sm" name="jenis_lengan" id="jenis_lengan">
-                                        <!-- Option jenis lengan akan ditambahkan melalui JavaScript -->
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div id="kerah-section" class="mb-2 row" style="display: none;">
-                                <label for="jenis_kerah" class="col-sm-2 col-form-label col-form-label-sm">Jenis Kerah</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm" name="jenis_kerah" id="jenis_kerah" placeholder="Jenis Kerah">
-                                </div>
+                                <select class="form-select mb-2" id="jenis_lengan" name="jenis_lengan">
+                                    <option selected>Jenis lengan</option>
+                                    <option value="Pendek">Pendek</option>
+                                    <option value="Panjang">Panjang</option>
+                                </select>
                             </div>
 
                             <div class="mb-2 row">
@@ -154,34 +177,7 @@
 @endsection
 
 @section('scripts')
-<!-- Kategori -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const kategoriRadios = document.querySelectorAll('input[name="kategori"]');
-        const ukuranSection = document.getElementById('ukuran-section');
-        const jenisSection = document.getElementById('jenis-section');
-        const kerahSection = document.getElementById('kerah-section');
-
-        // Tampilkan bagian ukuran saat kategori kain dipilih
-        kategoriRadios.forEach(function(radio) {
-            radio.addEventListener('change', function() {
-                if (this.value === 'kain') {
-                    ukuranSection.style.display = 'block';
-                    jenisSection.style.display = 'none';
-                    kerahSection.style.display = 'none';
-                } else if (this.value === 'kaos') {
-                    ukuranSection.style.display = 'none';
-                    jenisSection.style.display = 'none';
-                    kerahSection.style.display = 'none';
-                } else if (this.value === 'kemeja') {
-                    ukuranSection.style.display = 'none';
-                    jenisSection.style.display = 'block';
-                    kerahSection.style.display = 'block';
-                }
-            });
-        });
-    });
-</script>
+<!-- Ketegori Produk -->
 
 <!-- Tmabh Gambar -->
 <script>
@@ -199,97 +195,25 @@
                 return;
             }
 
-            const newImageInput = document.createElement('input');
-            newImageInput.setAttribute('type', 'file');
-            newImageInput.setAttribute('class', 'form-control mt-3');
-            newImageInput.setAttribute('name', 'image[]');
-            newImageInput.setAttribute('style', 'display: block;');
-            newImageInput.setAttribute('multiple', '');
-            imageInput.parentNode.insertBefore(newImageInput, addImageButton);
+            // Menghitung jumlah gambar yang akan ditambahkan
+            const remainingImages = MAX_IMAGES - document.querySelectorAll('.img-fluid').length;
+
+            // Membuat input file sebanyak sisa gambar yang dapat ditambahkan
+            for (let i = 0; i < remainingImages; i++) {
+                const newImageInput = document.createElement('input');
+                newImageInput.setAttribute('type', 'file');
+                newImageInput.setAttribute('class', 'form-control mt-3');
+                newImageInput.setAttribute('name', 'image[]');
+                newImageInput.setAttribute('style', 'display: block;');
+                newImageInput.setAttribute('multiple', '');
+                imageInput.parentNode.insertBefore(newImageInput, addImageButton);
+            }
         });
 
         // Prevent default behavior saat file dijatuhkan pada area drag and drop
         dragDropArea.addEventListener('dragover', function(e) {
             e.preventDefault();
             dragDropArea.classList.add('border-primary');
-        });
-
-        // Remove border saat file tidak lagi dijatuhkan
-        dragDropArea.addEventListener('dragleave', function() {
-            dragDropArea.classList.remove('border-primary');
-        });
-
-        // Handle file saat dijatuhkan pada area drag and drop
-        dragDropArea.addEventListener('drop', function(e) {
-            e.preventDefault();
-            dragDropArea.classList.remove('border-primary');
-
-            // Ambil file yang dijatuhkan
-            const files = e.dataTransfer.files;
-
-            // Tampilkan preview gambar jika file adalah gambar
-            for (const file of files) {
-                if (file.type.match('image.*')) {
-                    // Jika sudah mencapai jumlah maksimal gambar, hentikan fungsi
-                    if (document.querySelectorAll('.img-fluid').length >= MAX_IMAGES) {
-                        alert('Maksimal 5 gambar sudah tercapai');
-                        return;
-                    }
-
-                    const reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        const imgElement = document.createElement('img');
-                        imgElement.setAttribute('src', e.target.result);
-                        imgElement.setAttribute('class', 'img-fluid rounded mt-3');
-                        dragDropArea.appendChild(imgElement);
-                    }
-
-                    reader.readAsDataURL(file);
-                } else {
-                    // Tampilkan pesan jika file bukan gambar
-                    const textElement = document.createElement('p');
-                    textElement.textContent = 'File harus berupa gambar';
-                    dragDropArea.appendChild(textElement);
-                }
-            }
-        });
-
-        // Handle klik pada area drag and drop untuk memilih gambar
-        dragDropArea.addEventListener('click', function() {
-            imageInput.click();
-        });
-
-        // Handle perubahan pada input file untuk menampilkan preview gambar
-        imageInput.addEventListener('change', function() {
-            const files = this.files;
-
-            // Tampilkan preview gambar jika file adalah gambar
-            for (const file of files) {
-                if (file.type.match('image.*')) {
-                    // Jika sudah mencapai jumlah maksimal gambar, hentikan fungsi
-                    if (document.querySelectorAll('.img-fluid').length >= MAX_IMAGES) {
-                        alert('Maksimal 5 gambar sudah tercapai');
-                        return;
-                    }
-
-                    const reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        const imgElement = document.createElement('img');
-                        imgElement.setAttribute('src', e.target.result);
-                        imgElement.setAttribute('class', 'img-fluid rounded mt-3');
-                        dragDropArea.appendChild(imgElement);
-                    }
-
-                    reader.readAsDataURL(file);
-                } else {
-                    // Tampilkan pesan jika file bukan gambar
-                    const textElement = document.createElement('p');
-                    textElement.textContent = 'File harus berupa gambar';
-                    dragDropArea.appendChild(textElement);
-                }
-            }
         });
     });
 </script>

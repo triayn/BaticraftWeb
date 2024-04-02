@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Mar 2024 pada 03.51
+-- Waktu pembuatan: 01 Apr 2024 pada 15.40
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -77,16 +77,24 @@ CREATE TABLE `informations` (
   `nama_pemilik` varchar(255) NOT NULL,
   `nama_toko` varchar(255) NOT NULL,
   `alamat` varchar(255) NOT NULL,
+  `lokasi` varchar(255) NOT NULL,
   `deskripsi` text NOT NULL,
   `no_telpon` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `akun_ig` varchar(255) NOT NULL,
-  `akun_fb` varchar(255) NOT NULL,
-  `akun_tiktok` varchar(255) NOT NULL,
+  `akun_ig` varchar(255) DEFAULT NULL,
+  `akun_fb` varchar(255) DEFAULT NULL,
+  `akun_tiktok` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `informations`
+--
+
+INSERT INTO `informations` (`id`, `nama_pemilik`, `nama_toko`, `alamat`, `lokasi`, `deskripsi`, `no_telpon`, `email`, `image`, `akun_ig`, `akun_fb`, `akun_tiktok`, `created_at`, `updated_at`) VALUES
+(1, 'Sri Suwarsih', 'Griya Batik Sri Siji Nganjuk', 'Perumnas Candirejo Blok GG No. 10, Gejagan, Kec. Nganjuk, Kabupaten Nganjuk, Jawa Timur 64471\r\n', 'https://maps.app.goo.gl/m67hDUDyzmQaj3Qy9', 'Griya Batik Sri Siji adalah salah satu griya produksi batik handmade yang ada di Kabupaten Nganjuk. Griya ini memproduksi berbagai macam produk batik, seperti kain, kaos dan kemeja.', '+6282338872002', 'baticraft@gmail.com', '', '@srisijibatik', 'Sri Siji Batik Nganjuk', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -382,7 +390,7 @@ ALTER TABLE `image_products`
 -- AUTO_INCREMENT untuk tabel `informations`
 --
 ALTER TABLE `informations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`

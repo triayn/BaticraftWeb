@@ -29,10 +29,8 @@ class ProductController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $product = new Product();
-
         $this->validate($request, [
-            'kode_produk'       => 'required|unique:products',
+            'kode_product'       => 'required|unique:products',
             'nama'              => 'required|min:3',
             'deskripsi'         => 'required',
             'harga'             => 'required|numeric',
@@ -40,16 +38,16 @@ class ProductController extends Controller
             'kategori'          => 'required',
             'ukuran'            => 'required',
             'bahan'             => 'nullable',
-            'panjang_kain'      => 'nullable|numeric',
-            'lebar_kain'        => 'nullable|numeric',
+            'panjang_kain'      => 'nullable',
+            'lebar_kain'        => 'nullable',
             'jenis_batik'       => 'nullable',
             'jenis_lengan'      => 'nullable',
             'status'            => 'required',
             'image'             => 'required|image|mimes:jpeg,jpg,png|max:2048'
         ], [
             'nama.required' => 'Kolom nama wajib diisi.',
-            'kode_produk.required' => 'Kolom kode produk wajib diisi.',
-            'kode_produk.unique' => 'Kode produk sudah terdaftar.',
+            'kode_product.required' => 'Kolom kode produk wajib diisi.',
+            'kode_product.unique' => 'Kode produk sudah terdaftar.',
             'nama.min' => 'Kolom nama minimal harus 3 karakter.',
             'deskripsi.required' => 'Kolom deskripsi wajib diisi.',
             'harga.required' => 'Kolom harga wajib diisi.',
@@ -67,9 +65,12 @@ class ProductController extends Controller
         $image = $request->file('image');
 
         if ($image) {
+            // Simpan gambar
             $image_path = $image->storeAs('public/product', $image->hashName());
 
+            // Simpan produk
             $product = Product::create([
+                'kode_produk' => $request->kode_product,
                 'nama' => $request->nama,
                 'deskripsi' => $request->deskripsi,
                 'harga' => $request->harga,
@@ -82,36 +83,17 @@ class ProductController extends Controller
                 'jenis_batik' => $request->jenis_batik,
                 'jenis_lengan' => $request->jenis_lengan,
                 'status' => $request->status,
-                'image' => $image->hashName(),
             ]);
 
+            // Simpan gambar produk
             ImageProduct::create([
                 'product_id' => $product->id,
-                'image_path' => $image_path,
+                'image' => $image_path,
             ]);
 
             return redirect()->route('product.index')->with('success', 'Produk berhasil ditambahkan.');
         } else {
             return redirect()->route('product.index')->with('error', 'Gagal menyimpan gambar.');
         }
-
-        $product = Product::create([
-            'kode_produk' => 'BTK' . str_pad($product->id, 3, '0', STR_PAD_LEFT),
-            'nama' => $request->nama,
-            'deskripsi' => $request->deskripsi,
-            'harga' => $request->harga,
-            'stok' => $request->stok,
-            'kategori' => $request->kategori,
-            'ukuran' => $request->ukuran,
-            'bahan' => $request->bahan,
-            'panjang_kain' => $request->panjang_kain,
-            'lebar_kain' => $request->lebar_kain,
-            'jenis_batik' => $request->jenis_batik,
-            'jenis_lengan' => $request->jenis_lengan,
-            'status' => $request->status,
-            'image' => $image->hashName(),
-        ]);
-
-        return redirect()->route('user.index')->with('success', "Data Berhasil Ditambahkan");
     }
 }
