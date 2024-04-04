@@ -146,52 +146,10 @@
         <!-- Navbar-->
         <header class="navbar navbar-expand-lg navbar-light fixed-top" data-scroll-header>
             <div class="container"><a class="navbar-brand me-3 me-xl-4" href="city-guide-home-v1.html">BATICRAFT</a>
-                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-sm text-primary d-none d-lg-block order-lg-3" href="{{ route('login') }}" data-bs-toggle="modal"><i class="fi-user me-2"></i>Sign in</a>
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span></button>
+                <a class="btn btn-sm text-primary d-none d-lg-block order-lg-3" href="{{ route('login') }}"><i class="fi-user me-2"></i><span class='d-none d-sm-inline'> Login</span></a>
                 <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
-                    <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
-                        <!-- Menu items-->
-                        <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
-                        </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalog</a>
-                        </li>
-                        <!-- <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="city-guide-account-info.html">Personal Info</a></li>
-                                <li><a class="dropdown-item" href="city-guide-account-favorites.html">Favorites</a></li>
-                                <li><a class="dropdown-item" href="city-guide-account-reviews.html">Reviews</a></li>
-                                <li><a class="dropdown-item" href="city-guide-account-notifications.html">Notifications</a></li>
-                                <li><a class="dropdown-item" href="signin-light.html">Sign In</a></li>
-                                <li><a class="dropdown-item" href="signup-light.html">Sign Up</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vendor</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="city-guide-add-business.html">Add Business</a></li>
-                                <li><a class="dropdown-item" href="city-guide-business-promotion.html">Business Promotion</a></li>
-                                <li><a class="dropdown-item" href="city-guide-vendor-businesses.html">My Businesses</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="city-guide-about.html">About</a></li>
-                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="city-guide-blog.html">Blog Grid</a></li>
-                                        <li><a class="dropdown-item" href="city-guide-blog-single.html">Single Post</a></li>
-                                    </ul>
-                                </li>
-                                <li><a class="dropdown-item" href="city-guide-contacts.html">Contacts</a></li>
-                                <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Help Center</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="city-guide-help-center.html">Help Topics</a></li>
-                                        <li><a class="dropdown-item" href="city-guide-help-center-single-topic.html">Single Topic</a></li>
-                                    </ul>
-                                </li>
-                                <li><a class="dropdown-item" href="city-guide-404.html">404 Not Found</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item d-lg-none"><a class="nav-link" href="#signin-modal" data-bs-toggle="modal"><i class="fi-user me-2"></i>Sign in</a></li> -->
-                    </ul>
                 </div>
             </div>
         </header>

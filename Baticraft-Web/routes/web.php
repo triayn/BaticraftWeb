@@ -19,12 +19,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/cek', function () {
+    return view('customer.layouts.main');
+});
 
 // LandingPage
 Route::get('/', [LandingpageController::class, 'index'])->name('page.satu');
+
 
 Auth::routes();
 
