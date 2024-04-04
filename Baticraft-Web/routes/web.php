@@ -68,7 +68,8 @@ Route::middleware(['auth'])->group(function () {
         // CRUD Information
         Route::prefix( '/information' )->group( function(){
             Route::get('/', [InformationController::class,'index'])->name('information.index');
-            Route::get('/edit/{id}', [InformationController::class , 'edit'] )->name('information.edit');
+            Route::get('/edit', [InformationController::class , 'edit'] )->name('information.edit');
+            Route::put('/update', [InformationController::class, 'update'])->name('information.update');
         });
     });
 });

@@ -20,14 +20,13 @@
                     <div class="col-lg-5">
                         <!-- Product image -->
                         <a href="javascript: void(0);" class="text-center d-block mb-4">
-                            <img src="{{ asset('assets/customer/images/login.png') }}" class="img-fluid" style="max-width: 280px;" alt="Product-img" />
+                            <img src="{{ asset('storage/information/' .$row->image) }}" class="img-fluid" style="max-width: 280px;" alt="Product-img" />
                         </a>
                     </div> <!-- end col -->
                     <div class="col-lg-7">
                         <form class="ps-lg-4">
                             <!-- Product title -->
-                            <h3 class="mt-0"> {{ $row->nama_toko }} <a href="{{ route('information.edit) }}" class="text-muted"><i class="mdi mdi-square-edit-outline ms-2"></i></a> </h3>
-
+                            <h3 class="mt-0"> {{ $row->nama_toko }} </h3>
                             <!-- Product description -->
                             <div class="mt-4">
                                 <h6 class="font-14">Pemilik </h6>
@@ -88,6 +87,11 @@
                             </div> <!-- end card-body-->
                         </div> <!-- end card-->
                     </div>
+                </div>
+
+                <div class="row">
+                    <a href="{{ route('information.edit') }}" class="btn btn-info"><i class="mdi mdi-square-edit-outline ms-2">
+                        </i>Edit Informasi</a>
                 </div>
 
 
