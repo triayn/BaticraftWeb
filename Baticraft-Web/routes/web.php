@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EtalaseProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\LandingpageController;
@@ -32,6 +33,13 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'pembeli'])->name('home');
 
+    // Etalase product
+    Route::prefix('/EtalaseProduct')->group(function () {
+        Route::get('/semua', [EtalaseProductController::class, 'index'])->name('etalase.index');
+        Route::get('/kain', [EtalaseProductController::class, 'kain'])->name('etalase.kain');
+        Route::get('/kemeja', [EtalaseProductController::class, 'kemeja'])->name('etalase.kemeja');
+        Route::get('/kaos', [EtalaseProductController::class, 'kaos'])->name('etalase.kaos');
+    });
 
     // Rute yang hanya dapat diakses oleh pengguna dengan role 'admin'
     Route::middleware(['auth', 'role:admin'])->group(function () {
