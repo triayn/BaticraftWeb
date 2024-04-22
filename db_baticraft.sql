@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Apr 2024 pada 15.40
+-- Waktu pembuatan: 22 Apr 2024 pada 03.58
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -94,7 +94,7 @@ CREATE TABLE `informations` (
 --
 
 INSERT INTO `informations` (`id`, `nama_pemilik`, `nama_toko`, `alamat`, `lokasi`, `deskripsi`, `no_telpon`, `email`, `image`, `akun_ig`, `akun_fb`, `akun_tiktok`, `created_at`, `updated_at`) VALUES
-(1, 'Sri Suwarsih', 'Griya Batik Sri Siji Nganjuk', 'Perumnas Candirejo Blok GG No. 10, Gejagan, Kec. Nganjuk, Kabupaten Nganjuk, Jawa Timur 64471\r\n', 'https://maps.app.goo.gl/m67hDUDyzmQaj3Qy9', 'Griya Batik Sri Siji adalah salah satu griya produksi batik handmade yang ada di Kabupaten Nganjuk. Griya ini memproduksi berbagai macam produk batik, seperti kain, kaos dan kemeja.', '+6282338872002', 'baticraft@gmail.com', '', '@srisijibatik', 'Sri Siji Batik Nganjuk', '', NULL, NULL);
+(1, 'Sri Suwarsih', 'Griya Batik Sri Siji Nganjuk', 'Perumnas Candirejo Blok GG No. 10, Gejagan, Kec. Nganjuk, Kabupaten Nganjuk, Jawa Timur 64471', 'https://maps.app.goo.gl/m67hDUDyzmQaj3Qy9', 'Griya Batik Sri Siji adalah salah satu griya produksi batik handmade yang ada di Kabupaten Nganjuk. Griya ini memproduksi berbagai macam produk batik, seperti kain, kaos dan kemeja.', '+6282338872002', 'baticraft@gmail.com', 'ksiiqisPD7P8BCfRc0UjjungQBAs4T89ujhX8bgD.png', '@srisijibatik', 'Sri Siji Batik Nganjuk', NULL, NULL, '2024-04-04 07:37:49');
 
 -- --------------------------------------------------------
 
@@ -184,14 +184,21 @@ CREATE TABLE `products` (
   `stok` int(11) NOT NULL,
   `ukuran` varchar(255) DEFAULT NULL,
   `bahan` varchar(255) DEFAULT NULL,
-  `panjang_kain` int(11) NOT NULL,
-  `lebar_kain` int(11) NOT NULL,
+  `panjang_kain` varchar(11) DEFAULT NULL,
+  `lebar_kain` varchar(11) DEFAULT NULL,
   `jenis_batik` varchar(255) NOT NULL,
   `jenis_lengan` enum('pendek','panjang') DEFAULT NULL,
   `status` enum('tersedia','tidak tersedia') NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `products`
+--
+
+INSERT INTO `products` (`id`, `kode_product`, `nama`, `deskripsi`, `harga`, `kategori`, `stok`, `ukuran`, `bahan`, `panjang_kain`, `lebar_kain`, `jenis_batik`, `jenis_lengan`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'BTK001', 'Batik', 'hdhh', 175000, 'kain', 5, '2,25 M', 'Katun', '100 M', '200 M', 'Batik Sarimbitan', 'pendek', 'tersedia', '2024-04-21 06:53:36', '2024-04-21 06:53:36');
 
 -- --------------------------------------------------------
 
@@ -408,7 +415,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT untuk tabel `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `transactions`

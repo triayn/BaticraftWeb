@@ -153,7 +153,7 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="mb-2 row">
+                            <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Foto</label>
                                 <div class="col-sm-10">
                                     <div class="mb-3">
@@ -161,7 +161,7 @@
                                         <button type="button" id="addImageButton" class="btn btn-primary mt-3">Tambah Gambar</button>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
 
                             <div class="row">
