@@ -42,39 +42,23 @@
                     <div class="col-lg-7">
                         <form class="ps-lg-4">
                             <!-- Product title -->
-                            <h3 class="mt-0">Amazing Modern Chair (Orange) <a href="javascript: void(0);" class="text-muted"><i class="mdi mdi-square-edit-outline ms-2"></i></a> </h3>
-                            <p class="mb-1">Added Date: 09/12/2018</p>
-                            <p class="font-16">
-                                <span class="text-warning mdi mdi-star"></span>
-                                <span class="text-warning mdi mdi-star"></span>
-                                <span class="text-warning mdi mdi-star"></span>
-                                <span class="text-warning mdi mdi-star"></span>
-                                <span class="text-warning mdi mdi-star"></span>
-                            </p>
+                            <h3 class="mt-0">NAMA  </h3>
+                            <p class="mb-1">KODE PRODUK</p>
 
                             <!-- Product stock -->
                             <div class="mt-3">
-                                <h4><span class="badge badge-success-lighten">Instock</span></h4>
+                                <h4><span class="badge badge-success-lighten">status</span></h4>
                             </div>
 
                             <!-- Product description -->
                             <div class="mt-4">
-                                <h6 class="font-14">Retail Price:</h6>
-                                <h3> $139.58</h3>
-                            </div>
-
-                            <!-- Quantity -->
-                            <div class="mt-4">
-                                <h6 class="font-14">Quantity</h6>
-                                <div class="d-flex">
-                                    <input type="number" min="1" value="1" class="form-control" placeholder="Qty" style="width: 90px;">
-                                    <button type="button" class="btn btn-danger ms-2"><i class="mdi mdi-cart me-1"></i> Add to cart</button>
-                                </div>
+                                <h6 class="font-14">Harga:</h6>
+                                <h3> Rp 134.000,00</h3>
                             </div>
 
                             <!-- Product description -->
                             <div class="mt-4">
-                                <h6 class="font-14">Description:</h6>
+                                <h6 class="font-14">Deskripsi:</h6>
                                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. </p>
                             </div>
 
@@ -82,16 +66,12 @@
                             <div class="mt-4">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <h6 class="font-14">Available Stock:</h6>
+                                        <h6 class="font-14">Stok:</h6>
                                         <p class="text-sm lh-150">1784</p>
                                     </div>
                                     <div class="col-md-4">
-                                        <h6 class="font-14">Number of Orders:</h6>
-                                        <p class="text-sm lh-150">5,458</p>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h6 class="font-14">Revenue:</h6>
-                                        <p class="text-sm lh-150">$8,57,014</p>
+                                        <h6 class="font-14">Kategori:</h6>
+                                        <p class="text-sm lh-150">kain</p>
                                     </div>
                                 </div>
                             </div>
@@ -102,40 +82,20 @@
 
                 <div class="table-responsive mt-4">
                     <table class="table table-bordered table-centered mb-0">
-                        <thead class="table-light">
+                        <thead >
                             <tr>
                                 <th>Outlets</th>
                                 <th>Price</th>
-                                <th>Stock</th>
-                                <th>Revenue</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>ASOS Ridley Outlet - NYC</td>
                                 <td>$139.58</td>
-                                <td>
-                                    <div class="progress-w-percent mb-0">
-                                        <span class="progress-value">478 </span>
-                                        <div class="progress progress-sm">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 56%;" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>$1,89,547</td>
                             </tr>
                             <tr>
                                 <td>Marco Outlet - SRT</td>
                                 <td>$149.99</td>
-                                <td>
-                                    <div class="progress-w-percent mb-0">
-                                        <span class="progress-value">73 </span>
-                                        <div class="progress progress-sm">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 16%;" aria-valuenow="16" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>$87,245</td>
                             </tr>
                             <tr>
                                 <td>Chairtest Outlet - HY</td>

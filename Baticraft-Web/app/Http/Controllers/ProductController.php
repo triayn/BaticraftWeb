@@ -42,8 +42,7 @@ class ProductController extends Controller
             'lebar_kain'        => 'nullable',
             'jenis_batik'       => 'nullable',
             'jenis_lengan'      => 'nullable',
-            'status'            => 'required',
-            'image'             => 'required|image|mimes:jpeg,jpg,png|max:2048'
+            'status'            => 'required'
         ], [
             'nama.required' => 'Kolom nama wajib diisi.',
             'kode_product.required' => 'Kolom kode produk wajib diisi.',
@@ -56,44 +55,30 @@ class ProductController extends Controller
             'stok.integer' => 'Kolom stok harus berupa angka bulat.',
             'kategori.required' => 'Kolom kategori wajib diisi.',
             'ukuran.required' => 'Kolom ukuran wajib diisi.',
-            'image.required' => 'Gambar produk wajib diunggah.',
-            'image.image' => 'File yang diunggah harus berupa gambar.',
-            'image.mimes' => 'Gambar harus berekstensi JPEG, JPG, atau PNG.',
-            'image.max' => 'Ukuran gambar maksimal 2 MB.',
         ]);
 
-        $image = $request->file('image');
+        Product::create([
+            'kode_product' => $request->kode_product,
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+            'harga' => $request->harga,
+            'stok' => $request->stok,
+            'kategori' => $request->kategori,
+            'ukuran' => $request->ukuran,
+            'bahan' => $request->bahan,
+            'panjang_kain' => $request->panjang_kain,
+            'lebar_kain' => $request->lebar_kain,
+            'jenis_batik' => $request->jenis_batik,
+            'jenis_lengan' => $request->jenis_lengan,
+            'status' => $request->status,
+        ]);
+        return redirect()->route('product.index')->with('success', 'Produk berhasil ditambahkan.');
+    }
 
-        if ($image) {
-            // Simpan gambar
-            $image_path = $image->storeAs('public/product', $image->hashName());
+    public  function show()
+    {
+        // $data = Product::get();
 
-            // Simpan produk
-            $product = Product::create([
-                'kode_produk' => $request->kode_product,
-                'nama' => $request->nama,
-                'deskripsi' => $request->deskripsi,
-                'harga' => $request->harga,
-                'stok' => $request->stok,
-                'kategori' => $request->kategori,
-                'ukuran' => $request->ukuran,
-                'bahan' => $request->bahan,
-                'panjang_kain' => $request->panjang_kain,
-                'lebar_kain' => $request->lebar_kain,
-                'jenis_batik' => $request->jenis_batik,
-                'jenis_lengan' => $request->jenis_lengan,
-                'status' => $request->status,
-            ]);
-
-            // Simpan gambar produk
-            ImageProduct::create([
-                'product_id' => $product->id,
-                'image' => $image_path,
-            ]);
-
-            return redirect()->route('product.index')->with('success', 'Produk berhasil ditambahkan.');
-        } else {
-            return redirect()->route('product.index')->with('error', 'Gagal menyimpan gambar.');
-        }
+        return view('admin.product.show');
     }
 }

@@ -140,25 +140,28 @@
                             </div>
 
                             <div class="mb-2 row">
-                                <label for="jenis_lengan" class="col-sm-2 col-form-label col-form-label-sm">Jenis Lengan</label>
-                                <select class="form-select mb-2" id="jenis_lengan" name="jenis_lengan">
-                                    <option selected>Jenis lengan</option>
-                                    <option value="Pendek">Pendek</option>
-                                    <option value="Panjang">Panjang</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-2 row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Foto</label>
+                                <label class="col-sm-2 col-form-label col-form-label-sm">Jenis Lengan</label>
                                 <div class="col-sm-10">
-                                    <div class="mb-3">
-                                        <!-- Input file tersembunyi -->
-                                        <input type="file" id="image" class="form-control" name="image[]" style="display: none;" multiple>
-                                        <!-- Tombol untuk menambahkan gambar -->
-                                        <button type="button" id="addImageButton" class="btn btn-primary mt-3">Tambah Gambar</button>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="jenis_lengan" id="panjang" value="panjang">
+                                        <label class="form-check-label" for="panjang">Panjang</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="jenis_lengan" id="pendek" value="pendek">
+                                        <label class="form-check-label" for="pendek">Pendek</label>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- <div class="mb-2 row">
+                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Foto</label>
+                                <div class="col-sm-10">
+                                    <div class="mb-3">
+                                        <input type="file" id="image" class="form-control" name="image[]" style="display: none;" multiple>
+                                        <button type="button" id="addImageButton" class="btn btn-primary mt-3">Tambah Gambar</button>
+                                    </div>
+                                </div>
+                            </div> -->
 
 
                             <div class="row">

@@ -4,7 +4,7 @@
     <ul class="side-nav">
         <li class="side-nav-title side-nav-item"></li>
         <li class="side-nav-item">
-            <a href="apps-calendar.html" class="side-nav-link">
+            <a href="{{ route('home.admin') }}" class="side-nav-link">
                 <i class="uil-home-alt"></i>
                 <span>Dashboard </span>
             </a>

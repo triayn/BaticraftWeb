@@ -66,7 +66,7 @@ Route::middleware(['auth'])->group(function () {
         // CRUD Product
         Route::prefix('/product')->group(function () {
             Route::get('/index', [ProductController::class, 'index'])->name('product.index');
-            Route::get('/show/{id}', [ProductController::class, 'show'])->name('product.show');
+            Route::get('/show', [ProductController::class, 'show'])->name('product.show');
             Route::get('/create', [ProductController::class, 'create'])->name('product.create');
             Route::post('/store', [ProductController::class, 'store'])->name('product.store');
             Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');

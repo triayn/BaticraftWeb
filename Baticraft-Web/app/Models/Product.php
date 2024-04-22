@@ -9,6 +9,23 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'kode_product',
+        'nama',
+        'deskripsi',
+        'harga',
+        'stok',
+        'kategori',
+        'ukuran',
+        'bahan',
+        'panjang_kain',
+        'lebar_kain',
+        'jenis_batik',
+        'jenis_lengan',
+        'status',
+        // tambahkan kolom lain yang ingin diizinkan untuk mass assignment
+    ];
+
     // public function getKodeProdukAttribute()
     // {
     //     $id = $this->id;
