@@ -8,13 +8,14 @@
                 <h2 class="h3 mb-4 mb-sm-5">B A T I C R A F T !<br>Selamat Datang Kembali.</h2><img class="d-block mx-auto" src="{{ asset('assets/customer/images/login.png') }}" width="344" alt="Illustartion">
                 <div class="mt-4 mt-sm-5">Belum Punya Akun? <a href="{{ route('register') }}">Daftar Disini</a></div>
             </div>
-            <div class="col-md-6 px-2 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5"><a class="btn btn-outline-info w-100 mb-3" href="#">
+            <div class="col-md-6 px-2 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5">
+                <!-- <a class="btn btn-outline-info w-100 mb-3" href="#">
                     <i class="fi-google fs-lg me-1"></i>Sign in with Google</a>
                 <div class="d-flex align-items-center py-3 mb-3">
                     <hr class="w-100">
                     <div class="px-3">Atau</div>
                     <hr class="w-100">
-                </div>
+                </div> -->
                 <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate>
                     @csrf
                     <div class="mb-4">
@@ -28,12 +29,10 @@
                         @enderror
                     </div>
                     <div class="mb-4">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
+                        <!-- <div class="d-flex align-items-center justify-content-between mb-2">
                             <label class="form-label mb-0" for="signin-password">{{ __('Kata Sandi') }}</label><a class="fs-sm" href="#">Lupa
                                 Kata Sandi?</a>
-
-
-                        </div>
+                        </div> -->
                         <div class="password-toggle">
                             <input id="signin-password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                             @error('password')
@@ -50,7 +49,7 @@
                         <button class="btn btn-info btn-lg w-100" type="submit">{{ __('Login') }}</button>
                         @if (Route::has('password.request'))
                         <a class="btn btn-link" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
+                            {{ __('Lupa Kata Sandi?') }}
                         </a>
                         @endif
                     </div>

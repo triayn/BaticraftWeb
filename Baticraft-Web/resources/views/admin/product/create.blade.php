@@ -6,11 +6,11 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="index">Pengguna</a></li>
-                    <li class="breadcrumb-item active">Tambah Pengguna</li>
+                    <li class="breadcrumb-item"><a href="index">Produk</a></li>
+                    <li class="breadcrumb-item active">Tambah Produk</li>
                 </ol>
             </div>
-            <h4 class="page-title">Tambah Pengguna</h4>
+            <h4 class="page-title">Tambah Produk</h4>
         </div>
     </div>
 </div>
@@ -157,12 +157,12 @@
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Foto</label>
                                 <div class="col-sm-10">
                                     <div class="mb-3">
-                                        <input type="file" id="image" class="form-control" name="image[]" style="display: none;" multiple>
-                                        <button type="button" id="addImageButton" class="btn btn-primary mt-3">Tambah Gambar</button>
+                                        <input type="file" name="images[]" id="images[]" class="form-control">
+                                        <!-- <input type="file" id="image" class="form-control" name="images[]" style="display: none;" multiple>
+                                        <button type="button" id="addImageButton" class="btn btn-primary mt-3">Tambah Gambar</button> -->
                                     </div>
                                 </div>
                             </div>
-
 
                             <div class="row">
                                 <div class="col-12 text-center">
@@ -180,44 +180,5 @@
 @endsection
 
 @section('scripts')
-<!-- Ketegori Produk -->
 
-<!-- Tmabh Gambar -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const dragDropArea = document.getElementById('dragDropArea');
-        const imageInput = document.getElementById('image');
-        const addImageButton = document.getElementById('addImageButton');
-        const MAX_IMAGES = 5;
-
-        // Function untuk menampilkan input file ketika tombol tambah gambar ditekan
-        addImageButton.addEventListener('click', function() {
-            // Jika sudah mencapai jumlah maksimal gambar, hentikan fungsi
-            if (document.querySelectorAll('.img-fluid').length >= MAX_IMAGES) {
-                alert('Maksimal 5 gambar sudah tercapai');
-                return;
-            }
-
-            // Menghitung jumlah gambar yang akan ditambahkan
-            const remainingImages = MAX_IMAGES - document.querySelectorAll('.img-fluid').length;
-
-            // Membuat input file sebanyak sisa gambar yang dapat ditambahkan
-            for (let i = 0; i < remainingImages; i++) {
-                const newImageInput = document.createElement('input');
-                newImageInput.setAttribute('type', 'file');
-                newImageInput.setAttribute('class', 'form-control mt-3');
-                newImageInput.setAttribute('name', 'image[]');
-                newImageInput.setAttribute('style', 'display: block;');
-                newImageInput.setAttribute('multiple', '');
-                imageInput.parentNode.insertBefore(newImageInput, addImageButton);
-            }
-        });
-
-        // Prevent default behavior saat file dijatuhkan pada area drag and drop
-        dragDropArea.addEventListener('dragover', function(e) {
-            e.preventDefault();
-            dragDropArea.classList.add('border-primary');
-        });
-    });
-</script>
 @endsection

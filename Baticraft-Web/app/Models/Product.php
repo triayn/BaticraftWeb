@@ -23,7 +23,6 @@ class Product extends Model
         'jenis_batik',
         'jenis_lengan',
         'status',
-        // tambahkan kolom lain yang ingin diizinkan untuk mass assignment
     ];
 
     // public function getKodeProdukAttribute()

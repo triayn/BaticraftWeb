@@ -39,7 +39,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/kain', [EtalaseProductController::class, 'kain'])->name('etalase.kain');
         Route::get('/kemeja', [EtalaseProductController::class, 'kemeja'])->name('etalase.kemeja');
         Route::get('/kaos', [EtalaseProductController::class, 'kaos'])->name('etalase.kaos');
+        Route::get('/detail/{id}', [EtalaseProductController::class, 'detail'])->name('etalase.detail');
     });
+
+    Route::prefix('/keranjang')->group(function () {
+        Route::get('/', [EtalaseProductController::class, 'card'])->name('keranjang.index');
+        Route::post('/add', [EtalaseProductController::class, 'addToCard'])->name('keranjang.add');
+    });
+
+    Route::get('/informasi/toko', [InformationController::class,'customer'])->name('information.customer');
 
     // Rute yang hanya dapat diakses oleh pengguna dengan role 'admin'
     Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -66,7 +74,7 @@ Route::middleware(['auth'])->group(function () {
         // CRUD Product
         Route::prefix('/product')->group(function () {
             Route::get('/index', [ProductController::class, 'index'])->name('product.index');
-            Route::get('/show', [ProductController::class, 'show'])->name('product.show');
+            Route::get('/show/{id}', [ProductController::class, 'show'])->name('product.show');
             Route::get('/create', [ProductController::class, 'create'])->name('product.create');
             Route::post('/store', [ProductController::class, 'store'])->name('product.store');
             Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');

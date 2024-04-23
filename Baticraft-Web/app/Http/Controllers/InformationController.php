@@ -18,6 +18,13 @@ class InformationController extends Controller
         return view('admin.information.index', compact('data'));
     }
 
+    public  function customer()
+    {
+        $data = Informations::get();
+
+        return view('customer.InformasiToko', compact('data'));
+    }
+
     public function edit(): View
     {
         $data = Informations::first();

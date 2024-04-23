@@ -7,7 +7,7 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                <li class="breadcrumb-item active">Produk / <a href="javascript: void(0);">Detail Produk</a></li>
+                    <li class="breadcrumb-item active">Produk / <a href="javascript: void(0);">Detail Produk</a></li>
                 </ol>
             </div>
             <h4 class="page-title">Produk</h4>
@@ -42,24 +42,31 @@
                     <div class="col-lg-7">
                         <form class="ps-lg-4">
                             <!-- Product title -->
-                            <h3 class="mt-0">NAMA  </h3>
-                            <p class="mb-1">KODE PRODUK</p>
+                            <h3 class="mt-0">{{ $data->nama }} </h3>
+                            <p class="mb-1">{{ $data->kode_product }}</p>
 
                             <!-- Product stock -->
                             <div class="mt-3">
-                                <h4><span class="badge badge-success-lighten">status</span></h4>
+                                <h4><span class="badge badge-success-lighten">
+                                        @if($data->status == 'tersedia')
+                                        <span class="badge badge-success-lighten p-1 font-14">{{ $data->status }}</span>
+                                        @else($data->status == 'tidak tersedia')
+                                        <span class="badge badge-danger-lighten p-1 font-14">{{ $data->status }}</span>
+                                        @endif
+                                    </span>
+                                </h4>
                             </div>
 
                             <!-- Product description -->
                             <div class="mt-4">
                                 <h6 class="font-14">Harga:</h6>
-                                <h3> Rp 134.000,00</h3>
+                                <h3> Rp {{ $data->harga }},00</h3>
                             </div>
 
                             <!-- Product description -->
                             <div class="mt-4">
                                 <h6 class="font-14">Deskripsi:</h6>
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. </p>
+                                <p>{{ $data->deskripsi }} </p>
                             </div>
 
                             <!-- Product information -->
@@ -67,11 +74,11 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <h6 class="font-14">Stok:</h6>
-                                        <p class="text-sm lh-150">1784</p>
+                                        <p class="text-sm lh-150">{{ $data->stok }}</p>
                                     </div>
                                     <div class="col-md-4">
                                         <h6 class="font-14">Kategori:</h6>
-                                        <p class="text-sm lh-150">kain</p>
+                                        <p class="text-sm lh-150">{{ $data->kategori }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -82,46 +89,36 @@
 
                 <div class="table-responsive mt-4">
                     <table class="table table-bordered table-centered mb-0">
-                        <thead >
-                            <tr>
+                        <thead>
+                            <!-- <tr>
                                 <th>Outlets</th>
                                 <th>Price</th>
-                            </tr>
+                            </tr> -->
                         </thead>
                         <tbody>
                             <tr>
-                                <td>ASOS Ridley Outlet - NYC</td>
-                                <td>$139.58</td>
+                                <td>Ukuran</td>
+                                <td>{{ $data->ukuran }}</td>
                             </tr>
                             <tr>
-                                <td>Marco Outlet - SRT</td>
-                                <td>$149.99</td>
+                                <td>Bahan</td>
+                                <td>{{ $data->bahan }}</td>
                             </tr>
                             <tr>
-                                <td>Chairtest Outlet - HY</td>
-                                <td>$135.87</td>
-                                <td>
-                                    <div class="progress-w-percent mb-0">
-                                        <span class="progress-value">781 </span>
-                                        <div class="progress progress-sm">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 72%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>$5,87,478</td>
+                                <td>Panjang Kain</td>
+                                <td>{{ $data->panjang_kain }}</td>
                             </tr>
                             <tr>
-                                <td>Nworld Group - India</td>
-                                <td>$159.89</td>
-                                <td>
-                                    <div class="progress-w-percent mb-0">
-                                        <span class="progress-value">815 </span>
-                                        <div class="progress progress-sm">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 89%;" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>$55,781</td>
+                                <td>Lebar Kain</td>
+                                <td>{{ $data->lebar_kain }}</td>
+                            </tr>
+                            <tr>
+                                <td>Jenis Batik</td>
+                                <td>{{ $data->jenis_batik  }}</td>
+                            </tr>
+                            <tr>
+                                <td>Jenis Lengan</td>
+                                <td>{{ $data->jenis_lengan }}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -25,7 +25,7 @@
                         <a href="{{ route('product.create') }}" class="btn btn-primary btn-sm" style="margin-bottom: 1.5em;">
                             <i class="uil uil-user-plus"></i> Tambah Produk
                         </a>
-                        <table id="state-saving-datatable" class="table table-striped activate-select dt-responsive nowrap w-100">
+                        <table id="state-saving-rowtable" class="table table-striped activate-select dt-responsive nowrap w-100">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -53,21 +53,21 @@
                                     <td>Rp. {{ $row->harga }}</td>
                                     <td>{{ $row->stok }} pcs</td>
                                     <td>
-                                        @if ($row->status == 'Tersedia')
+                                        @if($row->status == 'tersedia')
                                         <span class="badge bg-success">{{ $row->status }}</span>
-                                        @else
+                                        @else($row->status == 'tidak tersedia')
                                         <span class="badge bg-danger">{{ $row->status }}</span>
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="#" class="btn btn-info"><i class="uil-eye"></i> Lihat</a>
-                                        <a href="#" class="btn btn-success">
+                                        <a href="{{ route('product.show', $row->id) }}" class="btn btn-info"><i class="uil-eye"></i> Lihat</a>
+                                        <a href="{{ route('product.edit', $row->id) }}" class="btn btn-success">
                                             <i class="mdi mdi-pencil"></i> Edit
                                         </a>
-                                        <form action="#" method="POST" style="display: inline-block;">
+                                        <form action="{{ route('product.delete', $row->id) }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus row?')">
                                                 <i class="mdi mdi-window-close"></i> Hapus
                                             </button>
                                         </form>

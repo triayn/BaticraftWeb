@@ -4,9 +4,9 @@
 <ul id="navbar">
     <li class="active"><a href="{{ route('home') }}">Home</a></li>
     <li><a href="{{ route('etalase.index') }}">Etalase Produk</a></li>
-    <li><a href="product-details.html">Keranjang</a></li>
+    <li><a href="{{ route('keranjang.index') }}">Keranjang</a></li>
     <li><a href="cart.html">Pesanan</a></li>
-    <li><a href="checkout.html">Informasi Toko</a></li>
+    <li><a href="{{ route('information.customer') }}">Informasi Toko</a></li>
     <li><a href="checkout.html">Profil</a></li>
     <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
