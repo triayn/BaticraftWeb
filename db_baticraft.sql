@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Apr 2024 pada 03.58
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.2.12
+-- Generation Time: Apr 24, 2024 at 04:44 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `carts`
+-- Table structure for table `carts`
 --
 
 CREATE TABLE `carts` (
@@ -39,7 +39,7 @@ CREATE TABLE `carts` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -55,7 +55,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `image_products`
+-- Table structure for table `image_products`
 --
 
 CREATE TABLE `image_products` (
@@ -69,7 +69,7 @@ CREATE TABLE `image_products` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `informations`
+-- Table structure for table `informations`
 --
 
 CREATE TABLE `informations` (
@@ -90,16 +90,16 @@ CREATE TABLE `informations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `informations`
+-- Dumping data for table `informations`
 --
 
 INSERT INTO `informations` (`id`, `nama_pemilik`, `nama_toko`, `alamat`, `lokasi`, `deskripsi`, `no_telpon`, `email`, `image`, `akun_ig`, `akun_fb`, `akun_tiktok`, `created_at`, `updated_at`) VALUES
-(1, 'Sri Suwarsih', 'Griya Batik Sri Siji Nganjuk', 'Perumnas Candirejo Blok GG No. 10, Gejagan, Kec. Nganjuk, Kabupaten Nganjuk, Jawa Timur 64471', 'https://maps.app.goo.gl/m67hDUDyzmQaj3Qy9', 'Griya Batik Sri Siji adalah salah satu griya produksi batik handmade yang ada di Kabupaten Nganjuk. Griya ini memproduksi berbagai macam produk batik, seperti kain, kaos dan kemeja.', '+6282338872002', 'baticraft@gmail.com', 'ksiiqisPD7P8BCfRc0UjjungQBAs4T89ujhX8bgD.png', '@srisijibatik', 'Sri Siji Batik Nganjuk', NULL, NULL, '2024-04-04 07:37:49');
+(1, 'Sri Suwarsih', 'Griya Batik Sri Siji Nganjuk', 'Perumnas Candirejo Blok GG No. 10, Gejagan, Kec. Nganjuk, Kabupaten Nganjuk, Jawa Timur 64471', 'https://maps.app.goo.gl/m67hDUDyzmQaj3Qy9', 'Griya Batik Sri Siji adalah salah satu griya produksi batik handmade yang ada di Kabupaten Nganjuk. Griya ini memproduksi berbagai macam produk batik, seperti kain, kaos dan kemeja.jjjjj', '+6282338872002', 'baticraft@gmail.com', 'ksiiqisPD7P8BCfRc0UjjungQBAs4T89ujhX8bgD.png', '@srisijibatik', 'Sri Siji Batik Nganjuk', NULL, NULL, '2024-04-23 19:24:38');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -109,7 +109,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -128,7 +128,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -140,7 +140,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_reset_tokens`
+-- Table structure for table `password_reset_tokens`
 --
 
 CREATE TABLE `password_reset_tokens` (
@@ -152,7 +152,7 @@ CREATE TABLE `password_reset_tokens` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `personal_access_tokens`
+-- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -171,7 +171,7 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -194,16 +194,19 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `kode_product`, `nama`, `deskripsi`, `harga`, `kategori`, `stok`, `ukuran`, `bahan`, `panjang_kain`, `lebar_kain`, `jenis_batik`, `jenis_lengan`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'BTK001', 'Batik', 'hdhh', 175000, 'kain', 5, '2,25 M', 'Katun', '100 M', '200 M', 'Batik Sarimbitan', 'pendek', 'tersedia', '2024-04-21 06:53:36', '2024-04-21 06:53:36');
+(1, 'BTK001', 'Batik', 'hdhh', 175000, 'kain', 0, '2,25 M', 'Katun', '100 M', '200 M', 'Batik Sarimbitan', 'pendek', 'tidak tersedia', '2024-04-21 06:53:36', '2024-04-23 18:46:59'),
+(2, 'BTK002', 'Batik Sarimbit', 'Sarimbit berasal dari bahasa Jawa yang berarti pasangan. \r\n            Batik sarimbit memiliki arti batik yang khusus didesain untuk pasangan atau batik couple. \r\n            Mengutip Wirawanbatik Batik sarimbit adalah jenis batik khas Indonesia yang dirancang untuk pasangan suami istri.', 205000, 'kain', 5, 'XL', 'Katun', '4 meter', '3 meter', 'Sasirangan', 'panjang', 'tersedia', '2024-04-23 18:34:08', '2024-04-23 19:03:54'),
+(3, 'BTK003', 'Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba', 'Sarimbit berasal dari bahasa Jawa yang berarti pasangan. \r\n            Batik sarimbit memiliki arti batik yang khusus didesain untuk pasangan atau batik couple. \r\n            Mengutip Wirawanbatik Batik sarimbit adalah jenis batik khas Indonesia yang dirancang untuk pasangan suami istri.', 205000, 'kemeja', 3, 'XL', 'Katun', '4 meter', '3 meter', 'Sasirangan', NULL, 'tersedia', '2024-04-23 18:36:33', '2024-04-23 18:36:33'),
+(4, 'BTK004', 'Kaos Anak dengan Motif Khas Batik Jayastamba', 'Sarimbit berasal dari bahasa Jawa yang berarti pasangan. Batik sarimbit memiliki arti batik yang khusus didesain untuk pasangan atau batik couple. Mengutip Wirawanbatik Batik sarimbit adalah jenis batik khas Indonesia yang dirancang untuk pasangan suami istri.', 205000, 'kaos', 30, 'XL', 'Katun', '4 meter', '3 meter', 'Sasirangan', 'pendek', 'tersedia', '2024-04-23 18:45:56', '2024-04-23 18:45:56');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transactions`
+-- Table structure for table `transactions`
 --
 
 CREATE TABLE `transactions` (
@@ -226,7 +229,7 @@ CREATE TABLE `transactions` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaction_details`
+-- Table structure for table `transaction_details`
 --
 
 CREATE TABLE `transaction_details` (
@@ -241,7 +244,7 @@ CREATE TABLE `transaction_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Trigger `transaction_details`
+-- Triggers `transaction_details`
 --
 DELIMITER $$
 CREATE TRIGGER `kurang_stok` AFTER INSERT ON `transaction_details` FOR EACH ROW BEGIN
@@ -255,7 +258,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -277,7 +280,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `nama`, `no_telpon`, `alamat`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `role`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `image`) VALUES
@@ -289,7 +292,7 @@ INSERT INTO `users` (`id`, `nama`, `no_telpon`, `alamat`, `jenis_kelamin`, `temp
 --
 
 --
--- Indeks untuk tabel `carts`
+-- Indexes for table `carts`
 --
 ALTER TABLE `carts`
   ADD PRIMARY KEY (`id`),
@@ -297,46 +300,46 @@ ALTER TABLE `carts`
   ADD KEY `carts_product_id_foreign` (`product_id`);
 
 --
--- Indeks untuk tabel `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indeks untuk tabel `image_products`
+-- Indexes for table `image_products`
 --
 ALTER TABLE `image_products`
   ADD PRIMARY KEY (`id`),
   ADD KEY `image_products_product_id_foreign` (`product_id`);
 
 --
--- Indeks untuk tabel `informations`
+-- Indexes for table `informations`
 --
 ALTER TABLE `informations`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `informations_email_unique` (`email`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indeks untuk tabel `password_reset_tokens`
+-- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indeks untuk tabel `personal_access_tokens`
+-- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -344,20 +347,20 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indeks untuk tabel `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `transactions`
+-- Indexes for table `transactions`
 --
 ALTER TABLE `transactions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `transactions_user_id_foreign` (`user_id`);
 
 --
--- Indeks untuk tabel `transaction_details`
+-- Indexes for table `transaction_details`
 --
 ALTER TABLE `transaction_details`
   ADD PRIMARY KEY (`id`),
@@ -365,101 +368,101 @@ ALTER TABLE `transaction_details`
   ADD KEY `transaction_details_product_id_foreign` (`product_id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `carts`
+-- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `image_products`
+-- AUTO_INCREMENT for table `image_products`
 --
 ALTER TABLE `image_products`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `informations`
+-- AUTO_INCREMENT for table `informations`
 --
 ALTER TABLE `informations`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `personal_access_tokens`
+-- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `transactions`
+-- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `transaction_details`
+-- AUTO_INCREMENT for table `transaction_details`
 --
 ALTER TABLE `transaction_details`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `carts`
+-- Constraints for table `carts`
 --
 ALTER TABLE `carts`
   ADD CONSTRAINT `carts_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `carts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `image_products`
+-- Constraints for table `image_products`
 --
 ALTER TABLE `image_products`
   ADD CONSTRAINT `image_products_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `transactions`
+-- Constraints for table `transactions`
 --
 ALTER TABLE `transactions`
   ADD CONSTRAINT `transactions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `transaction_details`
+-- Constraints for table `transaction_details`
 --
 ALTER TABLE `transaction_details`
   ADD CONSTRAINT `transaction_details_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
