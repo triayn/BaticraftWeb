@@ -38,13 +38,13 @@
                                 </tr>
                             </thead>
 
-                            <tbody align="center">
+                            <tbody >
                                 @php $i = 1; @endphp
                                 @foreach ($data as $row)
                                 <tr>
                                     <td>{{ $i++ }}</td>
                                     <td>
-                                        <!-- <img src="{{ asset('assets/customer/images/login.png') }}" alt="contact-img" title="contact-img" class="rounded me-3" height="48" /> -->
+                                        <img src="{{ asset('assets/admin/images/catalog-1.jpg') }}" alt="contact-img" title="contact-img" class="rounded me-3" height="48" />
                                         <p class="m-0 d-inline-block align-middle font-16">
                                             <a href="apps-ecommerce-products-details.html" class="text-body">{{ $row->nama }}</a>
                                         </p>
