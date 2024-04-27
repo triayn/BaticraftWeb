@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-<!-- Mirrored from freshcart.codescandy.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Aug 2022 17:44:34 GMT -->
-
 <head>
 
   <title>{{ config('app.name') }}</title>
@@ -92,7 +88,7 @@
             <h2 class="text-dark display-5 fw-bold mt-4">SuperMarket Daily <br> Fresh Grocery </h2>
             <p class="lead">Introduced a new model for online grocery shopping
               and convenient home delivery.</p>
-            <a href="#!" class="btn btn-dark mt-3">Masuk <i class="feather-icon icon-arrow-right ms-1"></i></a>
+            <a href="{{ route('login') }}" class="btn btn-dark mt-3">Masuk <i class="feather-icon icon-arrow-right ms-1"></i></a>
           </div>
 
         </div>
@@ -103,7 +99,7 @@
             <h2 class="text-dark display-5 fw-bold mt-4">Free Shipping on <br> orders over <span class="text-primary">$100</span></h2>
             <p class="lead">Free Shipping to First-Time Customers Only, After promotions and discounts are applied.
             </p>
-            <a href="#!" class="btn btn-dark mt-3">Masuk <i class="feather-icon icon-arrow-right ms-1"></i></a>
+            <a href="{{ route('login') }}" class="btn btn-dark mt-3">Masuk <i class="feather-icon icon-arrow-right ms-1"></i></a>
           </div>
 
         </div>
