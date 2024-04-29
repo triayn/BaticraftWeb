@@ -117,8 +117,8 @@
                             </svg></span> Menu
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="shop-grid.html">Home</a></li>
-                        <li><a class="dropdown-item" href="shop-grid.html">Etalase Produk</a></li>
+                        <li><a class="dropdown-item" href="{{ route('home') }}">Home</a></li>
+                        <li><a class="dropdown-item" href="{{ route('etalase.index') }}">Etalase Produk</a></li>
                         <li><a class="dropdown-item" href="shop-grid.html">Pesanan</a></li>
                         <li><a class="dropdown-item" href="shop-grid.html">Keranjang</a></li>
                         <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -150,8 +150,8 @@
                         <div class="collapse mt-2" id="collapseExample">
                             <div class="card card-body">
                                 <ul class="mb-0 list-unstyled">
-                                    <li><a class="dropdown-item" href="shop-grid.html">Home</a></li>
-                                    <li><a class="dropdown-item" href="shop-grid.html">Etalase Produk</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('home') }}">Home</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('etalase.index') }}">Etalase Produk</a></li>
                                     <li><a class="dropdown-item" href="shop-grid.html">Pesanan</a></li>
                                     <li><a class="dropdown-item" href="shop-grid.html">Keranjang</a></li>
                                     <li><a class="dropdown-item" href="shop-grid.html">Keluar</a></li>
@@ -167,11 +167,11 @@
     </div>
 
     <div class="row" style="background-color: white;">
-    @yield ('content')
+        @yield ('content')
     </div>
 
     <!-- footer -->
-    <div class="footer" style="background-color: white;">
+    <div class="footer">
         <div class="container">
             <footer class="row g-4 py-4">
                 <div class="border-top py-4">

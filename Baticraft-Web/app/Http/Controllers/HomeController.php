@@ -38,7 +38,7 @@ class HomeController extends Controller
         $images = ImageProduct::all(); // Ambil semua gambar terlebih dahulu
         $info = Informations::first(); // Ambil data informasi pertama dari tabel
         $whatsappNumber = $info->no_telpon; // Ambil nomor WhatsApp dari data informasi
-        $infoImg = $info->image;
+        // $infoImg = $info->image;
 
         return view('homePembeli', compact(
             'kain',
@@ -47,7 +47,7 @@ class HomeController extends Controller
             'images',
             'whatsappNumber',
             'info',
-            'infoImg'
+            // 'infoImg'
         ));
     }
 }

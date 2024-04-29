@@ -52,7 +52,7 @@
                             <br>
                             <br><br>
                             <br>
-                            <a href="#" class="btn btn-light">Cek Produk</a>
+                            <a href="{{ route('etalase.kain') }}" class="btn btn-light">Cek Produk</a>
                         </div>
                         <!-- Banner Content -->
 
@@ -77,7 +77,7 @@
                             <br>
                             <br><br>
                             <br>
-                            <a href="#" class="btn btn-light">Cek Produk</a>
+                            <a href="{{ route('etalase.kemeja') }}" class="btn btn-light">Cek Produk</a>
                         </div>
 
 
@@ -100,7 +100,7 @@
                             <br>
                             <br><br>
                             <br>
-                            <a href="#" class="btn btn-light">Cek Produk</a>
+                            <a href="{{ route('etalase.kaos') }}" class="btn btn-light">Cek Produk</a>
                         </div>
 
                     </div>
@@ -173,7 +173,7 @@
                         <p>Dapatkan kain batik berkualitas tinggi.</p>
                     </div>
                     <div>
-                        <a href="#">Lihat Semua <i class="feather-icon icon-chevron-right"></i></a>
+                        <a href="{{ route('etalase.kain') }}">Lihat Semua <i class="feather-icon icon-chevron-right"></i></a>
                     </div>
                 </div>
 
@@ -196,7 +196,7 @@
                             @endif
                             <!-- action btn -->
                             <div class="product-action-btn">
-                                <a href="#!" class="btn-action mb-1" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
+                                <a href="{{ route('etalase.detail', $satu->id) }}" class="btn-action mb-1" ><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
                             </div>
                         </div>
                         <div class="mb-3"><span class="text-dark">Rp. {{ $satu->harga }},00</span></div>
@@ -234,7 +234,7 @@
                         <p>Dapatkan kemeja dengan ukuran dan desain yang sesuai dengan anda.</p>
                     </div>
                     <div>
-                        <a href="#">Lihat Semua <i class="feather-icon icon-chevron-right"></i></a>
+                        <a href="{{ route('etalase.kemeja') }}">Lihat Semua <i class="feather-icon icon-chevron-right"></i></a>
                     </div>
                 </div>
 
@@ -257,7 +257,7 @@
                             @endif
                             <!-- action btn -->
                             <div class="product-action-btn">
-                                <a href="#!" class="btn-action mb-1" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
+                                <a href="{{ route('etalase.detail', $dua->id) }}" class="btn-action mb-1" ><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
                             </div>
                         </div>
                         <div class="mb-3"><span class="text-dark">Rp. {{ $dua->harga }},00</span></div>
@@ -295,7 +295,7 @@
                         <p>Kaos batik dengan berbagai pilihan ukuran.</p>
                     </div>
                     <div>
-                        <a href="#">Lihat Semua <i class="feather-icon icon-chevron-right"></i></a>
+                        <a href="{{ route('etalase.kaos') }}">Lihat Semua <i class="feather-icon icon-chevron-right"></i></a>
                     </div>
                 </div>
 
@@ -318,7 +318,7 @@
                             @endif
                             <!-- action btn -->
                             <div class="product-action-btn">
-                                <a href="#!" class="btn-action mb-1" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
+                                <a href="{{ route('etalase.detail', $tiga->id) }}" class="btn-action mb-1" ><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
                             </div>
                         </div>
                         <div class="mb-3"><span class="text-dark">Rp. {{ $tiga->harga }},00</span></div>
@@ -379,6 +379,5 @@
     <hr class="my-lg-14 my-8">
     </div>
 </section>
-
 
 @endsection

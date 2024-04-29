@@ -81,24 +81,23 @@
   <section class="mt-8">
     <div class="container">
       <div class="hero-slider ">
-        <div style="background: url('assets/customer/images/slider/slide-1.jpg') no-repeat; background-size: 
+        <div style="background: url('assets/customer/images/slider/slider-1.png') no-repeat; background-size: 
       cover; border-radius: .5rem; background-position: center;">
           <div class="ps-lg-12 py-lg-16 col-xxl-5 col-md-7 py-14 px-8 text-xs-center">
             <span class="badge text-bg-warning">Batik Khas Nganjuk</span>
 
-            <h2 class="text-dark display-5 fw-bold mt-4">SuperMarket Daily <br> Fresh Grocery </h2>
-            <p class="lead">Introduced a new model for online grocery shopping
-              and convenient home delivery.</p>
+            <h2 class="text-dark display-5 fw-bold mt-4">Tetap Trendi <br> Dengan Batik </h2>
+            <p class="lead">Rayakan Cinta Pada Produk Dalam Negeri Dengan Melestarikan Batik!.</p>
             <a href="{{ route('login') }}" class="btn btn-dark mt-3">Masuk <i class="feather-icon icon-arrow-right ms-1"></i></a>
           </div>
 
         </div>
-        <div class=" " style="background: url('assets/customer/images/slider/slider-2.jpg') no-repeat; background-size: cover; 
+        <div class=" " style="background: url('assets/customer/images/slider/slider-2.png') no-repeat; background-size: cover; 
       border-radius: .5rem; background-position: center;">
           <div class="ps-lg-12 py-lg-16 col-xxl-5 col-md-7 py-14 px-8 text-xs-center">
-            <span class="badge text-bg-warning">Custom Desain Batik</span>
-            <h2 class="text-dark display-5 fw-bold mt-4">Free Shipping on <br> orders over <span class="text-primary">$100</span></h2>
-            <p class="lead">Free Shipping to First-Time Customers Only, After promotions and discounts are applied.
+            <span class="badge text-bg-warning">Motif yang khas dan beragam</span>
+            <h2 class="text-dark display-5 fw-bold mt-4">Keunikan <br> Motifnya</h2>
+            <p class="lead">Batik adalah kekayaan budaya yang tidak bisa diabaikan.
             </p>
             <a href="{{ route('login') }}" class="btn btn-dark mt-3">Masuk <i class="feather-icon icon-arrow-right ms-1"></i></a>
           </div>
@@ -152,24 +151,26 @@
 
   <section>
     <div class="container">
+      @foreach ($info as $toko)
       <div class="row">
         <div class="col-12 col-lg-6 mb-3 mb-lg-0">
-          <div class="py-10 px-8 rounded-3" style="background: url('assets/customer/images/banner/grocery-banner.png') no-repeat; background-size: cover; background-position: center;">
+          <div class="py-10 px-8 rounded-3" style="background: url('assets/customer/images/banner/banner-1.png') no-repeat; background-size: cover; background-position: center;">
             <div>
               <h3 class="fw-bold mb-1">Custome Desain Batik</h3>
               <p class="mb-4">Hubungi Pemilik Toko</p>
-              <a href="#!" class="btn btn-dark">Dan Lakukan Diskusi Lebih Lanjut</a>
+              <a href="https://wa.me/{{ $toko->no_telpon }}" class="btn btn-dark">Dan Lakukan Diskusi Lebih Lanjut</a>
             </div>
           </div>
         </div>
         <div class="col-12 col-lg-6">
-          <div class="py-10 px-8 rounded-3" style="background: url('assets/customer/images/banner/grocery-banner-2.jpg') no-repeat; background-size: cover; background-position: center;">
+          <div class="py-10 px-8 rounded-3" style="background: url('assets/customer/images/banner/banner-2.png') no-repeat; background-size: cover; background-position: center;">
             <div>
-              <h3 class="fw-bold mb-1">Pesan Dalam Jumlah Banyak Buns</h3>
+              <h3 class="fw-bold mb-1">Pesan Dalam Jumlah Banyak</h3>
               <p class="mb-4">Lihat Stok Produk Terlebih Dahulu</p>
-              <a href="#!" class="btn btn-dark">Atau Langsung Hubungi Pemilik Toko</a>
+              <a href="{{ $toko->lokasi }}" class="btn btn-dark">Atau Langsung Hubungi Pemilik Toko</a>
             </div>
           </div>
+          @endforeach
         </div>
       </div>
     </div>
@@ -231,8 +232,11 @@
           <div class="pt-8 px-8 rounded-3" style="background: url('{{ asset('storage/information/' . $toko->image) }}') no-repeat; 
         background-size: cover; height: 470px;">
             <div>
-              <h3 class="fw-bold text-white">{{ $toko->nama_toko }}
-              </h3> <br><br><br>
+              <h3 class="fw-bold text-white">{{ $toko->alamat }}
+              </h3><br>
+              <p class="text-white">No. Handphone: {{ $toko->no_telpon }}</p>
+              <p class="text-white">Email: {{ $toko->email }}</p>
+              <br><br><br>
               <!-- <a href="#!" class="btn btn-primary">Kunjungi Sekarang <i class="feather-icon icon-arrow-right ms-1"></i></a> -->
               <a href="{{ $toko->lokasi }}" class="btn btn-primary">Kunjungi Sekarang <i class="feather-icon icon-arrow-right ms-1"></i></a>
             </div>
@@ -243,19 +247,20 @@
           <div class="card card-product">
             <div class="card-body">
               <!-- <div class="text-center  position-relative "> <a href="#!"><img src="{{ asset('storage/information/' .$toko->image) }}" class="mb-3 img-fluid"></a> -->
-              </div>
-              <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>{{ $toko->nama_pemilik }}</small></a></div>
-              <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $toko->nama_toko }}</a></h2>
-
-              <div class="d-flex justify-content-between align-items-center mt-3">
-                <div><span class="text-dark"></span> <span class="text-decoration-line-through text-muted">$18</span>
-                </div>
-              </div>
             </div>
+            <!-- <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>{{ $toko->nama_pemilik }}</small></a></div> -->
+            <h3 class="fw-bold text-black">Nama Toko: <br> {{ $toko->nama_toko }} </h3><br>
+            <h3 class="fw-bold text-black">Nama Pemilik: <br> {{ $toko->nama_pemilik }} </h3><br>
+            <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Ringkasan Toko: <br> {{ $toko->deskripsi }}</a></h2> <br>
+            <!-- <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Email: <br> {{ $toko->email }}</a></h2> <br> -->
+            <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Instagram: <br> {{ $toko->akun_ig }}</a></h2> <br>
+            <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Facebook: <br> {{ $toko->akun_fb }}</a></h2> <br>
+            <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Tiktok: <br> {{ $toko->akun_tiktok }}</a></h2> <br>
           </div>
-          @endforeach
         </div>
+        @endforeach
       </div>
+    </div>
 
     </div>
   </section><br><br><br><br>
