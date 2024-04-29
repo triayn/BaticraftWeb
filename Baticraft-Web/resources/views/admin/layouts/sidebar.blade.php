@@ -41,16 +41,19 @@
         <li class="side-nav-item">
             <a data-bs-toggle="collapse" href="#sidebarThirdLevel" aria-expanded="false" aria-controls="sidebarThirdLevel" class="side-nav-link">
                 <i class="uil-bill"></i>
-                <span> Transaksi </span>
+                <span> Pesanan </span>
                 <span class="menu-arrow"></span>
             </a>
             <div class="collapse" id="sidebarThirdLevel">
                 <ul class="side-nav-third-level">
                     <li>
-                        <a href="javascript: void(0);">Pesanan</a>
+                        <a href="{{ route('masuk.index') }}">Pesanan Masuk</a>
                     </li>
                     <li>
-                        <a href="javascript: void(0);">Riwayat</a>
+                        <a href="{{ route('diproses.index') }}">Pesanan Diproses</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('riwayat.index') }}">Riwayat</a>
                     </li>
                 </ul>
             </div>

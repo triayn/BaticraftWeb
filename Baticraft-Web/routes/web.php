@@ -4,6 +4,7 @@ use App\Http\Controllers\EtalaseProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\LandingpageController;
+use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -88,5 +89,37 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/edit', [InformationController::class , 'edit'] )->name('information.edit');
             Route::put('/update', [InformationController::class, 'update'])->name('information.update');
         });
+
+        // CRUD Pesanan
+        Route::prefix('/product')->group(function () {
+            Route::get('/index', [ProductController::class, 'index'])->name('product.index');
+            Route::get('/show/{id}', [ProductController::class, 'show'])->name('product.show');
+            Route::get('/create', [ProductController::class, 'create'])->name('product.create');
+            Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+            Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+            Route::put('/update/{id}', [ProductController::class, 'update'])->name('product.update');
+            Route::delete('/destroy/{id}', [ProductController::class, 'destroy'])->name('product.delete');
+        });
+
+        // CRUD Pesanan Masuk
+        Route::prefix('/pesanan/masuk')->group(function () {
+            Route::get('/', [PesananController::class, 'masuk'])->name('masuk.index');
+            Route::get('/konfirmasi/{id}', [PesananController::class, 'edit'])->name('masuk.konfirmasi');
+            Route::put('/verifikasi/{id}', [PesananController::class, 'update'])->name('masuk.verifikasi');
+        });
+
+        // CRUD Pesanan Diproses
+        Route::prefix('/pesanan/diproses')->group(function () {
+            Route::get('/', [PesananController::class, 'diproses'])->name('diproses.index');
+            Route::get('/konfirmasi/{id}', [PesananController::class, 'editDiproses'])->name('diproses.konfirmasi');
+            Route::put('/verifikasi/{id}', [PesananController::class, 'updateDiproses'])->name('diproses.verifikasi');
+        });
+
+        // CRUD Riwayat Pesanan
+        Route::prefix('/riwayat')->group(function() {
+            Route::get('/index', [PesananController::class, 'riwayat'])->name('riwayat.index');
+            Route::get('/show/{id}', [PesananController::class, 'show'])->name('riwayat.show');
+        });
+
     });
 });

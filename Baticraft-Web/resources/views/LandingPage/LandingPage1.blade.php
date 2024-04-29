@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <title>{{ config('app.name') }}</title>
@@ -122,7 +123,7 @@
         <div class="item"> <a href="pages/shop-grid.html" class="text-decoration-none text-inherit">
             <div class="card card-product mb-4">
               <div class="card-body text-center py-8">
-                <img src="{{ asset('assets/customer/images/category/category-dairy-bread-eggs.jpg') }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid">
+                <img src="{{ asset('assets/customer/images/category/kain.png') }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid">
                 <div>Kain Batik</div>
               </div>
             </div>
@@ -130,7 +131,7 @@
         <div class="item"> <a href="pages/shop-grid.html" class="text-decoration-none text-inherit">
             <div class="card card-product mb-4">
               <div class="card-body text-center py-8">
-                <img src="{{ asset('assets/customer/images/category/category-snack-munchies.jpg') }}" alt="Grocery Ecommerce Template" class="mb-3">
+                <img src="{{ asset('assets/customer/images/category/kemeja.png') }}" alt="Grocery Ecommerce Template" class="mb-3">
                 <div>Kemeja</div>
               </div>
             </div>
@@ -138,7 +139,7 @@
         <div class="item"> <a href="pages/shop-grid.html" class="text-decoration-none text-inherit">
             <div class="card card-product mb-4">
               <div class="card-body text-center py-8">
-                <img src="{{ asset('assets/customer/images/category/category-bakery-biscuits.jpg') }}" alt="Grocery Ecommerce Template" class="mb-3">
+                <img src="{{ asset('assets/customer/images/category/kaos.png') }}" alt="Grocery Ecommerce Template" class="mb-3">
                 <div>Kemeja</div>
               </div>
             </div>
@@ -153,38 +154,27 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-lg-6 mb-3 mb-lg-0">
-          <div>
-            <div class="py-10 px-8 rounded-3" style="background:url(assets/customer/images/banner/grocery-banner.png)no-repeat; 
-            background-size: cover; background-position: center;">
-              <div>
-                <h3 class="fw-bold mb-1">Custome Desain Batik
-                </h3>
-                <p class="mb-4">Hubungi Pemilik Toko</p>
-                <a href="#!" class="btn btn-dark">Dan Lakukan Diskusi Lebih Lanjut</a>
-              </div>
+          <div class="py-10 px-8 rounded-3" style="background: url('assets/customer/images/banner/grocery-banner.png') no-repeat; background-size: cover; background-position: center;">
+            <div>
+              <h3 class="fw-bold mb-1">Custome Desain Batik</h3>
+              <p class="mb-4">Hubungi Pemilik Toko</p>
+              <a href="#!" class="btn btn-dark">Dan Lakukan Diskusi Lebih Lanjut</a>
             </div>
-
           </div>
-
         </div>
-        <div class="col-12 col-lg-6 ">
-
-          <div>
-            <div class="py-10 px-8 rounded-3" style="background:url(assets/customer/images/banner/grocery-banner-2.jpg)no-repeat; background-size: cover; background-position: center;">
-              <div>
-                <h3 class="fw-bold mb-1">Pesan Dalam Jumlah Banyak
-                  Buns
-                </h3>
-                <p class="mb-4">Lihat Stok Produk Terlebih Dahulu</p>
-                <a href="#!" class="btn btn-dark">Atau Langsung Hubungi Pemilik Toko</a>
-              </div>
+        <div class="col-12 col-lg-6">
+          <div class="py-10 px-8 rounded-3" style="background: url('assets/customer/images/banner/grocery-banner-2.jpg') no-repeat; background-size: cover; background-position: center;">
+            <div>
+              <h3 class="fw-bold mb-1">Pesan Dalam Jumlah Banyak Buns</h3>
+              <p class="mb-4">Lihat Stok Produk Terlebih Dahulu</p>
+              <a href="#!" class="btn btn-dark">Atau Langsung Hubungi Pemilik Toko</a>
             </div>
-
           </div>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- Popular Products Start-->
   <section class="my-lg-14 my-8">
@@ -202,7 +192,16 @@
             <div class="card-body">
 
               <div class="text-center position-relative ">
-                <a href="#!"> <img src="{{ asset('assets/customer/images/products/product-img-1.jpg') }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
+                <!-- img -->
+                @if($images->isNotEmpty())
+                @foreach($images as $image)
+                @if($image->product_id == $row->id)
+                <a href="#!"> <img src="{{ asset('storage/product/' . $image->image_path) }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
+                @break
+                @endif
+                @endforeach
+                @endif
+                <!-- <a href="#!"> <img src="{{ asset('assets/customer/images/products/product-img-1.jpg') }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a> -->
               </div>
               <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>{{ $row->kategori }}</small></a></div>
               <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $row->nama }}</a></h2>
@@ -226,41 +225,30 @@
           <h3 class="mb-0">Informasi Toko</h3>
         </div>
       </div>
-
+      @foreach ($info as $toko)
       <div class="row row-cols-lg-2 row-cols-1 row-cols-md-2 g-4">
         <div class="col">
-          <div class=" pt-8 px-8 rounded-3" style="background:url(assets/customer/images/banner/banner-deal.jpg)no-repeat; background-size: cover; height: 470px;">
-
+          <div class="pt-8 px-8 rounded-3" style="background: url('{{ asset('storage/information/' . $toko->image) }}') no-repeat; 
+        background-size: cover; height: 470px;">
             <div>
-              <h3 class="fw-bold text-white">100% Organic
-                Coffee Beans.
-              </h3>
-              <p class="text-white">Get the best deal before close.</p>
-              <a href="#!" class="btn btn-primary">Shop Now <i class="feather-icon icon-arrow-right ms-1"></i></a>
+              <h3 class="fw-bold text-white">{{ $toko->nama_toko }}
+              </h3> <br><br><br>
+              <!-- <a href="#!" class="btn btn-primary">Kunjungi Sekarang <i class="feather-icon icon-arrow-right ms-1"></i></a> -->
+              <a href="{{ $toko->lokasi }}" class="btn btn-primary">Kunjungi Sekarang <i class="feather-icon icon-arrow-right ms-1"></i></a>
             </div>
           </div>
         </div>
         <div class="col">
-          @foreach ($info as $toko)
+
           <div class="card card-product">
             <div class="card-body">
-              <div class="text-center  position-relative "> <a href="#!"><img src="{{ asset('storage/information/' .$toko->image) }}"  class="mb-3 img-fluid"></a>
+              <!-- <div class="text-center  position-relative "> <a href="#!"><img src="{{ asset('storage/information/' .$toko->image) }}" class="mb-3 img-fluid"></a> -->
               </div>
               <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>{{ $toko->nama_pemilik }}</small></a></div>
-              <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Roast Ground Coffee</a></h2>
+              <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $toko->nama_toko }}</a></h2>
 
               <div class="d-flex justify-content-between align-items-center mt-3">
-                <div><span class="text-dark">$13</span> <span class="text-decoration-line-through text-muted">$18</span>
-                </div>
-                <div>
-                  <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-half"></i>
-
-                  </small>
-                  <span><small>4.5</small></span>
+                <div><span class="text-dark"></span> <span class="text-decoration-line-through text-muted">$18</span>
                 </div>
               </div>
             </div>

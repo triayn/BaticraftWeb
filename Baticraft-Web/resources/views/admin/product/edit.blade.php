@@ -228,6 +228,42 @@
                                 </div>
                             </div>
 
+                            <!-- @if ($images)
+                            @foreach ($images as $image)
+                            <div class="mb-2">
+                                <img src="{{ asset('storage/product/' . $image->image_path) }}" alt="Gambar Produk" width="100">
+                                <input type="file" name="edited_images[]" class="form-control mt-2">
+                                @if (count($images) > 0) <p>Tidak ada gambar produk.</p> @endif
+                            </div>
+                            @endforeach
+                            @endif
+                            <button type="button" id="addImageButton" class="btn btn-primary">Tambah Gambar</button> -->
+
+
+                            <div class="mb-2 row">
+                                <label for="gambar" class="col-sm-2 col-form-label col-form-label-sm">Gambar Produk</label>
+                                <div class="col-sm-10">
+                                    @if($images->isNotEmpty())
+                                    @foreach($images as $image)
+                                    <img src="{{ asset('storage/product/' . $image->image_path) }}" alt="Gambar Produk" class="img-thumbnail mb-2">
+                                    @endforeach
+                                    @else
+                                    <p>Tidak ada gambar produk.</p>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="mb-2 row">
+                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Foto</label>
+                                <div class="col-sm-10">
+                                    <div class="mb-3" id="imageInputs">
+                                        <!-- Input gambar pertama -->
+                                        <input type="file" name="images[]" class="form-control">
+                                    </div>
+                                 </div>
+                            </div>
+
+
                             <!-- Tombol Simpan -->
                             <div class="row">
                                 <div class="col-12 text-center">
@@ -246,5 +282,27 @@
 @endsection
 
 @section('scripts')
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const imageInputsContainer = document.getElementById('imageInputs');
+        const addImageButton = document.getElementById('addImageButton');
+        const maxImages = 5; 
 
+        let imageCount = 0; 
+
+        addImageButton.addEventListener('click', function() {
+            if (imageCount < maxImages) {
+                const newInput = document.createElement('div');
+                newInput.className = 'mb-2';
+                newInput.innerHTML = `
+          <input type="file" name="edited_images[]" class="form-control mt-2">
+        `;
+                imageInputsContainer.appendChild(newInput);
+                imageCount++;
+            } else {
+                alert('Maksimal jumlah gambar telah tercapai.');
+            }
+        });
+    });
+</script> -->
 @endsection

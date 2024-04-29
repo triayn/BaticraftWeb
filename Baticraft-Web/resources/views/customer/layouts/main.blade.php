@@ -33,7 +33,7 @@
 
 <body>
     <!-- navigation -->
-    <div class="border-bottom pb-5">
+    <div class="border-bottom pb-5" style="background-color: white;">
 
         <nav class="navbar navbar-light py-lg-5 pt-3 px-0 pb-0">
             <div class="container">
@@ -94,7 +94,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
                                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                         <circle cx="12" cy="7" r="4"></circle>
-                                    </svg> Tria
+                                    </svg> {{ auth()->user()->nama }}
                                 </a>
                             </div>
                         </div>
@@ -166,10 +166,12 @@
         </nav>
     </div>
 
+    <div class="row" style="background-color: white;">
     @yield ('content')
+    </div>
 
     <!-- footer -->
-    <div class="footer">
+    <div class="footer" style="background-color: white;">
         <div class="container">
             <footer class="row g-4 py-4">
                 <div class="border-top py-4">
@@ -197,6 +199,7 @@
     </div>
     <!-- Javascript-->
     <!-- Libs JS -->
+    @yield ('content')
     <script src="{{ asset('assets/customer/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/customer/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/customer/libs/jquery-countdown/dist/jquery.countdown.min.js') }}"></script>

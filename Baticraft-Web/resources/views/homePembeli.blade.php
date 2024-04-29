@@ -180,45 +180,42 @@
             </div>
         </div>
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-0 border rounded-3 border-2 border-info">
-            <div class="col  mb-lg-0">
-                <div class="card  card-product-v2 h-100">
+            <div class="col mb-lg-0">
+                <div class="card card-product-v2 h-100">
+                    @foreach ($kain->take(5)->reverse() as $satu)
                     <div class="card-body position-relative text-center">
-
-                        <div class="text-center position-relative ">
-
-
+                        <div class="text-center position-relative">
                             <!-- img -->
-                            <a href="#!"> <img src="{{ asset('assets/customer/images/products/product-img-2.jpg') }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
+                            @if($images->isNotEmpty())
+                            @foreach($images as $image)
+                            @if($image->product_id == $satu->id)
+                            <a href="#!"> <img src="{{ asset('storage/product/' . $image->image_path) }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
+                            @break
+                            @endif
+                            @endforeach
+                            @endif
                             <!-- action btn -->
                             <div class="product-action-btn">
                                 <a href="#!" class="btn-action mb-1" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
-
                             </div>
-
                         </div>
-                        <div class="mb-3"><span class="text-dark">$15</span>
-                        </div>
+                        <div class="mb-3"><span class="text-dark">Rp. {{ $satu->harga }},00</span></div>
                         <!-- title -->
-                        <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Britannia
-                                NutriChoice
-                                Digestive Biscuits</a></h2>
-
-                        <div class="mt-3"><span class="text-uppercase small text-primary">
-                                Tersedia</span></div>
+                        <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $satu->nama }}</a></h2>
+                        <div class="mt-3"><span class="text-uppercase small text-primary">Tersedia</span></div>
                         <div class="mt-4">
-
                             <div class="my-3">
-                                <small>Stok produk tersedia : <span class="text-dark fw-bold">12</span></small>
+                                <small>Stok produk tersedia : <span class="text-dark fw-bold">{{ $satu->stok }} pcs</span></small>
                             </div>
                         </div>
                         <!-- btn -->
                         <div class="product-fade-block">
                             <div class="d-grid mt-4">
-                                <a href="#" class="btn btn-primary rounded-pill">Masukkan Keranjanng</a>
+                                <a href="#" class="btn btn-primary rounded-pill">Masukkan Keranjang</a>
                             </div>
                         </div>
-
                     </div>
+                    @endforeach
                     <div class="product-content-fade border-info" style="margin-bottom: -60px;"></div>
                 </div>
             </div>
@@ -244,45 +241,42 @@
             </div>
         </div>
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-0 border rounded-3 border-2 border-info">
-            <div class="col  mb-lg-0">
-                <div class="card  card-product-v2 h-100">
+            <div class="col mb-lg-0">
+                <div class="card card-product-v2 h-100">
+                    @foreach ($kemeja->take(5)->reverse() as $dua)
                     <div class="card-body position-relative text-center">
-
-                        <div class="text-center position-relative ">
-
-
+                        <div class="text-center position-relative">
                             <!-- img -->
-                            <a href="#!"> <img src="{{ asset('assets/customer/images/products/product-img-2.jpg') }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
+                            @if($images->isNotEmpty())
+                            @foreach($images as $image)
+                            @if($image->product_id == $dua->id)
+                            <a href="#!"> <img src="{{ asset('storage/product/' . $image->image_path) }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
+                            @break
+                            @endif
+                            @endforeach
+                            @endif
                             <!-- action btn -->
                             <div class="product-action-btn">
                                 <a href="#!" class="btn-action mb-1" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
-
                             </div>
-
                         </div>
-                        <div class="mb-3"><span class="text-dark">$15</span>
-                        </div>
+                        <div class="mb-3"><span class="text-dark">Rp. {{ $dua->harga }},00</span></div>
                         <!-- title -->
-                        <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Britannia
-                                NutriChoice
-                                Digestive Biscuits</a></h2>
-
-                        <div class="mt-3"><span class="text-uppercase small text-primary">
-                                Tersedia</span></div>
+                        <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $dua->nama }}</a></h2>
+                        <div class="mt-3"><span class="text-uppercase small text-primary">Tersedia</span></div>
                         <div class="mt-4">
-
                             <div class="my-3">
-                                <small>Stok produk tersedia : <span class="text-dark fw-bold">12</span></small>
+                                <small>Stok produk tersedia : <span class="text-dark fw-bold">{{ $dua->stok }} pcs</span></small>
                             </div>
                         </div>
                         <!-- btn -->
                         <div class="product-fade-block">
                             <div class="d-grid mt-4">
-                                <a href="#" class="btn btn-primary rounded-pill">Masukkan Keranjanng</a>
+                                <a href="#" class="btn btn-primary rounded-pill">Masukkan Keranjang</a>
                             </div>
                         </div>
-
                     </div>
+                    @endforeach
                     <div class="product-content-fade border-info" style="margin-bottom: -60px;"></div>
                 </div>
             </div>
@@ -308,82 +302,83 @@
             </div>
         </div>
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-0 border rounded-3 border-2 border-info">
-            <div class="col  mb-lg-0">
-                <div class="card  card-product-v2 h-100">
+            <div class="col mb-lg-0">
+                <div class="card card-product-v2 h-100">
+                    @foreach ($kaos->take(5)->reverse() as $tiga)
                     <div class="card-body position-relative text-center">
-
-                        <div class="text-center position-relative ">
-
-
+                        <div class="text-center position-relative">
                             <!-- img -->
-                            <a href="#!"> <img src="{{ asset('assets/customer/images/products/product-img-2.jpg') }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
+                            @if($images->isNotEmpty())
+                            @foreach($images as $image)
+                            @if($image->product_id == $tiga->id)
+                            <a href="#!"> <img src="{{ asset('storage/product/' . $image->image_path) }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
+                            @break
+                            @endif
+                            @endforeach
+                            @endif
                             <!-- action btn -->
                             <div class="product-action-btn">
                                 <a href="#!" class="btn-action mb-1" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
-
                             </div>
-
                         </div>
-                        <div class="mb-3"><span class="text-dark">$15</span>
-                        </div>
+                        <div class="mb-3"><span class="text-dark">Rp. {{ $tiga->harga }},00</span></div>
                         <!-- title -->
-                        <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Britannia
-                                NutriChoice
-                                Digestive Biscuits</a></h2>
-
-                        <div class="mt-3"><span class="text-uppercase small text-primary">
-                                Tersedia</span></div>
+                        <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $tiga->nama }}</a></h2>
+                        <div class="mt-3"><span class="text-uppercase small text-primary">Tersedia</span></div>
                         <div class="mt-4">
-
                             <div class="my-3">
-                                <small>Stok produk tersedia : <span class="text-dark fw-bold">12</span></small>
+                                <small>Stok produk tersedia : <span class="text-dark fw-bold">{{ $tiga->stok }} pcs</span></small>
                             </div>
                         </div>
                         <!-- btn -->
                         <div class="product-fade-block">
                             <div class="d-grid mt-4">
-                                <a href="#" class="btn btn-primary rounded-pill">Masukkan Keranjanng</a>
+                                <a href="#" class="btn btn-primary rounded-pill">Masukkan Keranjang</a>
                             </div>
                         </div>
-
                     </div>
+                    @endforeach
                     <div class="product-content-fade border-info" style="margin-bottom: -60px;"></div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-@endsection
 
-
-<!-- @extends('layouts.app')
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    <h1>BERHASIL LOGIN</h1>
-                    <h3>Nama : {{ Auth::user()->nama }}</h3>
-                    <h4>Role : {{ Auth::user()->role }}</h4>
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+<section>
+    <div class="container">
+        <hr class="my-lg-14 my-8">
+        <!-- row -->
+        <div class="row align-items-center">
+            <div class=" offset-lg-2 col-lg-4 col-md-6">
+                <div class="text-center">
+                    <!-- img -->
+                    <img src="{{ asset('assets/customer/images/png/iphone-2.png') }}" alt="" class=" img-fluid">
                 </div>
-                <div class="card-body">
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
+            </div>
+            <div class=" col-lg-6 col-md-6">
+                <div class="mb-6">
+                    <div class="mb-7">
+                        <!-- heading -->
+                        <h2>Custome Desain Batik?</h2>
+                        <p class="mb-0">Anda bisa melakukan custome untuk desain batik yang sesuai dan cocok dengan
+                            anda,
+                            silahkan hubungi kami melalui Whatsapp.
+                        </p>
+                    </div>
+                    <!-- form -->
+                    <form class="row g-3 mt-1">
+                        <div class="col-auto">
+                            <a href="https://wa.me/{{ $whatsappNumber }}" target="_blank" class="btn btn-primary mb-3">Hubungi Kami</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection -->
+    <hr class="my-lg-14 my-8">
+    </div>
+</section>
+
+
+@endsection

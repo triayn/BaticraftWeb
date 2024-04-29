@@ -23,22 +23,26 @@
                 <div class="row">
                     <div class="col-lg-5">
                         <!-- Product image -->
-                        <a href="javascript: void(0);" class="text-center d-block mb-4">
-                            <img src="{{ asset('assets/customer/images/login.png') }}" class="img-fluid" style="max-width: 280px;" alt="Product-img" />
+                        <a href="" class="text-center d-block mb-4">
+                            @if($images->isNotEmpty())
+                            <div class="main-img">
+                                <img src="{{ asset('storage/product/' . $images[0]->image_path) }}" class="img-fluid" style="max-width: 280px;" alt="Product-img" />
+                            </div>
+                            @endif
                         </a>
 
+                        <!-- Gambar dapat dislide -->
                         <div class="d-lg-flex d-none justify-content-center">
-                            <a href="javascript: void(0);">
-                                <img src="{{ asset('assets/customer/images/login.png') }}" class="img-fluid img-thumbnail p-2" style="max-width: 75px;" alt="Product-img" />
+                            @foreach($images as $image)
+                            <a href="" class="thumbnail-link">
+                                <img src="{{ asset('storage/product/' . $image->image_path) }}" class="img-fluid img-thumbnail p-2 thumbnail-img" style="max-width: 75px;" alt="Product-img" />
                             </a>
-                            <a href="javascript: void(0);" class="ms-2">
-                                <img src="{{ asset('assets/customer/images/login.png') }}" class="img-fluid img-thumbnail p-2" style="max-width: 75px;" alt="Product-img" />
-                            </a>
-                            <a href="javascript: void(0);" class="ms-2">
-                                <img src="{{ asset('assets/customer/images/login.png') }}" class="img-fluid img-thumbnail p-2" style="max-width: 75px;" alt="Product-img" />
-                            </a>
+                            @endforeach
                         </div>
-                    </div> <!-- end col -->
+                    </div>
+
+
+                    <!-- end col -->
                     <div class="col-lg-7">
                         <form class="ps-lg-4">
                             <!-- Product title -->
@@ -74,7 +78,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <h6 class="font-14">Stok:</h6>
-                                        <p class="text-sm lh-150">{{ $data->stok }}</p>
+                                        <p class="text-sm lh-150">{{ $data->stok }} pcs</p>
                                     </div>
                                     <div class="col-md-4">
                                         <h6 class="font-14">Kategori:</h6>
@@ -128,4 +132,42 @@
         </div> <!-- end card-->
     </div> <!-- end col-->
 </div>
+@endsection
+
+@section ('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Inisialisasi slick slider
+        $('.d-lg-flex').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: false,
+            arrows: true,
+            dots: false,
+            responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    }
+                }
+            ]
+        });
+
+        // Tambahkan event listener untuk setiap gambar thumbnail
+        $('.thumbnail-img').on('click', function() {
+            const mainImage = $('.main-img img');
+            const clickedImageSrc = $(this).attr('src');
+            mainImage.attr('src', clickedImageSrc);
+        });
+    });
+</script>
 @endsection

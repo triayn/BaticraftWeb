@@ -153,16 +153,30 @@
                                 </div>
                             </div>
 
-                            <div class="mb-2 row">
+                            <!-- <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Foto</label>
                                 <div class="col-sm-10">
                                     <div class="mb-3">
                                         <input type="file" name="images[]" id="images[]" class="form-control">
-                                        <!-- <input type="file" id="image" class="form-control" name="images[]" style="display: none;" multiple>
-                                        <button type="button" id="addImageButton" class="btn btn-primary mt-3">Tambah Gambar</button> -->
+                                        <input type="file" name="images[]" id="images[]" class="form-control">
+                                        <input type="file" name="images[]" id="images[]" class="form-control">
+                                        <input type="file" name="images[]" id="images[]" class="form-control">
+                                        <input type="file" name="images[]" id="images[]" class="form-control">
                                     </div>
                                 </div>
+                            </div> -->
+
+                            <div class="mb-2 row">
+                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Foto</label>
+                                <div class="col-sm-10">
+                                    <div class="mb-3" id="imageInputs">
+                                        <!-- Input gambar pertama -->
+                                        <input type="file" name="images[]" class="form-control">
+                                    </div>
+                                    <button type="button" id="addImageButton" class="btn btn-primary">Tambah Gambar</button>
+                                </div>
                             </div>
+
 
                             <div class="row">
                                 <div class="col-12 text-center">
@@ -180,5 +194,27 @@
 @endsection
 
 @section('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const imageInputsContainer = document.getElementById('imageInputs');
+        const addImageButton = document.getElementById('addImageButton');
+        const maxImages = 5; // Maksimal jumlah input gambar
 
+        let imageCount = 1; // Menghitung jumlah input gambar yang sudah ada
+
+        addImageButton.addEventListener('click', function() {
+            if (imageCount < maxImages) {
+                // Tambahkan input gambar baru
+                const newInput = document.createElement('input');
+                newInput.type = 'file';
+                newInput.name = 'images[]'; // Menggunakan nama yang sesuai dengan array
+                newInput.className = 'form-control';
+                imageInputsContainer.appendChild(newInput);
+                imageCount++;
+            } else {
+                alert('Maksimal jumlah gambar telah tercapai.');
+            }
+        });
+    });
+</script>
 @endsection
