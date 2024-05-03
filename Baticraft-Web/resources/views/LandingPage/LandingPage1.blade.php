@@ -207,7 +207,7 @@
               <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>{{ $row->kategori }}</small></a></div>
               <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $row->nama }}</a></h2>
               <div class="d-flex justify-content-between align-items-center mt-3">
-                <div><span class="text-dark">Rp. {{ $row->harga }}</span>
+                <div><span class="text-dark">Rp {{ number_format($row->harga, 0, ',', '.') }}</span>
                 </div>
               </div>
             </div>

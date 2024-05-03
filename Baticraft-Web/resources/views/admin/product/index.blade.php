@@ -57,7 +57,7 @@
                                         </p>
                                     </td>
                                     <td>{{ $row->kategori }}</td>
-                                    <td>Rp. {{ $row->harga }}</td>
+                                    <td>Rp {{ number_format($row->harga, 0, ',', '.') }}</td>
                                     <td>{{ $row->stok }} pcs</td>
                                     <td>
                                         @if($row->status == 'tersedia')

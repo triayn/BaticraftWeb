@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\PesananCustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -43,9 +44,22 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/detail/{id}', [EtalaseProductController::class, 'detail'])->name('etalase.detail');
     });
 
+    // Keranjang
     Route::prefix('/keranjang')->group(function () {
         Route::get('/', [EtalaseProductController::class, 'card'])->name('keranjang.index');
-        Route::post('/add', [EtalaseProductController::class, 'addToCard'])->name('keranjang.add');
+        Route::get('/', [EtalaseProductController::class, 'showTotal'])->name('keranjang.index');
+        Route::post('/add', [EtalaseProductController::class, 'addToCart'])->name('keranjang.add');
+        Route::put('/update/{id}', [EtalaseProductController::class, 'updateQuantity'])->name('keranjang.update');
+        Route::delete('/destroy/{id}', [EtalaseProductController::class, 'destroy'])->name('keranjang.delete');
+    });
+
+    // Pesanan
+    Route::prefix('/pesanan')->group(function () {
+        Route::get('/', [PesananCustomerController::class, 'index'])->name('pesanan.index');
+        Route::get('/menunggu', [PesananCustomerController::class, 'menunggu'])->name('pesanan.menunggu');
+        Route::get('/diproses', [PesananCustomerController::class, 'diproses'])->name('pesanan.diproses');
+        Route::get('/ditolak', [PesananCustomerController::class, 'ditolak'])->name('pesanan.ditolak');
+        Route::get('/selesai', [PesananCustomerController::class, 'selesai'])->name('pesanan.selesai');
     });
 
     Route::get('/informasi/toko', [InformationController::class,'customer'])->name('information.customer');

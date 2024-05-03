@@ -180,9 +180,9 @@
             </div>
         </div>
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-0 border rounded-3 border-2 border-info">
+            @foreach ($kain->take(5)->reverse() as $satu)
             <div class="col mb-lg-0">
                 <div class="card card-product-v2 h-100">
-                    @foreach ($kain->take(5)->reverse() as $satu)
                     <div class="card-body position-relative text-center">
                         <div class="text-center position-relative">
                             <!-- img -->
@@ -196,10 +196,10 @@
                             @endif
                             <!-- action btn -->
                             <div class="product-action-btn">
-                                <a href="{{ route('etalase.detail', $satu->id) }}" class="btn-action mb-1" ><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
+                                <a href="{{ route('etalase.detail', $satu->id) }}" class="btn-action mb-1"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
                             </div>
                         </div>
-                        <div class="mb-3"><span class="text-dark">Rp. {{ $satu->harga }},00</span></div>
+                        <div class="mb-3"><span class="text-dark">Rp {{ number_format($satu->harga, 0, ',', '.') }}</span></div>
                         <!-- title -->
                         <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $satu->nama }}</a></h2>
                         <div class="mt-3"><span class="text-uppercase small text-primary">Tersedia</span></div>
@@ -211,14 +211,21 @@
                         <!-- btn -->
                         <div class="product-fade-block">
                             <div class="d-grid mt-4">
-                                <a href="#" class="btn btn-primary rounded-pill">Masukkan Keranjang</a>
+                                <form action="{{ route('keranjang.add') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $satu->id }}"> <!-- Ganti dengan ID produk yang sesuai -->
+                                    <input type="hidden" name="jumlah" value="1"> <!-- Ganti dengan jumlah produk yang ingin ditambahkan -->
+                                    <button type="submit" class="btn btn-primary rounded-pill">
+                                        Masukkan Keranjang
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    @endforeach
                     <div class="product-content-fade border-info" style="margin-bottom: -60px;"></div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -241,9 +248,9 @@
             </div>
         </div>
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-0 border rounded-3 border-2 border-info">
+            @foreach ($kemeja->take(5)->reverse() as $dua)
             <div class="col mb-lg-0">
                 <div class="card card-product-v2 h-100">
-                    @foreach ($kemeja->take(5)->reverse() as $dua)
                     <div class="card-body position-relative text-center">
                         <div class="text-center position-relative">
                             <!-- img -->
@@ -257,10 +264,10 @@
                             @endif
                             <!-- action btn -->
                             <div class="product-action-btn">
-                                <a href="{{ route('etalase.detail', $dua->id) }}" class="btn-action mb-1" ><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
+                                <a href="{{ route('etalase.detail', $dua->id) }}" class="btn-action mb-1"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
                             </div>
                         </div>
-                        <div class="mb-3"><span class="text-dark">Rp. {{ $dua->harga }},00</span></div>
+                        <div class="mb-3"><span class="text-dark">Rp {{ number_format($dua->harga, 0, ',', '.') }}</span></div>
                         <!-- title -->
                         <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $dua->nama }}</a></h2>
                         <div class="mt-3"><span class="text-uppercase small text-primary">Tersedia</span></div>
@@ -272,14 +279,21 @@
                         <!-- btn -->
                         <div class="product-fade-block">
                             <div class="d-grid mt-4">
-                                <a href="#" class="btn btn-primary rounded-pill">Masukkan Keranjang</a>
+                                <form action="{{ route('keranjang.add') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $dua->id }}"> <!-- Ganti dengan ID produk yang sesuai -->
+                                    <input type="hidden" name="jumlah" value="1"> <!-- Ganti dengan jumlah produk yang ingin ditambahkan -->
+                                    <button type="submit" class="btn btn-primary rounded-pill">
+                                        Masukkan Keranjang
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    @endforeach
                     <div class="product-content-fade border-info" style="margin-bottom: -60px;"></div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -302,9 +316,9 @@
             </div>
         </div>
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-0 border rounded-3 border-2 border-info">
+            @foreach ($kaos->take(5)->reverse() as $tiga)
             <div class="col mb-lg-0">
                 <div class="card card-product-v2 h-100">
-                    @foreach ($kaos->take(5)->reverse() as $tiga)
                     <div class="card-body position-relative text-center">
                         <div class="text-center position-relative">
                             <!-- img -->
@@ -318,10 +332,10 @@
                             @endif
                             <!-- action btn -->
                             <div class="product-action-btn">
-                                <a href="{{ route('etalase.detail', $tiga->id) }}" class="btn-action mb-1" ><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
+                                <a href="{{ route('etalase.detail', $tiga->id) }}" class="btn-action mb-1"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
                             </div>
                         </div>
-                        <div class="mb-3"><span class="text-dark">Rp. {{ $tiga->harga }},00</span></div>
+                        <div class="mb-3"><span class="text-dark">Rp {{ number_format($tiga->harga, 0, ',', '.') }}</span></div>
                         <!-- title -->
                         <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $tiga->nama }}</a></h2>
                         <div class="mt-3"><span class="text-uppercase small text-primary">Tersedia</span></div>
@@ -333,14 +347,21 @@
                         <!-- btn -->
                         <div class="product-fade-block">
                             <div class="d-grid mt-4">
-                                <a href="#" class="btn btn-primary rounded-pill">Masukkan Keranjang</a>
+                                <form action="{{ route('keranjang.add') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $tiga->id }}"> <!-- Ganti dengan ID produk yang sesuai -->
+                                    <input type="hidden" name="jumlah" value="1"> <!-- Ganti dengan jumlah produk yang ingin ditambahkan -->
+                                    <button type="submit" class="btn btn-primary rounded-pill">
+                                         Masukkan Keranjang
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    @endforeach
                     <div class="product-content-fade border-info" style="margin-bottom: -60px;"></div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </section>

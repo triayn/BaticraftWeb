@@ -64,7 +64,7 @@
                             <!-- Product description -->
                             <div class="mt-4">
                                 <h6 class="font-14">Harga:</h6>
-                                <h3> Rp {{ $data->harga }},00</h3>
+                                <h3>Rp {{ number_format($data->harga, 0, ',', '.') }}</h3>
                             </div>
 
                             <!-- Product description -->

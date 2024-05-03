@@ -62,22 +62,27 @@
                                 <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $row->nama }}</a></h2>
                                 <!-- price -->
                                 <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div><span class="text-dark">Rp. {{ $row->harga }},00</span>
+                                    <div><span class="text-dark">Rp {{ number_format($row->harga, 0, ',', '.') }}</span>
                                     </div>
                                     <!-- btn -->
-                                    <div><a href="#!" class="btn btn-primary btn-sm">
+                                    <form action="{{ route('keranjang.add') }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $row->id }}"> <!-- Ganti dengan ID produk yang sesuai -->
+                                        <input type="hidden" name="jumlah" value="1"> <!-- Ganti dengan jumlah produk yang ingin ditambahkan -->
+                                        <button type="submit" class="btn btn-primary btn-sm">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
                                                 <line x1="12" y1="5" x2="12" y2="19"></line>
                                                 <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg> Keranjang</a></div>
+                                            </svg> Keranjang
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
             </div>
         </div>
-    </div>
 </section>
 @endsection

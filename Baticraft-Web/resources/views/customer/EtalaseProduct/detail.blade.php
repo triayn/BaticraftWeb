@@ -34,7 +34,7 @@
                     <!-- heading -->
                     <h1 class="mb-1">{{ $data->nama }} </h1>
                     <div class="fs-4">
-                        <!-- price --><span class="fw-bold text-dark">Rp. {{ $data->harga }},00</span> 
+                        <!-- price --><span class="fw-bold text-dark">Rp {{ number_format($data->harga, 0, ',', '.') }}</span> 
                     </div>
                     <!-- hr -->
                     <hr class="my-6">

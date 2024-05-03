@@ -119,8 +119,8 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="{{ route('home') }}">Home</a></li>
                         <li><a class="dropdown-item" href="{{ route('etalase.index') }}">Etalase Produk</a></li>
-                        <li><a class="dropdown-item" href="shop-grid.html">Pesanan</a></li>
-                        <li><a class="dropdown-item" href="shop-grid.html">Keranjang</a></li>
+                        <li><a class="dropdown-item" href="{{ route('keranjang.index') }}">Keranjang</a></li>
+                        <li><a class="dropdown-item" href="{{ route('pesanan.index') }}">Pesanan</a></li>
                         <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Keluar</a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -152,8 +152,8 @@
                                 <ul class="mb-0 list-unstyled">
                                     <li><a class="dropdown-item" href="{{ route('home') }}">Home</a></li>
                                     <li><a class="dropdown-item" href="{{ route('etalase.index') }}">Etalase Produk</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('keranjang.index') }}">Keranjang</a></li>
                                     <li><a class="dropdown-item" href="shop-grid.html">Pesanan</a></li>
-                                    <li><a class="dropdown-item" href="shop-grid.html">Keranjang</a></li>
                                     <li><a class="dropdown-item" href="shop-grid.html">Keluar</a></li>
                                 </ul>
                             </div>
@@ -199,7 +199,7 @@
     </div>
     <!-- Javascript-->
     <!-- Libs JS -->
-    @yield ('content')
+    @yield ('script')
     <script src="{{ asset('assets/customer/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/customer/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/customer/libs/jquery-countdown/dist/jquery.countdown.min.js') }}"></script>
