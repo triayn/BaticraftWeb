@@ -98,7 +98,7 @@
                         </div>
                         <!-- btn -->
                         <div class="col-12 d-grid"> 
-                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="submit" class="btn btn-primary">Daftar</button>
                         </div>
                         <!-- text -->
                         <p><small>Dengan melanjutkan, Anda menyetujui Ketentuan Layanan & Kebijakan Privasi kami</small></p>

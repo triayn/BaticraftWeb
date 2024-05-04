@@ -75,51 +75,49 @@
 
                 </div>
             </div>
-
             <!-- sidebar -->
             <div class="col-12 col-lg-4 col-md-5">
                 <!-- card -->
                 <div class="mb-5 card mt-6">
-                    <div class="card-body p-6">
-                        <!-- heading -->
-                        <h2 class="h5 mb-4">Detail Pesanan</h2>
-                        <div class="card mb-2">
-                            <!-- list group -->
-                            <ul class="list-group list-group-flush">
-                                <!-- list group item -->
-                                <!-- list group item -->
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="me-auto">
-                                        <div>Total Item</div>
-                                    </div>
-                                    <span>{{ $totalItems }}</span>
-                                </li>
+                    <form action="{{ route('keranjang.checkout') }}" method="POST"> <!-- Tambahkan action dan method POST -->
+                        @csrf <!-- Tambahkan token CSRF untuk keamanan form -->
+                        <div class="card-body p-6">
+                            <!-- heading -->
+                            <h2 class="h5 mb-4">Detail Pesanan</h2>
+                            <div class="card mb-2">
+                                <!-- list group -->
+                                <ul class="list-group list-group-flush">
+                                    <!-- list group item -->
+                                    <!-- list group item -->
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="me-auto">
+                                            <div>Total Item</div>
+                                        </div>
+                                        <span>{{ $totalItems }}</span>
+                                    </li>
 
-                                <!-- list group item -->
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="me-auto">
-                                        <div>Total Harga</div>
-                                    </div>
-                                    <span>Rp {{ number_format($totalPrice, 0, ',', '.') }}</span>
-                                </li>
-
-                            </ul>
-
-                        </div>
-                        <div class="d-grid mb-1 mt-4">
-                            <!-- btn -->
-                            <button class="btn btn-primary btn-lg d-flex justify-content-between align-items-center" type="submit">
-                                Checkout </button>
-                        </div>
-                        <div class="mt-8">
-                            <h2 class="h5 mb-3">Tambahkan Catatan</h2>
-                            <form>
+                                    <!-- list group item -->
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="me-auto">
+                                            <div>Total Harga</div>
+                                        </div>
+                                        <span>Rp {{ number_format($totalPrice, 0, ',', '.') }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="d-grid mb-1 mt-4">
+                                <!-- btn -->
+                                <button class="btn btn-primary btn-lg d-flex justify-content-between align-items-center" type="submit">
+                                    Checkout </button>
+                            </div>
+                            <div class="mt-8">
+                                <h2 class="h5 mb-3">Tambahkan Catatan</h2>
                                 <div class="mb-2">
-                                    <input type="text" class="form-control" id="giftcard" placeholder="Tulis disini">
+                                    <input type="text" class="form-control" id="catatan_customer" name="catatan_customer" placeholder="Tulis disini">
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

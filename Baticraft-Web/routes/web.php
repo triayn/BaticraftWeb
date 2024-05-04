@@ -3,10 +3,12 @@
 use App\Http\Controllers\EtalaseProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\PesananCustomerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -46,11 +48,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Keranjang
     Route::prefix('/keranjang')->group(function () {
-        Route::get('/', [EtalaseProductController::class, 'card'])->name('keranjang.index');
-        Route::get('/', [EtalaseProductController::class, 'showTotal'])->name('keranjang.index');
-        Route::post('/add', [EtalaseProductController::class, 'addToCart'])->name('keranjang.add');
-        Route::put('/update/{id}', [EtalaseProductController::class, 'updateQuantity'])->name('keranjang.update');
-        Route::delete('/destroy/{id}', [EtalaseProductController::class, 'destroy'])->name('keranjang.delete');
+        Route::get('/', [KeranjangController::class, 'card'])->name('keranjang.index');
+        Route::get('/', [KeranjangController::class, 'showTotal'])->name('keranjang.index');
+        Route::post('/add', [KeranjangController::class, 'addToCart'])->name('keranjang.add');
+        Route::put('/update/{id}', [KeranjangController::class, 'updateQuantity'])->name('keranjang.update');
+        Route::delete('/destroy/{id}', [KeranjangController::class, 'destroy'])->name('keranjang.delete');
+        Route::post('/checkout', [KeranjangController::class, 'checkout'])->name('keranjang.checkout');
     });
 
     // Pesanan
@@ -62,7 +65,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/selesai', [PesananCustomerController::class, 'selesai'])->name('pesanan.selesai');
     });
 
-    Route::get('/informasi/toko', [InformationController::class,'customer'])->name('information.customer');
+    Route::prefix('/profil')->group(function () {
+        Route::get('/', [ProfilController::class, 'indexCustomer'])->name('profil.cutomer');
+        Route::get('/edit', [ProfilController::class, 'editCustomer'])->name('profil.customer.edit');
+        Route::put('/update', [ProfilController::class, 'updateCustomer'])->name('profil.customer.update');
+        Route::get('/ganti', [ProfilController::class, 'gantiCustomer'])->name('profil.customer.ganti');
+        Route::post('/verifikasi', [ProfilController::class, 'verifikasiCustomer'])->name('profil.customer.verifikasi');
+    });
+
+    Route::get('/informasi/toko', [InformationController::class, 'customer'])->name('information.customer');
 
     // Rute yang hanya dapat diakses oleh pengguna dengan role 'admin'
     Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -98,9 +109,9 @@ Route::middleware(['auth'])->group(function () {
         });
 
         // CRUD Information
-        Route::prefix( '/information' )->group( function(){
-            Route::get('/', [InformationController::class,'index'])->name('information.index');
-            Route::get('/edit', [InformationController::class , 'edit'] )->name('information.edit');
+        Route::prefix('/information')->group(function () {
+            Route::get('/', [InformationController::class, 'index'])->name('information.index');
+            Route::get('/edit', [InformationController::class, 'edit'])->name('information.edit');
             Route::put('/update', [InformationController::class, 'update'])->name('information.update');
         });
 
@@ -130,10 +141,9 @@ Route::middleware(['auth'])->group(function () {
         });
 
         // CRUD Riwayat Pesanan
-        Route::prefix('/riwayat')->group(function() {
+        Route::prefix('/riwayat')->group(function () {
             Route::get('/index', [PesananController::class, 'riwayat'])->name('riwayat.index');
             Route::get('/show/{id}', [PesananController::class, 'show'])->name('riwayat.show');
         });
-
     });
 });

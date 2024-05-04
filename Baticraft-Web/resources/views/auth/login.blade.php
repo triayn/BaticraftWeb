@@ -72,10 +72,10 @@
                                 @enderror
                             </div>
                             <div class="d-flex justify-content-between">
-                                <div> Forgot password? <a href="{{ route('password.request') }}">Reset It</a></div>
+                                <div> Lupa Kata Sandi? <a href="{{ route('password.request') }}">Disini</a></div>
                             </div>
                             <div class="col-12 d-grid">
-                                <button type="submit" class="btn btn-primary">Sign In</button>
+                                <button type="submit" class="btn btn-primary">Masuk</button>
                             </div>
                             <div>Belum Memiliki Akun? <a href="{{ route('register') }}"> Daftar Disini</a></div>
                         </div>
