@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\ImageProduct;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -27,10 +29,19 @@ class KeranjangController extends Controller
 
         // Ambil data produk yang ada di keranjang
         $productsInCart = $cartItems->map(function ($item) {
-            return $item->product;
+            $product = $item->product;
+
+            // Assuming the product ID is stored in 'product_id' column
+            $image = ImageProduct::where('product_id', $product->id)->first();
+
+            if ($image) {
+                $product->image_path = $image->image_path;
+            }
+
+            return $product;
         });
 
-        return view('customer.keranjang.index', compact('cartItems', 'productsInCart'));
+        return view('customer.keranjang.index', compact('cartItems', 'productsInCart', 'images'));
     }
 
     public function addToCart(Request $request)
@@ -130,11 +141,11 @@ class KeranjangController extends Controller
             'metode_pembayaran' => 'nullable',
             'catatan_customer' => 'nullable|string|max:255',
             'catatan_admin' => 'nullable|string|max:255',
-            'status_transaksi' => 'required', 
+            'status_transaksi' => 'required',
             'tanggal_konfirmasi' => 'nullable',
             'tanggal_expired' => 'nullable',
             'items' => 'required|array',
-            'items.*.produk_id' => 'required|numeric|min:1', 
+            'items.*.produk_id' => 'required|numeric|min:1',
             'items.*.nama_produk' => 'required|string|max:255',
             'items.*.jumlah' => 'required|numeric|min:1',
             'items.*.harga_total' => 'required|numeric|min:1',
@@ -160,12 +171,12 @@ class KeranjangController extends Controller
             // Simpan data transaksi
             $transaction = new Transaction();
             $transaction->kode_transaksi = $kode_transaksi;
-            $transaction->user_id = auth()->user()->id; // Ganti dengan ID kasir yang sesuai
-            $transaction->jenis_transaksi = 'pesan'; // Ganti dengan jenis transaksi yang sesuai
+            $transaction->user_id = auth()->user()->id; 
+            $transaction->jenis_transaksi = 'pesan'; 
             $transaction->total_item = $totalItems;
             $transaction->total_harga = $totalPrice;
             $transaction->catatan_customer = $catatan_customer;
-            $transaction->status_transaksi = 'menunggu'; // Ganti dengan status transaksi yang sesuai
+            $transaction->status_transaksi = 'menunggu'; 
             $transaction->save();
 
             // Simpan detail transaksi
@@ -184,10 +195,20 @@ class KeranjangController extends Controller
 
             DB::commit();
 
-            return redirect()->route('pesanan.index', $transaction->id)->with('success', 'Transaksi berhasil diproses');
+            return redirect()->route('pesanan.index')->with('success', 'Transaksi berhasil diproses');
         } catch (\Exception $e) {
             DB::rollback();
             return back()->with('error', 'Terjadi kesalahan saat memproses transaksi');
         }
+    }
+
+    public function destroy(string $id): RedirectResponse
+    {
+        $user = Cart::findOrFail($id);
+
+        // Hapus data pengguna
+        $user->delete();
+
+        return redirect()->route('keranjang.index')->with(['success' => 'Data Berhasil Dihapus']);
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
 <section class="mt-lg-14 mt-8 ">
     <div class="container">
-        <div class="row">
+        <div class="empat">
             <div class="col-md-12">
                 <ul class="nav nav-pills nav-lb-tab" id="myTab" role="tablist">
                     <!-- nav item -->
@@ -33,29 +33,24 @@
                                 <table class="table text-nowrap">
                                     <thead class="table-light">
                                         <tr>
-                                            <th></th>
-                                            <th>Produk</th>
+                                            <th>No.</th>
+                                            <th>Kode Pesanan</th>
                                             <th>Total Harga</th>
                                             <th>Total Item</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php $i = 1; @endphp
+                                        @foreach ($menunggu as $satu)
                                         <tr>
-                                            <td class="align-middle">
-                                                <a href="{{ route('pesanan.menunggu') }}"><img src="../assets/images/products/product-img-18.jpg" class="img-fluid icon-shape icon-xxl" alt=""></a>
-
-                                            </td>
-                                            <td class="align-middle">
-                                                <div>
-                                                    <h5 class="fs-6 mb-0"><a href="{{ route('pesanan.menunggu') }}" class="text-inherit">Organic Banana</a></h5>
-                                                    <small>$.98 / lb</small>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle">$35.00</td>
-                                            <td class="align-middle">5</td>
-                                            <td class="align-middle"><span class="badge bg-success">In Stock</span></td>
+                                            <td>{{ $i++ }}</td>
+                                            <td class="align-middle"><a href="{{ route('pesanan.menunggu') }}">{{ $satu->kode_transaksi }}</a></td>
+                                            <td class="align-middle">Rp {{ number_format($satu->total_harga, 0, ',', '.') }}</td>
+                                            <td class="align-middle">{{ $satu->total_item }}</td>
+                                            <td class="align-middle"><span class="badge bg-info">{{ $satu->status_transaksi }}</span></td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -69,29 +64,24 @@
                                 <table class="table text-nowrap">
                                     <thead class="table-light">
                                         <tr>
-                                            <th></th>
-                                            <th>Produk</th>
+                                            <th>No.</th>
+                                            <th>Kode Pesanan</th>
                                             <th>Total Harga</th>
                                             <th>Total Item</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php $i = 1; @endphp
+                                        @foreach ($diproses as $dua)
                                         <tr>
-                                            <td class="align-middle">
-                                                <a href="{{ route('pesanan.menunggu') }}"><img src="../assets/images/products/product-img-18.jpg" class="img-fluid icon-shape icon-xxl" alt=""></a>
-
-                                            </td>
-                                            <td class="align-middle">
-                                                <div>
-                                                    <h5 class="fs-6 mb-0"><a href="{{ route('pesanan.menunggu') }}" class="text-inherit">Organic Banana</a></h5>
-                                                    <small>$.98 / lb</small>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle">$35.00</td>
-                                            <td class="align-middle">5</td>
-                                            <td class="align-middle"><span class="badge bg-success">In Stock</span></td>
+                                            <td>{{ $i++ }}</td>
+                                            <td class="align-middle">{{ $dua->kode_transaksi }}</td>
+                                            <td class="align-middle">Rp {{ number_format($dua->total_harga, 0, ',', '.') }}</td>
+                                            <td class="align-middle">{{ $dua->total_item }}</td>
+                                            <td class="align-middle"><span class="badge bg-warning">{{ $dua->status_transaksi }}</span></td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -105,29 +95,24 @@
                                 <table class="table text-nowrap">
                                     <thead class="table-light">
                                         <tr>
-                                            <th></th>
-                                            <th>Produk</th>
+                                            <th>No.</th>
+                                            <th>Kode Pesanan</th>
                                             <th>Total Harga</th>
                                             <th>Total Item</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php $i = 1; @endphp
+                                        @foreach ($ditolak as $tiga)
                                         <tr>
-                                            <td class="align-middle">
-                                                <a href="{{ route('pesanan.ditolak') }}"><img src="../assets/images/products/product-img-18.jpg" class="img-fluid icon-shape icon-xxl" alt=""></a>
-
-                                            </td>
-                                            <td class="align-middle">
-                                                <div>
-                                                    <h5 class="fs-6 mb-0"><a href="{{ route('pesanan.ditolak') }}" class="text-inherit">Organic Banana</a></h5>
-                                                    <small>$.98 / lb</small>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle">$35.00</td>
-                                            <td class="align-middle">5</td>
-                                            <td class="align-middle"><span class="badge bg-success">In Stock</span></td>
+                                            <td>{{ $i++ }}</td>
+                                            <td class="align-middle">{{ $tiga->kode_transaksi }}</td>
+                                            <td class="align-middle">Rp {{ number_format($tiga->total_harga, 0, ',', '.') }}</td>
+                                            <td class="align-middle">{{ $tiga->total_item }}</td>
+                                            <td class="align-middle"><span class="badge bg-danger">{{ $tiga->status_transaksi }}</span></td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -140,29 +125,24 @@
                             <table class="table text-nowrap">
                                 <thead class="table-light">
                                     <tr>
-                                        <th></th>
-                                        <th>Produk</th>
+                                        <th>No.</th>
+                                        <th>Kode Pesanan</th>
                                         <th>Total Harga</th>
                                         <th>Total Item</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php $i = 1; @endphp
+                                    @foreach ($selesai as $empat)
                                     <tr>
-                                        <td class="align-middle">
-                                            <a href="{{ route('pesanan.selesai') }}"><img src="../assets/images/products/product-img-18.jpg" class="img-fluid icon-shape icon-xxl" alt=""></a>
-
-                                        </td>
-                                        <td class="align-middle">
-                                            <div>
-                                                <h5 class="fs-6 mb-0"><a href="{{ route('pesanan.selesai') }}" class="text-inherit">Organic Banana</a></h5>
-                                                <small>$.98 / lb</small>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">$35.00</td>
-                                        <td class="align-middle">5</td>
-                                        <td class="align-middle"><span class="badge bg-success">In Stock</span></td>
+                                        <td>{{ $i++ }}</td>
+                                        <td class="align-middle"><a href="{{ route('pesanan.selesai') }}">{{ $empat->kode_transaksi }}</a></td>
+                                        <td class="align-middle">Rp {{ number_format($empat->total_harga, 0, ',', '.') }}</td>
+                                        <td class="align-middle">{{ $empat->total_item }}</td>
+                                        <td class="align-middle"><span class="badge bg-success">{{ $empat->status_transaksi }}</span></td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

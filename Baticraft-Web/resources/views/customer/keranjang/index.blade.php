@@ -26,26 +26,32 @@
                             <!-- row -->
                             <div class="row align-items-center">
                                 <div class="col-3 col-md-2">
-                                    <!-- img -->
-                                    <img src="" alt="" class="img-fluid">
+                                    @if (isset($item->product->image_path))
+                                    <img src="{{ asset('storage/product/' . $item->product->image_path) }}" class="mb-3 img-fluid" />
+                                    @endif
                                 </div>
                                 <div class="col-4 col-md-6">
                                     <!-- title -->
                                     <h6 class="mb-0">{{ $item->product->nama }}</h6>
                                     <!-- text -->
-                                    <div class="mt-2 small ">
-                                        <a href="{{ route('keranjang.delete', $item->id) }}" class="text-decoration-none text-inherit">
-                                            <span class="me-1 align-text-bottom">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-success">
-                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                </svg>
-                                            </span>
-                                            <span class="text-muted">Hapus</span>
-                                        </a>
+                                    <div class="mt-2 small">
+                                        <form action="{{ route('keranjang.delete', $item->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-link text-decoration-none text-inherit" onclick="return confirm('Apakah Anda yakin ingin menghapus item ini?');">
+                                                <span class="me-1 align-text-bottom">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-success">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                    </svg>
+                                                </span>
+                                                <span class="text-muted">Hapus</span>
+                                            </button>
+                                        </form>
                                     </div>
+
                                 </div>
                                 <!-- input group -->
                                 <div class="col-3 col-md-3 col-lg-2">
@@ -79,7 +85,7 @@
             <div class="col-12 col-lg-4 col-md-5">
                 <!-- card -->
                 <div class="mb-5 card mt-6">
-                    <form action="{{ route('keranjang.checkout') }}" method="POST"> <!-- Tambahkan action dan method POST -->
+                    <form action="{{ route('keranjang.checkout') }}" method="POST" enctype="multipart/form-data"> <!-- Tambahkan action dan method POST -->
                         @csrf <!-- Tambahkan token CSRF untuk keamanan form -->
                         <div class="card-body p-6">
                             <!-- heading -->
@@ -108,7 +114,8 @@
                             <div class="d-grid mb-1 mt-4">
                                 <!-- btn -->
                                 <button class="btn btn-primary btn-lg d-flex justify-content-between align-items-center" type="submit">
-                                    Checkout </button>
+                                    Checkout 
+                                </button>
                             </div>
                             <div class="mt-8">
                                 <h2 class="h5 mb-3">Tambahkan Catatan</h2>

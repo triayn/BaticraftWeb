@@ -44,7 +44,7 @@
 
                                 <!-- badge -->
                                 <div class="text-center position-relative ">
-                                    <a href="#!">
+                                    <a href="#!"> 
                                         @if($images->isNotEmpty())
                                         @foreach($images as $image)
                                         @if($image->product_id == $row->id)

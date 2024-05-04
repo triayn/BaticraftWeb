@@ -352,7 +352,7 @@
                                     <input type="hidden" name="product_id" value="{{ $tiga->id }}"> <!-- Ganti dengan ID produk yang sesuai -->
                                     <input type="hidden" name="jumlah" value="1"> <!-- Ganti dengan jumlah produk yang ingin ditambahkan -->
                                     <button type="submit" class="btn btn-primary rounded-pill">
-                                         Masukkan Keranjang
+                                        Masukkan Keranjang
                                     </button>
                                 </form>
                             </div>
@@ -400,5 +400,49 @@
     <hr class="my-lg-14 my-8">
     </div>
 </section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-6">
+                <h3 class="mb-0">Informasi Toko</h3>
+            </div>
+        </div>
+        <div class="row row-cols-lg-2 row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="pt-8 px-8 rounded-3" style="background: url('{{ asset('storage/information/' . $info->image) }}') no-repeat; 
+                        background-size: cover; height: 470px;">
+                    <div>
+                        <h3 class="fw-bold text-white">{{ $info->alamat }}
+                        </h3><br>
+                        <p class="text-white">No. Handphone: {{ $info->no_telpon }}</p>
+                        <p class="text-white">Email: {{ $info->email }}</p>
+                        <br><br><br>
+                        <!-- <a href="#!" class="btn btn-primary">Kunjungi Sekarang <i class="feather-icon icon-arrow-right ms-1"></i></a> -->
+                        <a href="{{ $info->lokasi }}" class="btn btn-primary">Kunjungi Sekarang <i class="feather-icon icon-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+
+                <div class="card card-product">
+                    <div class="card-body">
+                        <!-- <div class="text-center  position-relative "> <a href="#!"><img src="{{ asset('storage/information/' .$info->image) }}" class="mb-3 img-fluid"></a> -->
+                    </div>
+                    <!-- <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>{{ $info->nama_pemilik }}</small></a></div> -->
+                    <h3 class="fw-bold text-black">Nama Toko: <br> {{ $info->nama_toko }} </h3><br>
+                    <h3 class="fw-bold text-black">Nama Pemilik: <br> {{ $info->nama_pemilik }} </h3><br>
+                    <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Ringkasan Toko: <br> {{ $info->deskripsi }}</a></h2> <br>
+                    <!-- <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Email: <br> {{ $info->email }}</a></h2> <br> -->
+                    <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Instagram: <br> {{ $info->akun_ig }}</a></h2> <br>
+                    <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Facebook: <br> {{ $info->akun_fb }}</a></h2> <br>
+                    <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Tiktok: <br> {{ $info->akun_tiktok }}</a></h2> <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</section><br><br><br><br>
 
 @endsection

@@ -58,7 +58,7 @@
                     <div class="col">
                         <div class="card card-product">
                             <div class="card-body">
-                                <div class="text-center  position-relative "> <a href="#!"><img src="{{ asset('storage/user/' . auth()->user()->image) }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
+                                <div class="text-center position-relative "> <a href="#!"><img src="{{ asset('storage/user/' . auth()->user()->image) }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
                                 </div>
                                 <div class="text-small mb-1"><small>Email</small></div>
                                 <h2 class="fs-6"><a class="text-inherit text-decoration-none">{{ $user->email }} </a></h2>

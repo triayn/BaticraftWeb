@@ -51,7 +51,7 @@
         <div class="row justify-content-center align-items-center">
             <div class="col-12 col-md-6 col-lg-4 order-lg-1 order-2">
                 <!-- img -->
-                <img src="assets/images/svg-graphics/signup-g.svg" alt="" class="img-fluid">
+                <img src="{{ asset('assets/admin/images/registrasi.png') }}" alt="" class="img-fluid">
             </div>
             <!-- col -->
             <div class="col-12 col-md-6 offset-lg-1 col-lg-4 order-lg-2 order-1">

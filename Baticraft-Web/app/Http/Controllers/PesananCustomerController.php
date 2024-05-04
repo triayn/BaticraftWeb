@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 
 class PesananCustomerController extends Controller
 {
     public function index()
     {
-        // $data = Transaction::get();
-        // $detail = TransactionDetail::get();
+        $menunggu = Transaction::where('status_transaksi', 'menunggu')->get();
+        $diproses = Transaction::where('status_transaksi', 'diproses')->get();
+        $ditolak = Transaction::where('status_transaksi', 'ditolak')->get();
+        $selesai = Transaction::where('status_transaksi', 'selesai')->get();
 
-        return view('customer.pesanan.index');
+        return view('customer.pesanan.index', compact('menunggu', 'diproses', 'ditolak', 'selesai'));
     }
     
     public function menunggu()

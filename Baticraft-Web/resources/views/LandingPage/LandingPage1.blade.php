@@ -122,7 +122,7 @@
         <div class="item"> <a href="pages/shop-grid.html" class="text-decoration-none text-inherit">
             <div class="card card-product mb-4">
               <div class="card-body text-center py-8">
-                <img src="{{ asset('assets/customer/images/category/kain.png') }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid">
+                <img src="{{ asset('assets/customer/images/category/kain.png') }}" class="mb-3 img-fluid">
                 <div>Kain Batik</div>
               </div>
             </div>
@@ -130,7 +130,7 @@
         <div class="item"> <a href="pages/shop-grid.html" class="text-decoration-none text-inherit">
             <div class="card card-product mb-4">
               <div class="card-body text-center py-8">
-                <img src="{{ asset('assets/customer/images/category/kemeja.png') }}" alt="Grocery Ecommerce Template" class="mb-3">
+                <img src="{{ asset('assets/customer/images/category/kemeja.png') }}" class="mb-3">
                 <div>Kemeja</div>
               </div>
             </div>
