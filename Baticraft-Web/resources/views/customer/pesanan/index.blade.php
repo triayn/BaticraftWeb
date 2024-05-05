@@ -45,7 +45,7 @@
                                         @foreach ($menunggu as $satu)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-                                            <td class="align-middle"><a href="{{ route('pesanan.menunggu') }}">{{ $satu->kode_transaksi }}</a></td>
+                                            <td class="align-middle"><a href="{{ route('pesanan.detail', $satu->id) }}">{{ $satu->kode_transaksi }}</a></td>
                                             <td class="align-middle">Rp {{ number_format($satu->total_harga, 0, ',', '.') }}</td>
                                             <td class="align-middle">{{ $satu->total_item }}</td>
                                             <td class="align-middle"><span class="badge bg-info">{{ $satu->status_transaksi }}</span></td>

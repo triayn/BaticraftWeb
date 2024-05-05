@@ -44,13 +44,13 @@
                                                     </label>
                                                 </div>
                                                 <!-- address -->
-                                                <address> <strong>Nama</strong> <br>
+                                                <address> <strong>{{ $info->nama_toko }}</strong> <br>
 
-                                                    alamat <br>
+                                                    {{ $info->alamat }} <br>
 
-                                                    <abbr title="Phone">P: 402-776-1106</abbr>
+                                                    <abbr title="Phone">{{ $info->no_telpon }}</abbr>
                                                 </address>
-                                                <a href=""><span class="text-info">Maps </span></a>
+                                                <a href="{{ $info->lokasi }}"><span class="text-info">Maps </span></a>
 
                                             </div>
                                         </div>
@@ -69,17 +69,24 @@
 
                                 <div class="mt-5">
                                     <label for="DeliveryInstructions" class="form-label sr-only">Kode Pesanan</label>
-                                    <textarea class="form-control" id="DeliveryInstructions" rows="3" placeholder="Write delivery instructions" readonly></textarea>
+                                    <textarea class="form-control" id="DeliveryInstructions" rows="3" placeholder="Write delivery instructions" readonly>{{ $transaction->kode_transaksi }}</textarea>
                                 </div>
                                 <div class="mt-5">
                                     <label for="DeliveryInstructions" class="form-label sr-only">Status Pesanan</label>
                                     <div class="form-check mb-4">
                                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="homeRadio" checked>
-                                        <label class="form-check-label text-info" for="homeRadio">
-                                            Menunggu
-                                        </label>
+                                        @if($transaction->status_transaksi == 'menunggu')
+                                        <label class="form-check-label text-info" for="homeRadio">Menunggu</label>
+                                        @elseif($transaction->status_transaksi == 'diproses')
+                                        <label class="form-check-label text-warning" for="homeRadio">Diproses</label>
+                                        @elseif($transaction->status_transaksi == 'ditolak')
+                                        <label class="form-check-label text-danger" for="homeRadio">Ditolak</label>
+                                        @else
+                                        <label class="form-check-label text-success" for="homeRadio">Selesai</label>
+                                        @endif
                                     </div>
                                 </div>
+
                             </div>
 
                         </div>
@@ -113,17 +120,17 @@
                                     <!-- tab pane -->
                                     <div class="tab-pane fade show active" id="pills-today" role="tabpanel" aria-labelledby="pills-today-tab" tabindex="0">
                                         <div class="mb-12">
-                                            <input type="text" class="form-control" placeholder="03/05/2024">
+                                            <input type="text" class="form-control" value="{{ $transaction->created_at }}" readonly>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="pills-monday" role="tabpanel" aria-labelledby="pills-monday-tab" tabindex="0">
                                         <div class="mb-12">
-                                            <input type="text" class="form-control" placeholder="03/05/2024">
+                                            <input type="text" class="form-control" value="{{ $transaction->tanggal_konfirmasi }}" readonly>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="pills-Tue" role="tabpanel" aria-labelledby="pills-Tue-tab" tabindex="0">
                                         <div class="mb-12">
-                                            <input type="text" class="form-control" placeholder="03/05/2024">
+                                            <input type="text" class="form-control" value="{{ $transaction->tanggal_expired }}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -138,11 +145,11 @@
                             <div id="flush-collapseFour" class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample">
                                 <div class="mt-5">
                                     <label for="DeliveryInstructions" class="form-label sr-only">Catatan Customer: </label>
-                                    <textarea class="form-control" id="DeliveryInstructions" rows="3" placeholder="Write delivery instructions" readonly></textarea>
+                                    <textarea class="form-control" id="DeliveryInstructions" rows="3" readonly>{{ $transaction->catatan_customer }}</textarea>
                                 </div>
                                 <div class="mt-5">
                                     <label for="DeliveryInstructions" class="form-label sr-only">Catatan Admin: </label>
-                                    <textarea class="form-control" id="DeliveryInstructions" rows="3" placeholder="Write delivery instructions" readonly></textarea>
+                                    <textarea class="form-control" id="DeliveryInstructions" rows="3" readonly>{{ $transaction->catatan_admin }}</textarea>
                                 </div>
                             </div>
 
@@ -158,27 +165,35 @@
                             <h5 class="px-6 py-4 bg-transparent mb-0">Produk</h5>
                             <ul class="list-group list-group-flush">
                                 <!-- list group item -->
+                                @foreach ($detail as $satu)
+                                @foreach ($produk as $dua)
                                 <li class="list-group-item px-4 py-3">
                                     <div class="row align-items-center">
+                                        @foreach ($produk as $product)
                                         <div class="col-2 col-md-2">
-                                            <img src="../assets/images/products/product-img-1.jpg" alt="Ecommerce" class="img-fluid">
+                                            @if(isset($imageArray[$product->id]))
+                                            <img src="{{ asset('storage/product/' . $imageArray[$product->id]->image_path) }}" alt="Ecommerce" class="img-fluid">
+                                            @endif
                                         </div>
+                                        @endforeach
                                         <div class="col-5 col-md-5">
-                                            <h6 class="mb-0">nama</h6>
-                                            <span><small class="text-muted">harga</small></span>
+                                            <h6 class="mb-0">{{ $dua->nama }}</h6>
+                                            <span><small class="text-muted">Rp {{ number_format($dua->harga, 0, ',', '.') }}</small></span>
 
                                         </div>
                                         <div class="col-2 col-md-2 text-center text-muted">
-                                            <span>1</span>
+                                            <span>{{ $satu->jumlah }}</span>
 
                                         </div>
                                         <div class="col-3 text-lg-end text-start text-md-end col-md-3">
-                                            <span class="fw-bold">total harga</span>
+                                            <span class="fw-bold">Rp {{ number_format($satu->harga_total, 0, ',', '.') }}</span>
 
                                         </div>
                                     </div>
 
                                 </li>
+                                @endforeach
+                                @endforeach
                                 <!-- list group item -->
                                 <li class="list-group-item px-4 py-3">
                                     <div class="d-flex align-items-center justify-content-between   mb-2">
@@ -186,7 +201,7 @@
                                             Total Item
                                         </div>
                                         <div class="fw-bold">
-                                            4
+                                            {{ $transaction->total_item }}
                                         </div>
                                     </div>
                                 </li>
@@ -197,7 +212,7 @@
                                             Total Harga
                                         </div>
                                         <div>
-                                            $73.00
+                                            Rp {{ number_format($transaction->total_harga, 0, ',', '.') }}
                                         </div>
                                     </div>
                                 </li>

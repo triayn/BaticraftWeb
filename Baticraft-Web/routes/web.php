@@ -59,10 +59,10 @@ Route::middleware(['auth'])->group(function () {
     // Pesanan
     Route::prefix('/pesanan')->group(function () {
         Route::get('/', [PesananCustomerController::class, 'index'])->name('pesanan.index');
-        Route::get('/menunggu', [PesananCustomerController::class, 'menunggu'])->name('pesanan.menunggu');
-        Route::get('/diproses', [PesananCustomerController::class, 'diproses'])->name('pesanan.diproses');
-        Route::get('/ditolak', [PesananCustomerController::class, 'ditolak'])->name('pesanan.ditolak');
-        Route::get('/selesai', [PesananCustomerController::class, 'selesai'])->name('pesanan.selesai');
+        Route::get('/detail/{id}', [PesananCustomerController::class, 'detail'])->name('pesanan.detail');
+        // Route::get('/diproses', [PesananCustomerController::class, 'diproses'])->name('pesanan.diproses');
+        // Route::get('/ditolak', [PesananCustomerController::class, 'ditolak'])->name('pesanan.ditolak');
+        // Route::get('/selesai', [PesananCustomerController::class, 'selesai'])->name('pesanan.selesai');
     });
 
     Route::prefix('/profil')->group(function () {

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ImageProduct;
+use App\Models\Informations;
+use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
@@ -17,13 +20,21 @@ class PesananCustomerController extends Controller
 
         return view('customer.pesanan.index', compact('menunggu', 'diproses', 'ditolak', 'selesai'));
     }
-    
-    public function menunggu()
-    {
-        // $data = Transaction::get();
-        // $detail = TransactionDetail::get();
 
-        return view('customer.pesanan.menunggu');
+    public function detail($id)
+    {
+        $info = Informations::first();
+        $transaction = Transaction::findOrFail($id);
+        $detail = TransactionDetail::where('transaction_id', $id)->get();
+        $produk = Product::whereIn('id', $detail->pluck('product_id'))->get();
+        $imageArray = [];
+        foreach ($produk as $product) {
+            $image = ImageProduct::where('product_id', $product->id)->first();
+            if ($image) {
+                $imageArray[$product->id] = $image;
+            }
+        }
+        return view('customer.pesanan.menunggu', compact('info', 'transaction', 'detail', 'produk', 'imageArray'));
     }
 
     public function diproses()

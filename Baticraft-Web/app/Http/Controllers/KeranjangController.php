@@ -191,11 +191,6 @@ class KeranjangController extends Controller
                 $transactionDetail->save();
             }
 
-            Log::info('Transaction processed successfully:', [
-                'transaction_id' => $transaction->id,
-                'kode_transaksi' => $kode_transaksi,
-            ]);
-
             // Kosongkan keranjang (opsional)
             Cart::truncate();
 
@@ -210,10 +205,9 @@ class KeranjangController extends Controller
 
     public function destroy(string $id): RedirectResponse
     {
-        $user = Cart::findOrFail($id);
+        $data = Cart::findOrFail($id);
 
-        // Hapus data pengguna
-        $user->delete();
+        $data->delete();
 
         return redirect()->route('keranjang.index')->with(['success' => 'Data Berhasil Dihapus']);
     }
