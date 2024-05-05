@@ -85,16 +85,12 @@
             <div class="col-12 col-lg-4 col-md-5">
                 <!-- card -->
                 <div class="mb-5 card mt-6">
-                    <form action="{{ route('keranjang.checkout') }}" method="POST" enctype="multipart/form-data"> <!-- Tambahkan action dan method POST -->
-                        @csrf <!-- Tambahkan token CSRF untuk keamanan form -->
+                    <form action="{{ route('keranjang.checkout') }}" method="POST" class="d-inline">
+                        @csrf
                         <div class="card-body p-6">
-                            <!-- heading -->
                             <h2 class="h5 mb-4">Detail Pesanan</h2>
                             <div class="card mb-2">
-                                <!-- list group -->
                                 <ul class="list-group list-group-flush">
-                                    <!-- list group item -->
-                                    <!-- list group item -->
                                     <li class="list-group-item d-flex justify-content-between align-items-start">
                                         <div class="me-auto">
                                             <div>Total Item</div>
@@ -102,7 +98,6 @@
                                         <span>{{ $totalItems }}</span>
                                     </li>
 
-                                    <!-- list group item -->
                                     <li class="list-group-item d-flex justify-content-between align-items-start">
                                         <div class="me-auto">
                                             <div>Total Harga</div>
@@ -112,9 +107,8 @@
                                 </ul>
                             </div>
                             <div class="d-grid mb-1 mt-4">
-                                <!-- btn -->
                                 <button class="btn btn-primary btn-lg d-flex justify-content-between align-items-center" type="submit">
-                                    Checkout 
+                                    Checkout
                                 </button>
                             </div>
                             <div class="mt-8">

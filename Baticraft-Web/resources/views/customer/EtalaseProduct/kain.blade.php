@@ -54,7 +54,7 @@
                                         @endforeach
                                         @endif
                                         <div class="card-product-action">
-                                            <a href="{{ route('etalase.detail', $row->id) }}" class="btn-action" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
+                                            <a href="{{ route('etalase.detail', $row->id) }}" class="btn-action"><i class="bi bi-eye" data-bs-html="true" title="Detail Produk"></i></a>
                                         </div>
                                 </div>
                                 <!-- heading -->

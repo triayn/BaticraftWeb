@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class KeranjangController extends Controller
 {
@@ -189,6 +190,11 @@ class KeranjangController extends Controller
                 $transactionDetail->harga_total = $cartItem->jumlah * $cartItem->product->harga;
                 $transactionDetail->save();
             }
+
+            Log::info('Transaction processed successfully:', [
+                'transaction_id' => $transaction->id,
+                'kode_transaksi' => $kode_transaksi,
+            ]);
 
             // Kosongkan keranjang (opsional)
             Cart::truncate();
