@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Bulan Mei 2024 pada 08.50
+-- Waktu pembuatan: 06 Bulan Mei 2024 pada 09.15
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -257,15 +257,15 @@ CREATE TABLE `transactions` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `kode_transaksi` varchar(255) NOT NULL,
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `kasir` bigint(20) UNSIGNED NOT NULL,
+  `kasir` bigint(20) UNSIGNED DEFAULT NULL,
   `jenis_transaksi` enum('pesan','langsung') NOT NULL,
   `total_item` int(11) NOT NULL,
   `total_harga` int(11) NOT NULL,
   `catatan_customer` varchar(255) DEFAULT NULL,
   `status_transaksi` enum('menunggu','diproses','ditolak','selesai') NOT NULL,
   `catatan_admin` varchar(255) DEFAULT NULL,
-  `tanggal_konfirmasi` datetime NOT NULL,
-  `tanggal_expired` datetime NOT NULL,
+  `tanggal_konfirmasi` datetime DEFAULT NULL,
+  `tanggal_expired` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
