@@ -15,34 +15,23 @@ use Illuminate\Support\Facades\Log;
 
 class KeranjangController extends Controller
 {
-    public  function card()
+    public function card()
     {
         // Ambil user yang sedang login
         $user = auth()->user();
 
-        // Pastikan user sedang login sebelum menambahkan ke keranjang
+        // Pastikan user sedang login sebelum menampilkan keranjang
         if (!$user) {
             return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
         }
 
-        // Ambil data keranjang berdasarkan user yang sedang login
-        $cartItems = Cart::where('user_id', $user->id)->get();
+        // Gunakan eager loading dengan withEager() untuk memuat imageproduk
+        $cartItems = Cart::where('user_id', $user->id)->withEager('product.imageproduk')->get();
 
-        // Ambil data produk yang ada di keranjang
-        $productsInCart = $cartItems->map(function ($item) {
-            $product = $item->product;
+        // Tidak perlu filter di dalam loop karena sudah difilter berdasarkan user ID
+        $productsInCart = $cartItems;
 
-            // Assuming the product ID is stored in 'product_id' column
-            $image = ImageProduct::where('product_id', $product->id)->first();
-
-            if ($image) {
-                $product->image_path = $image->image_path;
-            }
-
-            return $product;
-        });
-
-        return view('customer.keranjang.index', compact('cartItems', 'productsInCart', 'images'));
+        return view('customer.keranjang.index', compact('cartItems', 'productsInCart'));
     }
 
     public function addToCart(Request $request)
@@ -172,12 +161,12 @@ class KeranjangController extends Controller
             // Simpan data transaksi
             $transaction = new Transaction();
             $transaction->kode_transaksi = $kode_transaksi;
-            $transaction->user_id = auth()->user()->id; 
-            $transaction->jenis_transaksi = 'pesan'; 
+            $transaction->user_id = auth()->user()->id;
+            $transaction->jenis_transaksi = 'pesan';
             $transaction->total_item = $totalItems;
             $transaction->total_harga = $totalPrice;
             $transaction->catatan_customer = $catatan_customer;
-            $transaction->status_transaksi = 'menunggu'; 
+            $transaction->status_transaksi = 'menunggu';
             $transaction->save();
 
             // Simpan detail transaksi

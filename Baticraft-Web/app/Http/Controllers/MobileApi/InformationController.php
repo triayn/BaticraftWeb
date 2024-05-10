@@ -5,14 +5,14 @@ namespace App\Http\Controllers\MobileApi;
 use App\Http\Controllers\Controller;
 use App\Models\Informations;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class InformationController extends Controller
 {
     public function show()
     {
         // Mengambil semua data dari tabel informations
         $details = Informations::all();
-
+        
         // Mengembalikan data dalam format JSON
         return response()->json($details);
     }
@@ -32,9 +32,9 @@ class InformationController extends Controller
                 'deskripsi' => $input['deskripsi'],
                 'no_telpon' => $input['no_telpon'],
                 'email' => $input['email'],
-                'akun_ig' => $input['akun_ig'],
-                'akun_fb' => $input['akun_fb'],
-                'akun_tiktok' => $input['akun_tiktok']
+                'akun_ig' => $input['akun_ig']??null,
+                'akun_fb' => $input['akun_fb']??null,
+                'akun_tiktok' => $input['akun_tiktok']??null
             ];
 
             // Tambahkan perubahan gambar jika data gambar tidak kosong
@@ -52,6 +52,7 @@ class InformationController extends Controller
         } else {
             return response()->json(["error" => "Metode request harus POST"]);
         }
+
     }
 
     public function uploadFoto(Request $request)
@@ -60,7 +61,7 @@ class InformationController extends Controller
         if ($request->isMethod('post')) {
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
                 $file = $request->file('image');
-                $targetDir = 'images/';
+                $targetDir = 'storage/information/';
                 $fileName = $file->getClientOriginalName();
 
                 try {

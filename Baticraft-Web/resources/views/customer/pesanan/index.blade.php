@@ -137,7 +137,7 @@
                                     @foreach ($selesai as $empat)
                                     <tr>
                                         <td>{{ $i++ }}</td>
-                                        <td class="align-middle"><a href="{{ route('pesanan.selesai') }}">{{ $empat->kode_transaksi }}</a></td>
+                                        <td class="align-middle"><a href="">{{ $empat->kode_transaksi }}</a></td>
                                         <td class="align-middle">Rp {{ number_format($empat->total_harga, 0, ',', '.') }}</td>
                                         <td class="align-middle">{{ $empat->total_item }}</td>
                                         <td class="align-middle"><span class="badge bg-success">{{ $empat->status_transaksi }}</span></td>

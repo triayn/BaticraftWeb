@@ -415,7 +415,7 @@ class ProductsMobileController extends Controller
             foreach ($images as $image) {
                 $image_name = 'product_image_' . uniqid() . '.' . $image->getClientOriginalExtension();
                 // Simpan gambar ke direktori
-                $image->move('images', $image_name);
+                $image->move('storage/product/', $image_name);
                 // Menyimpan informasi gambar ke tabel image_products
                 ImageProduct::create([
                     'product_id' => $id,
@@ -461,24 +461,27 @@ class ProductsMobileController extends Controller
             'jenis_lengan' => $request->input('jenis_lengan'),
             'status' => $request->status,
         ]);
+        try {
+            // Memeriksa apakah ada gambar yang diunggah
+            if ($request->hasFile('images')) {
+                // Memproses setiap gambar yang diunggah
+                foreach ($request->file('images') as $image) {
+                    $imageName = 'product_image_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('storage/product'), $imageName);
 
-        // Memeriksa apakah ada gambar yang diunggah
-        if ($request->hasFile('images')) {
-            // Memproses setiap gambar yang diunggah
-            foreach ($request->file('images') as $image) {
-                $imageName = 'product_image_' . uniqid() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('images'), $imageName);
-
-                // Menyimpan informasi gambar ke tabel image_products
-                DB::table('image_products')->insert([
-                    'product_id' => $productId,
-                    'image_path' => $imageName,
-                ]);
+                    // Menyimpan informasi gambar ke tabel image_products
+                    DB::table('image_products')->insert([
+                        'product_id' => $productId,
+                        'image_path' => $imageName,
+                    ]);
+                }
             }
-        }
 
-        // Menampilkan pesan sukses
-        return response()->json(['message' => 'Produk dan gambar berhasil disimpan.']);
+            // Menampilkan pesan sukses
+            return response()->json(['message' => 'Produk dan gambar berhasil disimpan.']);
+        } catch (e) {
+            return e;
+        }
     }
 
     public function generateProductCode()

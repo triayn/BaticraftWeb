@@ -129,8 +129,8 @@ Route::middleware(['auth'])->group(function () {
         // CRUD Pesanan Masuk
         Route::prefix('/pesanan/masuk')->group(function () {
             Route::get('/', [PesananController::class, 'masuk'])->name('masuk.index');
-            Route::get('/konfirmasi/{id}', [PesananController::class, 'edit'])->name('masuk.konfirmasi');
-            Route::put('/verifikasi/{id}', [PesananController::class, 'update'])->name('masuk.verifikasi');
+            Route::get('/konfirmasi/{id}', [PesananController::class, 'editMasuk'])->name('masuk.konfirmasi');
+            Route::put('/verifikasi/{id}', [PesananController::class, 'updateMasuk'])->name('masuk.verifikasi');
         });
 
         // CRUD Pesanan Diproses

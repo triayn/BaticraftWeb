@@ -125,4 +125,58 @@ class LoginMobileController extends Controller
             return response()->json(['error' => 'Pengguna tidak ditemukan']);
         }
     }
+
+    public function uploadFoto(Request $request)
+    {
+        // Pastikan request adalah POST request
+        if ($request->isMethod('post')) {
+            if ($request->hasFile('image') && $request->file('image')->isValid()) {
+                $file = $request->file('image');
+                $targetDir = 'storage/user/';
+                $fileName = $file->getClientOriginalName();
+
+                try {
+                    $file->move(public_path($targetDir), $fileName);
+                    $filePath = $targetDir . $fileName;
+                    return response()->json(["message" => "File berhasil diunggah", "file_path" => $filePath]);
+                } catch (\Exception $e) {
+                    return response()->json(["error" => "Gagal menyimpan file"]);
+                }
+            } else {
+                return response()->json(["error" => "File tidak ditemukan atau terjadi kesalahan saat mengunggah"]);
+            }
+        } else {
+            return response()->json(["error" => "Metode request harus POST"]);
+        }
+    }
+
+    public function update(Request $request)
+    {
+      
+        $input = $request->all();
+
+        $data = [
+            'nama' => $input['nama'],
+            'no_telpon' => $input['no_telpon'],
+            'jenis_kelamin' => $input['jenis_kelamin'],
+            'tempat_lahir' => $input['tempat_lahir'],
+            'tanggal_lahir' => $input['tanggal_lahir'],
+            'alamat' => $input['alamat']
+        ];
+        if (!empty($input['image'])) {
+            $data['image'] = $input['image'];
+        }
+
+        try {
+            
+
+            User::where('id', $input['id'])->update($data);
+                return response()->json(["message" => "Data berhasil diperbarui"]);
+           
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Terjadi kesalahan saat memperbarui data pengguna'], 500);
+        }
+    }
+
 }

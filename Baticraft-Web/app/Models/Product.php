@@ -25,6 +25,11 @@ class Product extends Model
         'status',
     ];
 
+    public function imageproduk()
+    {
+        return $this->belongsTo(ImageProduct::class);
+    }
+
     // public function getKodeProdukAttribute()
     // {
     //     $id = $this->id;

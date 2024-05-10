@@ -26,8 +26,8 @@
                             <!-- row -->
                             <div class="row align-items-center">
                                 <div class="col-3 col-md-2">
-                                    @if (isset($item->product->image_path))
-                                    <img src="{{ asset('storage/product/' . $item->product->image_path) }}" class="mb-3 img-fluid" />
+                                    @if (isset($item->product->imageproduk->image_path))
+                                    <img src="{{ asset('storage/product/' . $item->product->imageproduk->image_path) }}" class="mb-3 img-fluid" />
                                     @endif
                                 </div>
                                 <div class="col-4 col-md-6">
