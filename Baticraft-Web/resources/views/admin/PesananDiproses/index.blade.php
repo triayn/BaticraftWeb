@@ -45,7 +45,7 @@
                                     <td class="align-middle">Rp {{ number_format($row->total_harga, 0, ',', '.') }}</td>
                                     <td class="align-middle">{{ $row->created_at }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-success">
+                                        <a href="{{ route('diproses.konfirmasi', $row->id) }}" class="btn btn-success">
                                             <i class="mdi mdi-pencil"></i> Konfirmasi
                                         </a>
                                     </td>

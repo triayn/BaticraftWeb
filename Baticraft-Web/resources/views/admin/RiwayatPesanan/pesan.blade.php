@@ -57,14 +57,10 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title mb-3">Detail Pesanan</h4>
-
+                <p class="mb-0"><b>Kode Kasir :</b> {{ $transaction->kasir }}</p>
                 <div class="table-responsive">
                     <table class="table mb-0">
                         <thead class="table-light">
-                            <!-- <tr>
-                                <th>Description</th>
-                                <th>Price</th>
-                            </tr> -->
                         </thead>
                         <tbody>
                             <tr>
@@ -115,6 +111,7 @@
                         <p class="mb-2"><span class="fw-bold me-2">Tanggal Pemesan: <br> </span> {{ $transaction->created_at }}</p>
                         <p class="mb-2"><span class="fw-bold me-2">Tanggal Pengambilan: <br> </span> {{ $transaction->tanggal_konfirmasi }}</p>
                         <p class="mb-2"><span class="fw-bold me-2">Tanggal Kadaluarsa: <br> </span> {{ $transaction->tanggal_expired }}</p>
+                        <p class="mb-2"><span class="fw-bold me-2">Tanggal Selesai: <br> </span> {{ $transaction->updated_at }}</p>
                     </li>
                 </ul>
 
@@ -138,47 +135,6 @@
         </div>
     </div> <!-- end col -->
 </div>
-
-<div class="row" style="margin-bottom: 15px;">
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#konfirmasiModal">
-        <i class="mdi mdi-square-edit-outline ms-2"></i>Pesanan Sudah Selesai?
-    </button>
-</div>
-
-<!-- Modal Konfirmasi Pesanan Diterima -->
-<div class="modal fade" id="konfirmasiModal" tabindex="-1" role="dialog" aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="konfirmasiModalLabel">Konfirmasi Pesanan Diterima</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('konfirmasi.selesai') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="idTransaksi" value="{{ $transaction->id }}"> <!-- Ganti $pesanan->id dengan ID pesanan yang ingin dikonfirmasi -->
-                    <div class="mb-3">
-                        <label for="tanggalPengambilan" class="form-label">Kasir</label>
-                        <input type="text" class="form-control" value="{{ $user->nama }}" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="tanggalPengambilan" class="form-label">Apakah anda yakin pesanan ini sudah selesai?</label>
-                    </div>
-                    <div class="mb-3">
-                        <label for="tanggalKadaluarsa" class="form-label">Hari ini</label>
-                        <input type="datetime-local" class="form-control" id="tanggalKadaluarsa" name="tanggalKadaluarsa" value="{{ date('Y-m-d\TH:i') }}" readonly>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-success">Konfirmasi</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 @endsection
 
 @section('script')

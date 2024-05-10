@@ -130,20 +130,28 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('/pesanan/masuk')->group(function () {
             Route::get('/', [PesananController::class, 'masuk'])->name('masuk.index');
             Route::get('/konfirmasi/{id}', [PesananController::class, 'editMasuk'])->name('masuk.konfirmasi');
-            Route::put('/verifikasi/{id}', [PesananController::class, 'updateMasuk'])->name('masuk.verifikasi');
+            Route::post('/konfirmasi/diterima', [PesananController::class, 'konfirmasiDiterima'])->name('konfirmasi.diterima');
+            Route::post('/konfirmasi/ditolak', [PesananController::class, 'konfirmasiDitolak'])->name('konfirmasi.ditolak');
         });
 
         // CRUD Pesanan Diproses
         Route::prefix('/pesanan/diproses')->group(function () {
             Route::get('/', [PesananController::class, 'diproses'])->name('diproses.index');
             Route::get('/konfirmasi/{id}', [PesananController::class, 'editDiproses'])->name('diproses.konfirmasi');
-            Route::put('/verifikasi/{id}', [PesananController::class, 'updateDiproses'])->name('diproses.verifikasi');
+            Route::post('/konfirmasi/selesai', [PesananController::class, 'konfirmasiSelesai'])->name('konfirmasi.selesai');
         });
 
         // CRUD Riwayat Pesanan
         Route::prefix('/riwayat')->group(function () {
             Route::get('/index', [PesananController::class, 'riwayat'])->name('riwayat.index');
-            Route::get('/show/{id}', [PesananController::class, 'show'])->name('riwayat.show');
+            Route::get('/langsung/{id}', [PesananController::class, 'langsung'])->name('show.langsung');
+            Route::get('/pesan/{id}', [PesananController::class, 'pesan'])->name('show.pesan');
+            Route::get('/ditolak/{id}', [PesananController::class, 'ditolak'])->name('show.ditolak');
+        });
+
+        // Profil
+        Route::prefix('/profil')->group(function () {
+            Route::get('/', [ProfilController::class, 'index'])->name('profil.index');
         });
     });
 });

@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfilController extends Controller
 {
+    public function index()
+    {
+        $user = auth()->user();
+
+        return view('admin.profil.index', compact('user'));
+    }
+    
     public function indexCustomer()
     {
         $user = auth()->user();

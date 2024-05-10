@@ -35,15 +35,13 @@
                         <tbody>
                             @php $i = 1; @endphp
                             @foreach ($detail as $satu)
-                            @foreach ($produk as $dua)
                             <tr>
                                 <td>{{ $i++ }}</td>
-                                <td>{{ $dua->nama }}</td>
-                                <td>Rp {{ number_format($dua->harga, 0, ',', '.') }}</td>
+                                <td>{{ $satu->nama_product }}</td>
+                                <td>Rp {{ number_format($satu->product->harga, 0, ',', '.') }}</td>
                                 <td>{{ $satu->jumlah }}</td>
                                 <td>Rp {{ number_format($satu->harga_total, 0, ',', '.') }}</td>
                             </tr>
-                            @endforeach
                             @endforeach
                         </tbody>
                     </table>
@@ -52,7 +50,8 @@
 
             </div>
         </div>
-    </div> <!-- end col -->
+    </div>
+    <!-- end col -->
 
     <div class="col-lg-4">
         <div class="card">
@@ -92,7 +91,7 @@
     <div class="col-lg-4">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title mb-3">Informasi Pesanan</h4>
+                <h4 class="header-title mb-3">Informasi Pemesan</h4>
 
                 <h5>{{ $transaction->user->nama }}</h5>
 
@@ -101,7 +100,7 @@
                     <abbr title="Phone">No. Handphone:</abbr> {{ $transaction->user->no_telpon }} <br />
                     <abbr title="Mobile">Email:</abbr> {{ $transaction->user->email }}
                 </address>
-
+                <p class="mb-0"><b>Note Customer :</b> {{ $transaction->catatan_customer }}</p>
             </div>
         </div>
     </div> <!-- end col -->
@@ -133,96 +132,93 @@
                     <h5><b>Pesanan</b></h5>
                     <p class="mb-1"><b>Kode :</b> {{ $transaction->kode_transaksi }}</p>
                     <p class="mb-0"><b>Status :</b> {{ $transaction->status_transaksi }}</p>
+                    <p class="mb-0"><b>Jenis Transaksi :</b> {{ $transaction->jenis_transaksi }}</p>
                 </div>
             </div>
         </div>
     </div> <!-- end col -->
 </div>
 
+<!-- Button untuk pesanan diterima -->
+<div class="row" style="margin-bottom: 15px;">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#konfirmasiModal">
+        <i class="mdi mdi-square-edit-outline ms-2"></i>Pesanan Diterima
+    </button>
+</div>
+<!-- Button untuk pesanan ditolak -->
 <div class="row">
-    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#konfirmasiPesanan">
-        <i class="mdi mdi-square-edit-outline ms-2"></i>Konfirmasi Pesanan
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#penolakanModal">
+        <i class="mdi mdi-square-edit-outline ms-2"></i>Pesanan Ditolak
     </button>
 </div>
 
-
-<!-- Modal Konfirmasi Pesanan -->
-<div id="konfirmasiPesanan" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="konfirmasiPesananModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+<!-- Modal Konfirmasi Pesanan Diterima -->
+<div class="modal fade" id="konfirmasiModal" tabindex="-1" role="dialog" aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="konfirmasiPesananModalLabel">Konfirmasi Pesanan</h4>
+                <h5 class="modal-title" id="konfirmasiModalLabel">Konfirmasi Pesanan Diterima</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="mb-3">
-                    <label for="statusPesanan" class="form-label">Status Pesanan</label>
-                    <select class="form-select" id="statusPesanan">
-                        <option value="diterima">Diterima</option>
-                        <option value="ditolak">Ditolak</option>
-                    </select>
-                </div>
-                <div id="alasanTolak" class="mb-3" style="display: none;">
-                    <label for="alasan" class="form-label">Alasan Penolakan</label>
-                    <textarea class="form-control" id="alasan" rows="3"></textarea>
-                </div>
-                <div id="tanggalPengambilan" class="mb-3" style="display: none;">
-                    <label for="tanggalAmbil" class="form-label">Tanggal Pengambilan Barang</label>
-                    <input type="date" class="form-control" id="tanggalAmbil">
-                </div>
-                <div id="tanggalKadaluarsa" class="mb-3" style="display: none;">
-                    <label for="tanggalKadaluarsa" class="form-label">Tanggal Kadaluarsa Pengambilan Barang</label>
-                    <input type="date" class="form-control" id="tanggalKadaluarsa">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary" onclick="prosesKonfirmasi()">Konfirmasi</button>
+                <form action="{{ route('konfirmasi.diterima') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="idTransaksi" value="{{ $transaction->id }}"> <!-- Ganti $pesanan->id dengan ID pesanan yang ingin dikonfirmasi -->
+                    <div class="mb-3">
+                        <label for="tanggalPengambilan" class="form-label">Kasir</label>
+                        <input type="text" class="form-control" value="{{ $user->nama }}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tanggalPengambilan" class="form-label">Tanggal Pengambilan</label>
+                        <input type="datetime-local" class="form-control" id="tanggalPengambilan" name="tanggalPengambilan" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tanggalKadaluarsa" class="form-label">Tanggal Kadaluarsa</label>
+                        <input type="datetime-local" class="form-control" id="tanggalKadaluarsa" name="tanggalKadaluarsa" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-success">Konfirmasi</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Modal Penolakan Pesanan -->
+<div class="modal fade" id="penolakanModal" tabindex="-1" role="dialog" aria-labelledby="penolakanModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="penolakanModalLabel">Penolakan Pesanan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('konfirmasi.ditolak') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="idTransaksi" value="{{ $transaction->id }}"> <!-- Ganti $pesanan->id dengan ID pesanan yang ingin ditolak -->
+                    <div class="mb-3">
+                        <label for="tanggalPengambilan" class="form-label">Kasir</label>
+                        <input type="text" class="form-control" value="{{ $user->nama }}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="alasanPenolakan" class="form-label">Alasan Penolakan</label>
+                        <textarea class="form-control" id="alasanPenolakan" name="alasanPenolakan" rows="3" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-danger">Tolak</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @endsection
 
 @section('script')
-<script>
-    // Fungsi untuk menampilkan atau menyembunyikan inputan berdasarkan status pesanan
-    function tampilkanInputan() {
-        var statusPesanan = document.getElementById('statusPesanan').value;
-        var alasanTolak = document.getElementById('alasanTolak');
-        var tanggalPengambilan = document.getElementById('tanggalPengambilan');
-        var tanggalKadaluarsa = document.getElementById('tanggalKadaluarsa');
 
-        if (statusPesanan === 'ditolak') {
-            alasanTolak.style.display = 'block';
-            tanggalPengambilan.style.display = 'none';
-            tanggalKadaluarsa.style.display = 'none';
-        } else if (statusPesanan === 'diterima') {
-            alasanTolak.style.display = 'none';
-            tanggalPengambilan.style.display = 'block';
-            tanggalKadaluarsa.style.display = 'block';
-        }
-    }
-
-    // Panggil fungsi tampilkanInputan saat halaman dimuat
-    window.onload = function() {
-        tampilkanInputan();
-    };
-
-    // Fungsi untuk memproses konfirmasi pesanan
-    function prosesKonfirmasi() {
-        var statusPesanan = document.getElementById('statusPesanan').value;
-        var alasan = document.getElementById('alasan').value;
-        var tanggalAmbil = document.getElementById('tanggalAmbil').value;
-        var tanggalKadaluarsa = document.getElementById('tanggalKadaluarsa').value;
-
-        // Lakukan validasi atau proses sesuai kebutuhan Anda
-        console.log('Status Pesanan:', statusPesanan);
-        console.log('Alasan:', alasan);
-        console.log('Tanggal Pengambilan:', tanggalAmbil);
-        console.log('Tanggal Kadaluarsa:', tanggalKadaluarsa);
-
-        // Setelah validasi atau proses, bisa melakukan aksi selanjutnya seperti mengirim data ke server, dll.
-    }
-</script>
 @endsection

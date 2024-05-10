@@ -49,9 +49,21 @@
                                     </td>
                                     <td class="align-middle">{{ $row->created_at }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-success">
-                                            <i class="mdi mdi-pencil"></i> Detail
+                                        @if ($row->jenis_transaksi == 'langsung' && $row->status_transaksi == 'selesai')
+                                        <a href="{{ route('show.langsung', $row->id) }}" class="btn btn-info">
+                                            <i class="uil-eye"></i> Detail
                                         </a>
+                                        @elseif ($row->jenis_transaksi == 'pesan' && $row->status_transaksi == 'selesai')
+                                        <a href="{{ route('show.pesan', $row->id) }}" class="btn btn-info">
+                                            <i class="uil-eye"></i> Detail
+                                        </a>
+                                        @elseif ($row->status_transaksi == 'ditolak')
+                                        <a href="{{ route('show.ditolak', $row->id) }}" class="btn btn-info">
+                                            <i class="uil-eye"></i> Detail
+                                        </a>
+                                        @else
+                                        <!-- Kondisi lainnya jika diperlukan -->
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
@@ -63,4 +75,5 @@
         </div> <!-- end card -->
     </div><!-- end col-->
 </div> <!-- end row-->
+
 @endsection
