@@ -58,8 +58,8 @@
                     <div class="col">
                         <div class="card card-product">
                             <div class="card-body">
-                                <div class="text-center position-relative "> <a href="#!"><img src="{{ asset('storage/user/' . auth()->user()->image) }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                                </div>
+                                <!-- <div class="text-center position-relative "><img src="{{ asset('storage/user/' . auth()->user()->image) }}" class="rounded-circle avatar-lg img-thumbnail" ></div> -->
+                                <div class="text-center position-relative "><img src="{{ asset('storage/user/' . auth()->user()->image) }}" class="rounded-circle avatar-lg img-thumbnail" style="width: 200px; height: 200px; transform: scale(1.5);"></div>
                                 <div class="text-small mb-1"><small>Email</small></div>
                                 <h2 class="fs-6"><a class="text-inherit text-decoration-none">{{ $user->email }} </a></h2>
                                 <div class="text-small mb-1"><small>Nama</small></div>

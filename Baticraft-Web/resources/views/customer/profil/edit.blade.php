@@ -61,83 +61,65 @@
                         <div class="row">
                             <div class="col-lg-10">
                                 <!-- form -->
-                                <form action="{{ route('profil.customer.update') }}" method="POST">
+                                <form action="{{ route('profil.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
-
                                     <!-- input -->
                                     <div class="mb-3">
-                                        <label class="form-label" for="nama">Nama</label>
-                                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" value="{{ old('nama', $user->nama) }}">
+                                        <label for="name" class="form-label">Nama Lengkap</label>
+                                        <input type="text" class="form-control" id="name" name="nama" value="{{ $user->nama }}">
                                         @error('nama')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <!-- input -->
                                     <div class="mb-5">
-                                        <label class="form-label" for="no_telpon">No. Handphone</label>
-                                        <input type="text" class="form-control @error('no_telpon') is-invalid @enderror" id="no_telpon" name="no_telpon" value="{{ old('no_telpon', $user->no_telpon) }}">
+                                    <label for="no_telpon" class="form-label">No. Handphone</label>
+                                        <input type="text" class="form-control" id="no_telpon" name="no_telpon" value="{{ $user->no_telpon }}">
                                         @error('no_telpon')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="mb-5">
-                                        <label class="form-label" for="alamat">Alamat</label>
-                                        <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat" value="{{ old('alamat', $user->alamat) }}">
+                                    <label for="alamat" class="form-label">Alamat</label>
+                                        <textarea class="form-control" id="alamat" name="alamat" rows="4">{{ $user->alamat }}</textarea>
                                         @error('alamat')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="mb-5">
-                                        <label class="form-label">Jenis Kelamin</label>
-                                        <div class="form-check">
-                                            <input type="radio" id="customRadio1" name="jenis_kelamin" value="Laki-laki" class="form-check-input" {{ $user->jenis_kelamin === 'Laki-laki' ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="customRadio1">Laki-laki</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" id="customRadio2" name="jenis_kelamin" value="Perempuan" class="form-check-input" {{ $user->jenis_kelamin === 'Perempuan' ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="customRadio2">Perempuan</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-5">
-                                        <label class="form-label" for="tempat_lahir">Tempat Lahir</label>
-                                        <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir', $user->tempat_lahir) }}">
+                                    <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
+                                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{ $user->tempat_lahir }}">
                                         @error('tempat_lahir')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="mb-5">
-                                        <label class="form-label" for="tanggal_lahir">Tanggal Lahir</label>
-                                        <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir', $user->tanggal_lahir) }}">
+                                    <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+                                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{ $user->tanggal_lahir }}">
                                         @error('tanggal_lahir')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="mb-5">
-                                        <label class="form-label" for="tanggal_lahir">Foto</label>
-                                        <!-- Input file tersembunyi -->
+                                    <label for="image" class="form-label">Foto</label>
                                         <input type="file" id="image" class="form-control" name="image" style="display: none;">
-                                        <!-- Area drag and drop -->
                                         <div id="dragDropArea" class="border border-primary rounded p-5">
                                             <p class="text-center text-muted">Drag and drop gambar di sini atau klik untuk memilih</p>
                                         </div>
-                                        <!-- Pesan error -->
                                         @error('image')
-                                        <div class="alert alert-danger mt-2">
-                                            {{ $message }}
-                                        </div>
+                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <!-- button -->
                                     <div class="mb-3">
-                                        <button type="submit" class="btn btn-primary">Edit Data</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
                                 </form>
                             </div>

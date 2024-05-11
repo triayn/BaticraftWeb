@@ -66,11 +66,13 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('/profil')->group(function () {
-        Route::get('/', [ProfilController::class, 'indexCustomer'])->name('profil.cutomer');
+        Route::get('/customer', [ProfilController::class, 'indexCustomer'])->name('profil.cutomer');
         Route::get('/edit', [ProfilController::class, 'editCustomer'])->name('profil.customer.edit');
-        Route::put('/update', [ProfilController::class, 'updateCustomer'])->name('profil.customer.update');
+        Route::put('/{id}', [ProfilController::class, 'update'])->name('profil.update');
+        Route::put('/change-password/{id}', [ProfilController::class, 'changePassword'])->name('profil.change.password');
+        // Route::put('/update', [ProfilController::class, 'updateCustomer'])->name('profil.customer.update');
         Route::get('/ganti', [ProfilController::class, 'gantiCustomer'])->name('profil.customer.ganti');
-        Route::post('/verifikasi', [ProfilController::class, 'verifikasiCustomer'])->name('profil.customer.verifikasi');
+        // Route::post('/verifikasi', [ProfilController::class, 'verifikasiCustomer'])->name('profil.customer.verifikasi');
     });
 
     Route::get('/informasi/toko', [InformationController::class, 'customer'])->name('information.customer');
@@ -152,8 +154,6 @@ Route::middleware(['auth'])->group(function () {
         // Profil
         Route::prefix('/profil')->group(function () {
             Route::get('/', [ProfilController::class, 'index'])->name('profil.index');
-            Route::put('/{id}', [ProfilController::class, 'update'])->name('profil.update');
-            Route::put('/change-password/{id}', [ProfilController::class, 'changePassword'])->name('profil.change.password');
         });
     });
 });
