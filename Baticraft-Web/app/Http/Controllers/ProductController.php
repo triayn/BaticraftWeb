@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         $data = Product::get();
-        $images = ImageProduct::all(); // Ambil semua gambar terlebih dahulu
+        $images = ImageProduct::all(); 
 
         return view('admin.product.index', compact('data', 'images'));
     }

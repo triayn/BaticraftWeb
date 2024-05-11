@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\MobileApi\InformationController;
 use App\Http\Controllers\MobileApi\LoginMobileController;
 use App\Http\Controllers\MobileApi\ProductsMobileController;
@@ -20,6 +21,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+// Product Controller
+Route::prefix('/product')->group(function () {
+    Route::get('/index', [ProductController::class, 'index']);
+    Route::get('/show/{id}', [ProductController::class, 'show']);
+    Route::post('/store', [ProductController::class, 'store']);
+    Route::put('/update/{id}', [ProductController::class, 'update']);
+    Route::delete('/destroy/{id}', [ProductController::class, 'destroy']);
 });
 
 Route::group(['prefix' => '/MobileApi'], function () {

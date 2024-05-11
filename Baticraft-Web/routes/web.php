@@ -152,6 +152,7 @@ Route::middleware(['auth'])->group(function () {
         // Profil
         Route::prefix('/profil')->group(function () {
             Route::get('/', [ProfilController::class, 'index'])->name('profil.index');
+            Route::put('/{id}', [ProfilController::class, 'update'])->name('profil.update');
         });
     });
 });
