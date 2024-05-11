@@ -43,7 +43,14 @@ class LaporanController extends Controller
             ->where('status_transaksi', 'selesai')
             ->get();
 
-        return view('admin.laporan.mingguan', compact('transactions'));
+        // Menghitung total pendapatan
+        $totalPendapatan = $transactions->sum('total_harga');
+        
+        // Menghitung jumlah customer
+        $jumlahCustomer = $transactions->unique('id')->count();
+    
+        // Mengirim data ke tampilan
+        return view('admin.laporan.mingguan', compact('transactions', 'totalPendapatan', 'jumlahCustomer'));
     }
 
     public function bulanan(Request $request)
