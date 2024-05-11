@@ -153,6 +153,7 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('/profil')->group(function () {
             Route::get('/', [ProfilController::class, 'index'])->name('profil.index');
             Route::put('/{id}', [ProfilController::class, 'update'])->name('profil.update');
+            Route::put('/change-password/{id}', [ProfilController::class, 'changePassword'])->name('profil.change.password');
         });
     });
 });

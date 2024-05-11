@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ProfilController extends Controller
@@ -71,6 +72,39 @@ class ProfilController extends Controller
         $user->save();
 
         return redirect()->back()->with('success', 'Profil berhasil diperbarui');
+    }
+
+    public function changePassword(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $validate = [
+            'current_password' => 'required',
+            'new_password' => ['required', 'min:6', 'max:12', 'confirmed', 'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/'],
+        ];
+
+        $messages = [
+            'required' => 'Data harus diisi.',
+            'min' => 'Data harus diisi minimal :min karakter.',
+            'max' => 'Data harus diisi maksimal :max karakter.',
+            'new_password.regex' => 'Kata sandi harus terdiri dari setidaknya satu huruf dan satu angka.',
+            'new_password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
+        ];
+
+        $request->validate($validate, $messages);
+
+        $user = Auth::user();
+
+        // Memeriksa apakah kata sandi lama cocok dengan kata sandi yang dimasukkan
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->withErrors(['current_password' => 'Kata sandi lama tidak cocok.'])->withInput();
+        }
+
+        // Memperbarui kata sandi baru
+        User::where('id', $user->id)
+            ->update(['password' => Hash::make($request->new_password)]);
+
+        return redirect()->back()->with('success', 'Kata sandi berhasil diperbarui.');
     }
 
     public function indexCustomer()
