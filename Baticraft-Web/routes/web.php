@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LandingpageController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\PesananCustomerController;
 use App\Http\Controllers\ProductController;
@@ -149,6 +150,12 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/langsung/{id}', [PesananController::class, 'langsung'])->name('show.langsung');
             Route::get('/pesan/{id}', [PesananController::class, 'pesan'])->name('show.pesan');
             Route::get('/ditolak/{id}', [PesananController::class, 'ditolak'])->name('show.ditolak');
+        });
+
+        Route::prefix('/laporan')->group(function () {
+            Route::get('/harian', [LaporanController::class, 'harian'])->name('laporan.harian');
+            Route::get('/mingguan', [LaporanController::class, 'mingguan'])->name('laporan.mingguan');
+            Route::get('/bulanan', [LaporanController::class, 'bulanan'])->name('laporan.bulanan');
         });
 
         // Profil

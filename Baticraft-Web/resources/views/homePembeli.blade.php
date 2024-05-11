@@ -374,7 +374,7 @@
             <div class=" offset-lg-2 col-lg-4 col-md-6">
                 <div class="text-center">
                     <!-- img -->
-                    <img src="{{ asset('assets/customer/images/png/iphone-2.png') }}" alt="" class=" img-fluid">
+                    <img src="{{ asset('assets/customer/images/png/custom.jpg') }}" alt="" class=" img-fluid">
                 </div>
             </div>
             <div class=" col-lg-6 col-md-6">

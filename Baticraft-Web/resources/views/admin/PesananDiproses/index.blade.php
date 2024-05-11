@@ -28,7 +28,6 @@
                                     <th style="text-align: center;">No</th>
                                     <th style="text-align: center;">Kode Transaksi</th>
                                     <th style="text-align: center;">Nama</th>
-                                    <th style="text-align: center;">Total Item</th>
                                     <th style="text-align: center;">Total Harga</th>
                                     <th style="text-align: center;">Tanggal</th>
                                     <th style="text-align: center;">Aksi</th>
@@ -41,7 +40,6 @@
                                     <td>{{ $i++ }}</td>
                                     <td class="align-middle">{{ $row->kode_transaksi }}</td>
                                     <td class="align-middle">{{ $row->user->nama }}</td>
-                                    <td class="align-middle">{{ $row->total_item }}</td>
                                     <td class="align-middle">Rp {{ number_format($row->total_harga, 0, ',', '.') }}</td>
                                     <td class="align-middle">{{ $row->created_at }}</td>
                                     <td>

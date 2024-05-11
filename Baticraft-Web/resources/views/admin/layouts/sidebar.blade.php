@@ -16,7 +16,7 @@
             </a>
         </li>
         <li class="side-nav-item">
-            <a data-bs-toggle="collapse" href="#sidebarSecondLevel" aria-expanded="false" aria-controls="sidebarSecondLevel" class="side-nav-link" >
+            <a data-bs-toggle="collapse" href="#sidebarSecondLevel" aria-expanded="false" aria-controls="sidebarSecondLevel" class="side-nav-link">
                 <i class="uil-users-alt"></i>
                 <span> Pengguna </span>
                 <span class="menu-arrow"></span>
@@ -67,10 +67,13 @@
             <div class="collapse" id="sidebarEmail">
                 <ul class="side-nav-second-level">
                     <li>
-                        <a href="apps-email-inbox.html">Harian</a>
+                        <a href="{{ route('laporan.harian') }}">Harian</a>
                     </li>
                     <li>
-                        <a href="apps-email-read.html">Bulanan</a>
+                        <a href="{{ route('laporan.mingguan') }}">Mingguan</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('laporan.bulanan') }}">Bulanan</a>
                     </li>
                 </ul>
             </div>

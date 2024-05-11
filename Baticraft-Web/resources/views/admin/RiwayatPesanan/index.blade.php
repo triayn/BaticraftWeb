@@ -29,7 +29,7 @@
                                     <th style="text-align: center;">Kode Transaksi</th>
                                     <th style="text-align: center;">Nama</th>
                                     <th style="text-align: center;">Status Transaksi</th>
-                                    <th style="text-align: center;">Tanggal</th>
+                                    <th style="text-align: center;">Jenis Transaksi</th>
                                     <th style="text-align: center;">Aksi</th>
                                 </tr>
                             </thead>
@@ -40,15 +40,21 @@
                                     <td>{{ $i++ }}</td>
                                     <td class="align-middle">{{ $row->kode_transaksi }}</td>
                                     <td class="align-middle">{{ $row->user->nama }}</td>
-                                    <td class="align-middle">
+                                    <td class="align-middle text-center">
                                         @if($row->status_transaksi == 'ditolak')
                                         <label class="badge bg-danger">Ditolak</label>
                                         @else
                                         <label class="badge bg-success">Selesai</label>
                                         @endif
                                     </td>
-                                    <td class="align-middle">{{ $row->created_at }}</td>
-                                    <td>
+                                    <td class="align-middle text-center">
+                                        @if($row->jenis_transaksi == 'pesan')
+                                        <span class="badge bg-success-lighten text-success">{{ $row->jenis_transaksi }}</span>
+                                        @else
+                                        <span class="badge bg-warning-lighten text-warning">{{ $row->jenis_transaksi }}</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
                                         @if ($row->jenis_transaksi == 'langsung' && $row->status_transaksi == 'selesai')
                                         <a href="{{ route('show.langsung', $row->id) }}" class="btn btn-info">
                                             <i class="uil-eye"></i> Detail
