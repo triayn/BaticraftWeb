@@ -49,8 +49,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Keranjang
     Route::prefix('/keranjang')->group(function () {
-        Route::get('/', [KeranjangController::class, 'card'])->name('keranjang.index');
-        Route::get('/', [KeranjangController::class, 'showTotal'])->name('keranjang.index');
+        Route::get('/', [KeranjangController::class, 'cart'])->name('keranjang.index');
         Route::post('/add', [KeranjangController::class, 'addToCart'])->name('keranjang.add');
         Route::put('/update/{id}', [KeranjangController::class, 'updateQuantity'])->name('keranjang.update');
         Route::delete('/destroy/{id}', [KeranjangController::class, 'destroy'])->name('keranjang.delete');

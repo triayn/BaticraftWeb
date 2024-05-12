@@ -76,7 +76,7 @@
                                         @foreach ($diproses as $dua)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-                                            <td class="align-middle">{{ $dua->kode_transaksi }}</td>
+                                            <td class="align-middle"><a href="{{ route('pesanan.detail', $satu->id) }}">{{ $dua->kode_transaksi }}</a></td>
                                             <td class="align-middle">Rp {{ number_format($dua->total_harga, 0, ',', '.') }}</td>
                                             <td class="align-middle">{{ $dua->total_item }}</td>
                                             <td class="align-middle"><span class="badge bg-warning">{{ $dua->status_transaksi }}</span></td>
@@ -107,7 +107,7 @@
                                         @foreach ($ditolak as $tiga)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-                                            <td class="align-middle">{{ $tiga->kode_transaksi }}</td>
+                                            <td class="align-middle"><a href="{{ route('pesanan.detail', $tiga->id) }}">{{ $tiga->kode_transaksi }}</a></td>
                                             <td class="align-middle">Rp {{ number_format($tiga->total_harga, 0, ',', '.') }}</td>
                                             <td class="align-middle">{{ $tiga->total_item }}</td>
                                             <td class="align-middle"><span class="badge bg-danger">{{ $tiga->status_transaksi }}</span></td>
@@ -137,7 +137,7 @@
                                     @foreach ($selesai as $empat)
                                     <tr>
                                         <td>{{ $i++ }}</td>
-                                        <td class="align-middle"><a href="">{{ $empat->kode_transaksi }}</a></td>
+                                        <td class="align-middle"><a href="{{ route('pesanan.detail', $empat->id) }}">{{ $empat->kode_transaksi }}</a></td>
                                         <td class="align-middle">Rp {{ number_format($empat->total_harga, 0, ',', '.') }}</td>
                                         <td class="align-middle">{{ $empat->total_item }}</td>
                                         <td class="align-middle"><span class="badge bg-success">{{ $empat->status_transaksi }}</span></td>

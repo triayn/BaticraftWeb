@@ -10,28 +10,31 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class KeranjangController extends Controller
 {
-    public function card()
+    public function cart()
     {
-        // Ambil user yang sedang login
-        $user = auth()->user();
+        // Ambil ID user yang sedang login
+        $userId = Auth::id();
 
-        // Pastikan user sedang login sebelum menampilkan keranjang
-        if (!$user) {
-            return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
+        // Ambil data keranjang sesuai dengan ID user
+        $carts = Cart::where('user_id', $userId)->with('product')->get();
+
+        // Hitung total item dan total harga
+        $totalItems = 0;
+        $totalPrice = 0;
+
+        foreach ($carts as $item) {
+            $totalItems += $item->jumlah; // Tambahkan jumlah item ke totalItems
+            $totalPrice += $item->jumlah * $item->product->harga; // Hitung total harga
         }
 
-        // Gunakan eager loading dengan withEager() untuk memuat imageproduk
-        $cartItems = Cart::where('user_id', $user->id)->withEager('product.imageproduk')->get();
-
-        // Tidak perlu filter di dalam loop karena sudah difilter berdasarkan user ID
-        $productsInCart = $cartItems;
-
-        return view('customer.keranjang.index', compact('cartItems', 'productsInCart'));
+        // Kirim data keranjang, total item, dan total harga ke view
+        return view('customer.keranjang.index', compact('carts', 'totalItems', 'totalPrice'));
     }
 
     public function addToCart(Request $request)
@@ -104,20 +107,6 @@ class KeranjangController extends Controller
         return back()->with('success', 'Jumlah produk berhasil diperbarui.');
     }
 
-    public function showTotal()
-    {
-        $cartItems = Cart::all();
-        $totalItems = 0;
-        $totalPrice = 0;
-
-        foreach ($cartItems as $item) {
-            $totalItems += $item->jumlah; // Tambahkan jumlah item ke totalItems
-            $totalPrice += $item->jumlah * $item->product->harga; // Hitung total harga
-        }
-
-        return view('customer.keranjang.index', ['cartItems' => $cartItems, 'totalItems' => $totalItems, 'totalPrice' => $totalPrice]);
-    }
-
     public function checkout(Request $request)
     {
         // Validasi data
@@ -141,15 +130,12 @@ class KeranjangController extends Controller
             'items.*.harga_total' => 'required|numeric|min:1',
         ]);
 
-        $cartItems = Cart::all(); // Misalnya, ambil semua item dari tabel Cart
+        // Dapatkan data keranjang dari controller cart()
+        $carts = Cart::where('user_id', Auth::id())->with('product')->get();
 
-        $totalItems = 0;
-        $totalPrice = 0;
-
-        foreach ($cartItems as $item) {
-            $totalItems += $item->jumlah;
-            $totalPrice += $item->jumlah * $item->product->harga;
-        }
+        // Gunakan total item dan total harga yang sudah dihitung sebelumnya
+        $totalItems = $request->input('total_item');
+        $totalPrice = $request->input('total_harga');
 
         try {
             DB::beginTransaction();
@@ -170,7 +156,7 @@ class KeranjangController extends Controller
             $transaction->save();
 
             // Simpan detail transaksi
-            foreach ($cartItems as $cartItem) {
+            foreach ($carts as $cartItem) {
                 $transactionDetail = new TransactionDetail();
                 $transactionDetail->transaction_id = $transaction->id;
                 $transactionDetail->product_id = $cartItem->product_id;
@@ -180,8 +166,8 @@ class KeranjangController extends Controller
                 $transactionDetail->save();
             }
 
-            // Kosongkan keranjang (opsional)
-            Cart::truncate();
+            // Kosongkan keranjang 
+            Cart::where('user_id', Auth::id())->delete();
 
             DB::commit();
 

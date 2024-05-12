@@ -20,14 +20,14 @@
 
                 <div class="py-3">
                     <ul class="list-group list-group-flush">
-                        @foreach ($cartItems as $item)
+                        @foreach ($carts as $item)
                         <!-- list group -->
                         <li class="list-group-item py-3 py-lg-0 px-0 border-top">
                             <!-- row -->
                             <div class="row align-items-center">
                                 <div class="col-3 col-md-2">
-                                    @if (isset($item->product->imageproduk->image_path))
-                                    <img src="{{ asset('storage/product/' . $item->product->imageproduk->image_path) }}" class="mb-3 img-fluid" />
+                                    @if (isset($item->product->imageproduct->image_path))
+                                    <img src="{{ asset('storage/product/' . $item->product->imageproduct->image_path) }}" class="mb-3 img-fluid" />
                                     @endif
                                 </div>
                                 <div class="col-4 col-md-6">
@@ -87,6 +87,11 @@
                 <div class="mb-5 card mt-6">
                     <form action="{{ route('keranjang.checkout') }}" method="POST" class="d-inline">
                         @csrf
+                        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                        <input type="hidden" name="total_item" value="{{ $totalItems }}">
+                        <input type="hidden" name="total_harga" value="{{ $totalPrice }}">
+                        <!-- tambahkan input lainnya sesuai kebutuhan -->
+
                         <div class="card-body p-6">
                             <h2 class="h5 mb-4">Detail Pesanan</h2>
                             <div class="card mb-2">
