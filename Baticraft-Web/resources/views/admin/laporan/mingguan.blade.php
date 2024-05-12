@@ -60,10 +60,20 @@
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="header-title mb-0">Pesanan dan Transaksi</h4>
                     <div>
-                        <form class="d-flex">
+                        <form class="d-flex" method="GET" action="{{ route('laporan.mingguan') }}">
+                            <!-- Input tanggal awal -->
                             <div class="input-group">
-                                <input type="text" class="form-control form-control-light" id="dash-daterange" readonly>
+                                <input type="date" name="tanggal_awal" class="form-control form-control-light" value="{{ old('tanggal_awal') }}">
                             </div>
+                            <i class="dripicons-minus" style="margin-left: 10px;"></i>
+                            <!-- Input tanggal akhir -->
+                            <div class="input-group" style="margin-left: 10px;">
+                                <input type="date" name="tanggal_akhir" class="form-control form-control-light" value="{{ old('tanggal_akhir') }}">
+                            </div>
+                            <!-- Tombol submit -->
+                            <button type="submit" class="btn btn-primary ms-2">
+                                <i class="dripicons-search"></i>
+                            </button>
                         </form>
                     </div>
                 </div>
