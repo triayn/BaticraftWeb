@@ -156,6 +156,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/harian', [LaporanController::class, 'harian'])->name('laporan.harian');
             Route::get('/mingguan', [LaporanController::class, 'mingguan'])->name('laporan.mingguan');
             Route::get('/bulanan', [LaporanController::class, 'bulanan'])->name('laporan.bulanan');
+            Route::get('/laporan/bulanan/detail', [LaporanController::class, 'detailLaporan'])->name('laporan.bulanan.detail');
         });
 
         // Profil
