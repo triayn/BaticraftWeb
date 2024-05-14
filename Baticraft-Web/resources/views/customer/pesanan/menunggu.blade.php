@@ -165,55 +165,39 @@
                             <h5 class="px-6 py-4 bg-transparent mb-0">Produk</h5>
                             <ul class="list-group list-group-flush">
                                 <!-- list group item -->
-                                @foreach ($detail as $satu)
-                                @foreach ($produk as $dua)
+                                @foreach ($detail as $item)
                                 <li class="list-group-item px-4 py-3">
                                     <div class="row align-items-center">
-                                        @foreach ($produk as $product)
                                         <div class="col-2 col-md-2">
-                                            @if(isset($imageArray[$product->id]))
-                                            <img src="{{ asset('storage/product/' . $imageArray[$product->id]->image_path) }}" alt="Ecommerce" class="img-fluid">
+                                            @if(isset($imageArray[$item->product_id]))
+                                            <img src="{{ asset('storage/product/' . $imageArray[$item->product_id]->image_path) }}" alt="Ecommerce" class="img-fluid">
                                             @endif
                                         </div>
-                                        @endforeach
                                         <div class="col-5 col-md-5">
-                                            <h6 class="mb-0">{{ $dua->nama }}</h6>
-                                            <span><small class="text-muted">Rp {{ number_format($dua->harga, 0, ',', '.') }}</small></span>
-
+                                            <h6 class="mb-0">{{ $item->product->nama }}</h6>
+                                            <span><small class="text-muted">Rp {{ number_format($item->product->harga, 0, ',', '.') }}</small></span>
                                         </div>
                                         <div class="col-2 col-md-2 text-center text-muted">
-                                            <span>{{ $satu->jumlah }}</span>
-
+                                            <span>{{ $item->jumlah }}</span>
                                         </div>
                                         <div class="col-3 text-lg-end text-start text-md-end col-md-3">
-                                            <span class="fw-bold">Rp {{ number_format($satu->harga_total, 0, ',', '.') }}</span>
-
+                                            <span class="fw-bold">Rp {{ number_format($item->harga_total, 0, ',', '.') }}</span>
                                         </div>
                                     </div>
-
                                 </li>
-                                @endforeach
                                 @endforeach
                                 <!-- list group item -->
                                 <li class="list-group-item px-4 py-3">
-                                    <div class="d-flex align-items-center justify-content-between   mb-2">
-                                        <div>
-                                            Total Item
-                                        </div>
-                                        <div class="fw-bold">
-                                            {{ $transaction->total_item }}
-                                        </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <div>Total Item</div>
+                                        <div class="fw-bold">{{ $transaction->total_item }}</div>
                                     </div>
                                 </li>
                                 <!-- list group item -->
                                 <li class="list-group-item px-4 py-3">
                                     <div class="d-flex align-items-center justify-content-between fw-bold">
-                                        <div>
-                                            Total Harga
-                                        </div>
-                                        <div>
-                                            Rp {{ number_format($transaction->total_harga, 0, ',', '.') }}
-                                        </div>
+                                        <div>Total Harga</div>
+                                        <div>Rp {{ number_format($transaction->total_harga, 0, ',', '.') }}</div>
                                     </div>
                                 </li>
                             </ul>

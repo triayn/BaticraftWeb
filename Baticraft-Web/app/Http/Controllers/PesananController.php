@@ -33,7 +33,8 @@ class PesananController extends Controller
         return view('admin.RiwayatPesanan.index', compact('riwayat'));
     }
 
-    public function editMasuk($id){
+    public function editMasuk($id)
+    {
 
         $user = auth()->user();
         $transaction = Transaction::with('user')->findOrFail($id);
@@ -45,16 +46,18 @@ class PesananController extends Controller
 
     public function konfirmasiDiterima(Request $request)
     {
-        // Validasi input dari form modal
+        // Validasi input dari form modal dengan pesan kesalahan khusus
         $request->validate([
             'tanggalPengambilan' => 'required|date',
             'tanggalKadaluarsa' => 'required|date|after:tanggalPengambilan',
+        ], [
+            'tanggalKadaluarsa.after' => 'Tanggal Kadaluarsa Harus Setelah Tanggal Pengambilan'
         ]);
 
         // Ambil data dari form modal
         $tanggalPengambilan = $request->input('tanggalPengambilan');
         $tanggalKadaluarsa = $request->input('tanggalKadaluarsa');
-        $idTransaksi = $request->input('idTransaksi'); // Sesuaikan dengan nama input ID transaksi di form modal
+        $idTransaksi = $request->input('idTransaksi');
 
         // Update data transaksi sesuai dengan idTransaksi
         $transaksi = Transaction::find($idTransaksi);
@@ -62,8 +65,19 @@ class PesananController extends Controller
             return redirect()->back()->with('error', 'Transaksi tidak ditemukan');
         }
 
+        // Cek tanggal pengambilan harus setelah tanggal pemesanan
+        $tanggalPemesanan = $transaksi->created_at;
+        if ($tanggalPengambilan <= $tanggalPemesanan) {
+            return redirect()->back()->with('error', 'Tanggal Pengambilan Harus Setelah Tanggal Pemesanan');
+        }
+
+        // Cek tanggal kadaluarsa harus setelah tanggal pengambilan
+        if ($tanggalKadaluarsa <= $tanggalPengambilan) {
+            return redirect()->back()->with('error', 'Tanggal Kadaluarsa Harus Setelah Tanggal Pengambilan');
+        }
+
         // Update data transaksi
-        $transaksi->kasir = auth()->user()->name; // Menggunakan nama kasir dari user yang login
+        $transaksi->kasir = auth()->user()->name;
         $transaksi->status_transaksi = 'diproses';
         $transaksi->tanggal_konfirmasi = $tanggalPengambilan;
         $transaksi->tanggal_expired = $tanggalKadaluarsa;
@@ -97,10 +111,10 @@ class PesananController extends Controller
         $transaksi->save();
 
         return redirect()->route('riwayat.index')->with('success', 'Transaksi Ditolak');
-
     }
 
-    public function editDiproses($id){
+    public function editDiproses($id)
+    {
 
         $user = auth()->user();
         $transaction = Transaction::with('user')->findOrFail($id);
@@ -129,7 +143,8 @@ class PesananController extends Controller
         return redirect()->route('riwayat.index')->with('success', 'Transaksi berhasil diproses');
     }
 
-    public function pesan($id){
+    public function pesan($id)
+    {
 
         $transaction = Transaction::with('user')->findOrFail($id);
         $detail = TransactionDetail::where('transaction_id', $id)->get();
@@ -138,7 +153,8 @@ class PesananController extends Controller
         return view('admin.RiwayatPesanan.pesan', compact('transaction', 'detail', 'product'));
     }
 
-    public function langsung($id){
+    public function langsung($id)
+    {
 
         $transaction = Transaction::with('user')->findOrFail($id);
         $detail = TransactionDetail::where('transaction_id', $id)->get();
@@ -147,7 +163,8 @@ class PesananController extends Controller
         return view('admin.RiwayatPesanan.langsung', compact('transaction', 'detail', 'product'));
     }
 
-    public function ditolak($id){
+    public function ditolak($id)
+    {
 
         $transaction = Transaction::with('user')->findOrFail($id);
         $detail = TransactionDetail::where('transaction_id', $id)->get();

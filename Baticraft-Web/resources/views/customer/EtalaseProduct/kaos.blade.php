@@ -9,7 +9,7 @@
             <div class="col-lg-3 col-md-4 mb-6 mb-md-0">
                 <div class="py-4">
                     <!-- heading -->
-                    <h5 class="mb-3">Categories</h5>
+                    <h5 class="mb-3">Kategori</h5>
                     <!-- nav -->
                     <ul class="nav nav-category" id="categoryCollapseMenu">
                         <!-- nav item -->
@@ -69,7 +69,7 @@
                                         @csrf
                                         <input type="hidden" name="product_id" value="{{ $row->id }}"> <!-- Ganti dengan ID produk yang sesuai -->
                                         <input type="hidden" name="jumlah" value="1"> <!-- Ganti dengan jumlah produk yang ingin ditambahkan -->
-                                        <button type="submit" class="btn btn-primary btn-sm">
+                                        <button type="submit" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#success-alert-modal">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
                                                 <line x1="12" y1="5" x2="12" y2="19"></line>
                                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -85,4 +85,20 @@
             </div>
         </div>
 </section>
+
+<div class="modal fade"  id="success-alert-modal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body p-6">
+        <div class="d-flex justify-content-between align-items-start ">
+          <div>
+            <h5 class="mb-1">Berhasil!</h5>
+            <p class="mb-0 small">Produk sudah berhasil ditambahkan ke keranjang. </p>
+          </div>
+          <button type="button" class="btn btn-primary my-2" data-bs-dismiss="modal">Kembali</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

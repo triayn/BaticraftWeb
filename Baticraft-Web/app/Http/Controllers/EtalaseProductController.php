@@ -10,9 +10,10 @@ use Illuminate\Http\Request;
 
 class EtalaseProductController extends Controller
 {
-    public  function index()
+    public function index()
     {
-        $data = Product::where('status', 'tersedia')->get();
+        // Ambil produk yang tersedia dan stok lebih dari nol
+        $data = Product::where('status', 'tersedia')->where('stok', '>', 0)->get();
         $images = ImageProduct::all(); // Ambil semua gambar terlebih dahulu
 
         return view('customer.EtalaseProduct.index', compact('data', 'images'));
@@ -20,7 +21,11 @@ class EtalaseProductController extends Controller
 
     public function kain()
     {
-        $data = Product::where('kategori', 'kain')->where('status', 'tersedia')->get();
+        // Ambil produk kategori 'kain', yang tersedia, dan memiliki stok lebih dari nol
+        $data = Product::where('kategori', 'kain')
+            ->where('status', 'tersedia')
+            ->where('stok', '>', 0)
+            ->get();
         $images = ImageProduct::all(); // Ambil semua gambar terlebih dahulu
 
         return view('customer.EtalaseProduct.kain', compact('data', 'images'));
@@ -28,7 +33,11 @@ class EtalaseProductController extends Controller
 
     public function kemeja()
     {
-        $data = Product::where('kategori', 'kemeja')->where('status', 'tersedia')->get();
+        // Ambil produk kategori 'kemeja', yang tersedia, dan memiliki stok lebih dari nol
+        $data = Product::where('kategori', 'kemeja')
+            ->where('status', 'tersedia')
+            ->where('stok', '>', 0)
+            ->get();
         $images = ImageProduct::all(); // Ambil semua gambar terlebih dahulu
 
         return view('customer.EtalaseProduct.kemeja', compact('data', 'images'));
@@ -36,8 +45,12 @@ class EtalaseProductController extends Controller
 
     public function kaos()
     {
+        // Ambil produk kategori 'kaos', yang tersedia, dan memiliki stok lebih dari nol
+        $data = Product::where('kategori', 'kaos')
+            ->where('status', 'tersedia')
+            ->where('stok', '>', 0)
+            ->get();
         $images = ImageProduct::all(); // Ambil semua gambar terlebih dahulu
-        $data = Product::where('kategori', 'kaos')->where('status', 'tersedia')->get();
 
         return view('customer.EtalaseProduct.kaos', compact('data', 'images'));
     }
@@ -49,5 +62,4 @@ class EtalaseProductController extends Controller
 
         return view('customer.EtalaseProduct.detail', compact('data', 'images'));
     }
-
 }

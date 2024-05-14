@@ -7,7 +7,7 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item active">Pesanan / <a href="javascript: void(0);">Pesanan Masuk</a></li>
+                    <li class="breadcrumb-item active">Pesanan / <a href="javascript: void(0);">Pesanan Riwayat</a></li>
                 </ol>
             </div>
             <h4 class="page-title">Pesanan</h4>
@@ -153,7 +153,7 @@
 </div>
 
 <!-- Modal Konfirmasi Pesanan Diterima -->
-<div class="modal fade" id="konfirmasiModal" tabindex="-1" role="dialog" aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
+<div class="modal fade @if(session('error') || $errors->any()) show @endif" id="konfirmasiModal" tabindex="-1" role="dialog" aria-labelledby="konfirmasiModalLabel" aria-hidden="true" @if(session('error') || $errors->any()) style="display: block;" @endif>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -163,21 +163,20 @@
             <div class="modal-body">
                 <form action="{{ route('konfirmasi.diterima') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="idTransaksi" value="{{ $transaction->id }}"> <!-- Ganti $pesanan->id dengan ID pesanan yang ingin dikonfirmasi -->
+                    <input type="hidden" name="idTransaksi" value="{{ old('idTransaksi', $transaction->id) }}">
                     <div class="mb-3">
                         <label for="tanggalPengambilan" class="form-label">Kasir</label>
                         <input type="text" class="form-control" value="{{ $user->nama }}" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="tanggalPengambilan" class="form-label">Tanggal Pengambilan</label>
-                        <input type="datetime-local" class="form-control" id="tanggalPengambilan" name="tanggalPengambilan" required>
+                        <input type="datetime-local" class="form-control" id="tanggalPengambilan" name="tanggalPengambilan" value="{{ old('tanggalPengambilan') }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="tanggalKadaluarsa" class="form-label">Tanggal Kadaluarsa</label>
-                        <input type="datetime-local" class="form-control" id="tanggalKadaluarsa" name="tanggalKadaluarsa" required>
+                        <input type="datetime-local" class="form-control" id="tanggalKadaluarsa" name="tanggalKadaluarsa" value="{{ old('tanggalKadaluarsa') }}" required>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-success">Konfirmasi</button>
                     </div>
                 </form>
@@ -207,8 +206,7 @@
                         <textarea class="form-control" id="alasanPenolakan" name="alasanPenolakan" rows="3" required></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-danger">Tolak</button>
+                        <button type="submit" class="btn btn-success">Konfirmasi</button>
                     </div>
                 </form>
             </div>
@@ -216,9 +214,41 @@
     </div>
 </div>
 
-
+@if (session('error') || $errors->any())
+<!-- Error Alert Modal -->
+<div id="error-alert-modal" class="modal fade show" tabindex="-1" role="dialog" aria-hidden="true" style="display: block;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body p-4">
+                <div class="text-center">
+                    <i class="dripicons-warning h1 text-warning"></i>
+                    <h4 class="mt-2">Gagal!</h4>
+                    <p class="mt-3">
+                        @if (session('error'))
+                        {{ session('error') }}
+                        @else
+                        {{ $errors->first() }}
+                        @endif
+                    </p>
+                    <button type="button" class="btn btn-info my-2" data-bs-dismiss="modal" onclick="hideModals()">Kembali</button>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var errorModal = new bootstrap.Modal(document.getElementById('error-alert-modal'));
+        errorModal.show();
+    });
+</script>
+@endif
 @endsection
 
 @section('script')
-
+<!-- <script>
+    $(document).ready(function() {
+        $('#warning-alert-modal').modal('show');
+    });
+</script> -->
 @endsection

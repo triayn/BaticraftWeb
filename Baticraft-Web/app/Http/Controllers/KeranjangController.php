@@ -19,6 +19,7 @@ class KeranjangController extends Controller
     public function cart()
     {
         // Ambil ID user yang sedang login
+        $images = ImageProduct::all();
         $userId = Auth::id();
 
         // Ambil data keranjang sesuai dengan ID user
@@ -34,7 +35,7 @@ class KeranjangController extends Controller
         }
 
         // Kirim data keranjang, total item, dan total harga ke view
-        return view('customer.keranjang.index', compact('carts', 'totalItems', 'totalPrice'));
+        return view('customer.keranjang.index', compact('images', 'carts', 'totalItems', 'totalPrice'));
     }
 
     public function addToCart(Request $request)
@@ -109,71 +110,61 @@ class KeranjangController extends Controller
 
     public function checkout(Request $request)
     {
-        // Validasi data
-        $request->validate([
-            'kode_transaksi' => 'required',
-            'user_id' => 'required',
-            'kasir' => 'nullable',
-            'jenis_transaksi' => 'required',
-            'total_item' => 'required|numeric|min:1',
-            'total_harga' => 'required|numeric|min:5',
-            'metode_pembayaran' => 'nullable',
-            'catatan_customer' => 'nullable|string|max:255',
-            'catatan_admin' => 'nullable|string|max:255',
-            'status_transaksi' => 'required',
-            'tanggal_konfirmasi' => 'nullable',
-            'tanggal_expired' => 'nullable',
-            'items' => 'required|array',
-            'items.*.produk_id' => 'required|numeric|min:1',
-            'items.*.nama_produk' => 'required|string|max:255',
-            'items.*.jumlah' => 'required|numeric|min:1',
-            'items.*.harga_total' => 'required|numeric|min:1',
-        ]);
-
-        // Dapatkan data keranjang dari controller cart()
-        $carts = Cart::where('user_id', Auth::id())->with('product')->get();
-
-        // Gunakan total item dan total harga yang sudah dihitung sebelumnya
-        $totalItems = $request->input('total_item');
-        $totalPrice = $request->input('total_harga');
+        DB::beginTransaction();
 
         try {
-            DB::beginTransaction();
+            // Ambil keranjang belanja user yang sedang login
+            $userId = Auth::id();
+            $cartItems = Cart::where('user_id', $userId)->get();
 
-            // Membuat kode transaksi otomatis
-            $kode_transaksi = Carbon::now()->format('Ymd') . Str::random(4);
-            $catatan_customer = $request->input('catatan_customer');
-
-            // Simpan data transaksi
-            $transaction = new Transaction();
-            $transaction->kode_transaksi = $kode_transaksi;
-            $transaction->user_id = auth()->user()->id;
-            $transaction->jenis_transaksi = 'pesan';
-            $transaction->total_item = $totalItems;
-            $transaction->total_harga = $totalPrice;
-            $transaction->catatan_customer = $catatan_customer;
-            $transaction->status_transaksi = 'menunggu';
-            $transaction->save();
-
-            // Simpan detail transaksi
-            foreach ($carts as $cartItem) {
-                $transactionDetail = new TransactionDetail();
-                $transactionDetail->transaction_id = $transaction->id;
-                $transactionDetail->product_id = $cartItem->product_id;
-                $transactionDetail->nama_product = $cartItem->product->nama;
-                $transactionDetail->jumlah = $cartItem->jumlah;
-                $transactionDetail->harga_total = $cartItem->jumlah * $cartItem->product->harga;
-                $transactionDetail->save();
+            if ($cartItems->isEmpty()) {
+                return response()->json(['message' => 'Cart is empty'], 400);
             }
 
-            // Kosongkan keranjang 
-            Cart::where('user_id', Auth::id())->delete();
+            // Cek stok produk 
+            foreach ($cartItems as $item) {
+                if ($item->jumlah > $item->product->stok) {
+                    // Pesan debugging
+                    Log::debug('Jumlah produk melebihi stok: ' . $item->product->nama);
+                    return back()->with('error', 'Jumlah produk "' . $item->product->nama . '" melebihi stok yang tersedia');
+                }
+            }
+
+            // Membuat kode transaksi otomatis
+            $kode_transaksi = strtoupper(Carbon::now()->format('Ymd') . Str::random(4));
+
+            // Buat transaksi baru
+            $transaction = Transaction::create([
+                'kode_transaksi' => $kode_transaksi,
+                'user_id' => $userId,
+                'jenis_transaksi' => 'pesan',
+                'total_item' => $cartItems->count(),
+                'total_harga' => $cartItems->sum(function ($item) {
+                    return $item->product->harga * $item->jumlah;
+                }),
+                'catatan_customer' => $request->input('catatan_customer'),
+                'status_transaksi' => 'menunggu',
+            ]);
+
+            // Buat detail transaksi dari item keranjang
+            foreach ($cartItems as $item) {
+                TransactionDetail::create([
+                    'transaction_id' => $transaction->id,
+                    'product_id' => $item->product_id,
+                    'nama_product' => $item->product->nama,
+                    'jumlah' => $item->jumlah,
+                    'harga_total' => $item->product->harga * $item->jumlah,
+                ]);
+            }
+
+            // Kosongkan keranjang user setelah transaksi berhasil dibuat
+            Cart::where('user_id', $userId)->delete();
 
             DB::commit();
 
-            return redirect()->route('pesanan.index')->with('success', 'Transaksi berhasil diproses');
+            return redirect()->route('pesanan.index')->with('success', 'Pemesanan berhasil diproses, cek status pemesanan disini');
         } catch (\Exception $e) {
-            DB::rollback();
+            DB::rollBack();
             return back()->with('error', 'Terjadi kesalahan saat memproses transaksi');
         }
     }

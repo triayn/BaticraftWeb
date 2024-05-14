@@ -47,14 +47,14 @@
                                     <td>
                                         <a href="{{ route('customer.show', $row->id) }}" class="btn btn-info"><i class="uil-eye">
                                             </i>Lihat</a>
-                                        <form action="{{ route('customer.delete', $row->id) }}" method="POST" style="display: inline-block;">
+                                        <!-- <form action="{{ route('customer.delete', $row->id) }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger" 
                                             onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">
                                                 <i class="mdi mdi-window-close"></i> Hapus
                                             </button>
-                                        </form>
+                                        </form> -->
                                     </td>
                                 </tr>
                                 @endforeach

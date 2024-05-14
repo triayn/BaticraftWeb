@@ -50,7 +50,7 @@
                                     <td>
                                         <a href="{{ route('user.show', $row->id) }}" class="btn btn-info"><i class="uil-eye">
                                             </i>Lihat</a>
-                                        <a href="{{ route('user.edit', $row->id) }}" class="btn btn-success">
+                                        <!-- <a href="{{ route('user.edit', $row->id) }}" class="btn btn-success">
                                             <i class="mdi mdi-pencil"></i> Edit</a>
                                         <form action="{{ route('user.delete', $row->id) }}" method="POST" style="display: inline-block;">
                                             @csrf
@@ -59,7 +59,7 @@
                                             onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">
                                                 <i class="mdi mdi-window-close"></i> Hapus
                                             </button>
-                                        </form>
+                                        </form> -->
                                     </td>
                                 </tr>
                                 @endforeach

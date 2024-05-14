@@ -51,7 +51,7 @@
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{ $data->id }}"> <!-- Ganti dengan ID produk yang sesuai -->
                                 <input type="hidden" name="jumlah" value="1"> <!-- Ganti dengan jumlah produk yang ingin ditambahkan -->
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#success-alert-modal">
                                     <i class="feather-icon icon-shopping-bag me-2"></i>Masukkan Keranjang
                                 </button>
                             </form>
@@ -152,4 +152,20 @@
         </div>
     </div>
 </section>
+
+<div class="modal fade"  id="success-alert-modal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body p-6">
+        <div class="d-flex justify-content-between align-items-start ">
+          <div>
+            <h5 class="mb-1">Berhasil!</h5>
+            <p class="mb-0 small">Produk sudah berhasil ditambahkan ke keranjang. </p>
+          </div>
+          <button type="button" class="btn btn-primary my-2" data-bs-dismiss="modal">Kembali</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

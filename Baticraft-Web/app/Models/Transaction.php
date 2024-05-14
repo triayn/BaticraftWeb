@@ -17,7 +17,6 @@ class Transaction extends Model
         'jenis_transaksi',
         'total_item',
         'total_harga',
-        'metode_pembayaran',
         'catatan_customer',
         'status_transaksi',
         'catatan_admin',
