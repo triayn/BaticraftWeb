@@ -38,6 +38,7 @@ class ProductsMobileController extends Controller
             ->leftJoin('image_products as ip', 'p.id', '=', 'ip.product_id')
             ->where('nama', 'like', '%' . $searchText . '%')
             ->where('p.kategori', 'kain')
+            ->where('p.stok', '>', 0)
             ->groupBy('p.id', 'p.kode_product', 'p.nama', 'p.deskripsi', 'p.harga', 'p.kategori', 'p.stok', 'p.ukuran', 'p.bahan', 'p.panjang_kain', 'p.lebar_kain', 'p.jenis_batik', 'p.jenis_lengan', 'p.status', 'p.created_at', 'p.updated_at')
             ->get();
         return response()->json($products);
@@ -50,6 +51,7 @@ class ProductsMobileController extends Controller
             ->leftJoin('image_products as ip', 'p.id', '=', 'ip.product_id')
             ->where('nama', 'like', '%' . $searchText . '%')
             ->where('p.kategori', 'kemeja')
+            ->where('p.stok', '>', 0)
             ->groupBy('p.id', 'p.kode_product', 'p.nama', 'p.deskripsi', 'p.harga', 'p.kategori', 'p.stok', 'p.ukuran', 'p.bahan', 'p.panjang_kain', 'p.lebar_kain', 'p.jenis_batik', 'p.jenis_lengan', 'p.status', 'p.created_at', 'p.updated_at')
             ->get();
         return response()->json($products);
@@ -62,6 +64,7 @@ class ProductsMobileController extends Controller
             ->leftJoin('image_products as ip', 'p.id', '=', 'ip.product_id')
             ->where('nama', 'like', '%' . $searchText . '%')
             ->where('p.kategori', 'kaos')
+            ->where('p.stok', '>', 0)
             ->groupBy('p.id', 'p.kode_product', 'p.nama', 'p.deskripsi', 'p.harga', 'p.kategori', 'p.stok', 'p.ukuran', 'p.bahan', 'p.panjang_kain', 'p.lebar_kain', 'p.jenis_batik', 'p.jenis_lengan', 'p.status', 'p.created_at', 'p.updated_at')
             ->get();
         return response()->json($products);
@@ -72,6 +75,7 @@ class ProductsMobileController extends Controller
             ->select('p.id', 'p.kode_product', 'p.nama', 'p.deskripsi', 'p.harga', 'p.kategori', 'p.stok', 'p.ukuran', 'p.bahan', 'p.panjang_kain', 'p.lebar_kain', 'p.jenis_batik', 'p.jenis_lengan', 'p.status', 'p.created_at', 'p.updated_at', DB::raw('MIN(ip.image_path) AS image_path'))
             ->leftJoin('image_products as ip', 'p.id', '=', 'ip.product_id')
             ->where('p.kategori', 'kain')
+            ->where('p.stok', '>', 0)
             ->groupBy('p.id', 'p.kode_product', 'p.nama', 'p.deskripsi', 'p.harga', 'p.kategori', 'p.stok', 'p.ukuran', 'p.bahan', 'p.panjang_kain', 'p.lebar_kain', 'p.jenis_batik', 'p.jenis_lengan', 'p.status', 'p.created_at', 'p.updated_at')
             ->get();
 
@@ -114,6 +118,7 @@ class ProductsMobileController extends Controller
             ->select('p.id', 'p.kode_product', 'p.nama', 'p.deskripsi', 'p.harga', 'p.kategori', 'p.stok', 'p.ukuran', 'p.bahan', 'p.panjang_kain', 'p.lebar_kain', 'p.jenis_batik', 'p.jenis_lengan', 'p.status', 'p.created_at', 'p.updated_at', DB::raw('MIN(ip.image_path) AS image_path'))
             ->leftJoin('image_products as ip', 'p.id', '=', 'ip.product_id')
             ->where('p.kategori', 'kaos')
+            ->where('p.stok', '>', 0)
             ->groupBy('p.id', 'p.kode_product', 'p.nama', 'p.deskripsi', 'p.harga', 'p.kategori', 'p.stok', 'p.ukuran', 'p.bahan', 'p.panjang_kain', 'p.lebar_kain', 'p.jenis_batik', 'p.jenis_lengan', 'p.status', 'p.created_at', 'p.updated_at')
             ->get();
 
@@ -156,6 +161,7 @@ class ProductsMobileController extends Controller
             ->select('p.id', 'p.kode_product', 'p.nama', 'p.deskripsi', 'p.harga', 'p.kategori', 'p.stok', 'p.ukuran', 'p.bahan', 'p.panjang_kain', 'p.lebar_kain', 'p.jenis_batik', 'p.jenis_lengan', 'p.status', 'p.created_at', 'p.updated_at', DB::raw('MIN(ip.image_path) AS image_path'))
             ->leftJoin('image_products as ip', 'p.id', '=', 'ip.product_id')
             ->where('p.kategori', 'kemeja')
+            ->where('p.stok', '>', 0)
             ->groupBy('p.id', 'p.kode_product', 'p.nama', 'p.deskripsi', 'p.harga', 'p.kategori', 'p.stok', 'p.ukuran', 'p.bahan', 'p.panjang_kain', 'p.lebar_kain', 'p.jenis_batik', 'p.jenis_lengan', 'p.status', 'p.created_at', 'p.updated_at')
             ->get();
 
@@ -430,20 +436,6 @@ class ProductsMobileController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi input jika diperlukan
-        $validatedData = $request->validate([
-            'kode_product' => 'required',
-            'nama' => 'required',
-            'deskripsi' => 'required',
-            'harga' => 'required|numeric',
-            'kategori' => 'required',
-            'stok' => 'required|numeric',
-            'panjang_kain' => 'required|numeric',
-            'lebar_kain' => 'required|numeric',
-            'jenis_batik' => 'required',
-            'status' => 'required',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi gambar
-        ]);
 
         // Menyimpan informasi produk ke tabel products
         $productId = DB::table('products')->insertGetId([
@@ -480,7 +472,7 @@ class ProductsMobileController extends Controller
             // Menampilkan pesan sukses
             return response()->json(['message' => 'Produk dan gambar berhasil disimpan.']);
         } catch (e) {
-            return e;
+            return $productId;
         }
     }
 
@@ -503,5 +495,28 @@ class ProductsMobileController extends Controller
 
         // Mengirimkan kode produk berikutnya sebagai respon
         return response()->json(['next_product_code' => $nextProductCode]);
+    }
+
+    public function produkTerlaris()
+    {
+        $topProducts = DB::table('transaction_details')
+            ->join('products', 'transaction_details.product_id', '=', 'products.id')
+            ->join('image_products', function ($join) {
+                $join->on('products.id', '=', 'image_products.product_id')
+                    ->whereRaw('image_products.id = (SELECT MIN(id) FROM image_products WHERE image_products.product_id = products.id)');
+            })
+            ->select('products.id', 'products.kategori', 'image_products.image_path', 'products.nama', 'products.harga', DB::raw('SUM(transaction_details.jumlah) as total_terjual'))
+            ->groupBy('products.id', 'image_products.image_path', 'products.nama', 'products.harga', 'products.kategori')
+            ->orderByDesc('total_terjual')
+            ->limit(3) // Ambil 3 produk terlaris
+            ->get();
+
+        // Konversi hasil query ke array asosiatif
+        $productsArray = $topProducts->toArray();
+
+        // Konversi array asosiatif ke JSON
+        $jsonProduk = json_encode($productsArray);
+
+        return $jsonProduk;
     }
 }

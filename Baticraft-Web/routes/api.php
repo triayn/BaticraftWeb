@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\MobileApi\InformationController;
+use App\Http\Controllers\MobileApi\KelolaPengguna;
 use App\Http\Controllers\MobileApi\LoginMobileController;
 use App\Http\Controllers\MobileApi\ProductsMobileController;
 use App\Http\Controllers\MobileApi\TransactionController;
@@ -41,7 +42,9 @@ Route::group(['prefix' => '/MobileApi'], function () {
     Route::post('/checkCurrentPassword', [LoginMobileController::class, 'checkCurrentPassword']);
     Route::post('/EditProfil', [LoginMobileController::class, 'update']);
     Route::post('/UploadGambarUser', [LoginMobileController::class, 'uploadFoto']);
-
+    Route::post('/checkEmail', [LoginMobileController::class, 'checkEmail']);
+    Route::post('/updatePasswordLupaSandi', [LoginMobileController::class, 'updatePasswordLupaSandi']);
+    
     //informasi toko controller
     Route::get('/DetailInformasiMobile', [InformationController::class, 'show']);
     Route::post('/EditIformasiMobile', [InformationController::class, 'update']);
@@ -64,10 +67,35 @@ Route::group(['prefix' => '/MobileApi'], function () {
     Route::post('/searchKain', [ProductsMobileController::class, 'searchKain']);
     Route::post('/searchKemeja', [ProductsMobileController::class, 'searchKemeja']);
     Route::post('/searchKaos', [ProductsMobileController::class, 'searchKaos']);
-
+    Route::get('/produkTerlaris', [ProductsMobileController::class, 'produkTerlaris']);
+    
     //Transaksi Controller
     Route::post('/insertNew', [TransactionController::class, 'insertNew']);
     Route::post('/searchTransaksi', [TransactionController::class, 'search']);
     Route::get('/showCompletedTransactions', [TransactionController::class, 'showCompletedTransactions']);
     Route::post('/showTransactionAndDetails', [TransactionController::class, 'showTransactionAndDetails']);
+    Route::get('/pendapatanHariIni', [TransactionController::class, 'pendapatanHariIni']);
+    Route::post('/pendapatanJangkaWaktu', [TransactionController::class, 'pendapatanJangkaWaktu']);
+    Route::post('/pendapatanBulanan', [TransactionController::class, 'pendapatanBulanan']);
+    Route::get('/getTransactionData', [TransactionController::class, 'getTransactionData']);
+    Route::get('/getTransactionDataLimit', [TransactionController::class, 'getTransactionDataLimit']);
+    Route::post('/tolakPesanan', [TransactionController::class, 'tolakPesanan']);
+    Route::post('/prosesPesanan', [TransactionController::class, 'prosesPesanan']);
+    Route::post('/getCariTransactionData', [TransactionController::class, 'getCariTransactionData']);
+    Route::post('/PesananDiambil', [TransactionController::class, 'PesananDiambil']);
+
+    Route::post('/searchSelesai', [TransactionController::class, 'searchSelesai']);
+    Route::post('/searchTolak', [TransactionController::class, 'searchTolak']);
+    Route::post('/searchProses', [TransactionController::class, 'searchProses']);
+
+    Route::get('/showRiwayatTolak', [TransactionController::class, 'showRiwayatTolak']);
+    Route::get('/showRiwayatProses', [TransactionController::class, 'showRiwayatProses']);
+    Route::get('/showRiwayatSelesai', [TransactionController::class, 'showRiwayatSelesai']);
+    
+    //Kelola Pengguna
+    Route::post('/getKelolaPenguna', [KelolaPengguna::class, 'getSemua']);
+    Route::post('/getCariPengguna', [KelolaPengguna::class, 'search']);
+    Route::post('/tambahAdmin', [KelolaPengguna::class, 'insert']);
+
+
 });

@@ -51,17 +51,11 @@ class LoginMobileController extends Controller
 
         // Memeriksa apakah pengguna ditemukan
         if ($user) {
-            // Mendapatkan data password dan role
-            $role_db = $user->role;
-
-            // Memeriksa apakah role user adalah admin
-            if ($role_db == 'admin') {
+         
                 // Mengembalikan data pengguna jika role adalah admin
                 return response()->json($user);
-            } else {
-                // Mengembalikan response kosong jika bukan admin
-                return response()->json([]);
-            }
+        
+        
         } else {
             // Mengembalikan response kosong jika user tidak ditemukan
             return response()->json([]);
@@ -179,4 +173,44 @@ class LoginMobileController extends Controller
         }
     }
 
+    public function checkEmail(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        // Ambil email dari request
+        $email = $request->email;
+
+        // Cari user berdasarkan email
+        $user = User::where('email', $email)->first();
+
+        // Periksa apakah user ditemukan
+        if ($user) {
+            // Jika user ditemukan, kembalikan response positif
+            return response()->json(['message' => 'Email sudah terdaftar'], 200);
+        } else {
+            // Jika user tidak ditemukan, kembalikan response negatif
+            return response()->json(['message' => 'Email belum terdaftar'], 404);
+        }
+    }
+    public function updatePasswordLupaSandi(Request $request){
+
+        $data = $request->all();
+    
+        $user = User::where('email', $data['email'])->first(); // Cari pengguna berdasarkan alamat email
+    
+        if ($user) {
+            $hashedPassword = bcrypt($data['password_baru']);
+            $user->update([
+                'password' => $hashedPassword,
+            ]);
+    
+            return response()->json(['message' => 'Password berhasil diperbarui']);
+        } else {
+            return response()->json(['error' => 'Pengguna tidak ditemukan'], 404);
+        }
+    }
+    
 }
