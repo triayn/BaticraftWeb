@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ImageProduct;
 use App\Models\Informations;
 use App\Models\Product;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -32,13 +33,13 @@ class HomeController extends Controller
     public function pembeli()
     {
 
-        $kain = Product::where('kategori', 'kain')->where('status', 'tersedia')->get();
-        $kemeja = Product::where('kategori', 'kemeja')->where('status', 'tersedia')->get();
-        $kaos = Product::where('kategori', 'kaos')->where('status', 'tersedia')->get();
+        $kain = Product::where('kategori', 'kain')->where('status', 'tersedia')->where('stok', '>', 0)->get();
+        $kemeja = Product::where('kategori', 'kemeja')->where('status', 'tersedia')->where('stok', '>', 0)->get();
+        $kaos = Product::where('kategori', 'kaos')->where('status', 'tersedia')->where('stok', '>', 0)->get();
         $images = ImageProduct::all(); // Ambil semua gambar terlebih dahulu
         $info = Informations::first(); // Ambil data informasi pertama dari tabel
         $whatsappNumber = $info->no_telpon; // Ambil nomor WhatsApp dari data informasi
-        // $infoImg = $info->image;
+        $pesan = Transaction::orderBy('updated_at', 'desc')->limit(3)->get();
 
         return view('homePembeli', compact(
             'kain',
@@ -47,7 +48,7 @@ class HomeController extends Controller
             'images',
             'whatsappNumber',
             'info',
-            // 'infoImg'
+            'pesan'
         ));
     }
 }

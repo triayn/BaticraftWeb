@@ -133,271 +133,266 @@
             <div class="container">
                 <!-- row -->
                 <div class="row">
-                    <!-- col -->
-                    <div class="col-12 col-md-6 col-lg-4 mb-8">
-                        <div class="mb-4">
-                            <a href="#!">
-                                <!-- img -->
-                                <div class="img-zoom">
-                                    <img src="{{ asset('assets/customer/images/blog/blog-img-1.jpg') }}" alt="" class="img-fluid rounded-3 w-100">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mb-3"><a href="#!">status</a>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
+                        <div class="mt-5">
+                            <div class="row">
+                                @foreach ($pesan as $pesanan)
+                                <div class="col-lg-4 col-12 mb-4">
+                                    <!-- input -->
+                                    <div class="border p-6 rounded-3">
+                                        <address> <strong>{{ $pesanan->kode_transaksi }}</strong> <br> Status: {{ $pesanan->status_transaksi }}<br>
+                                            Tanggal: {{ $pesanan->updated_at }}<br>
 
-                        </div>
-                        <!-- text -->
-                        <div>
-                            <h2 class="h5"><a href="#!" class="text-inherit">Total Pesanan: Rp 320.00,00</a>
-                            </h2>
-                            <div class="d-flex justify-content-between text-muted mt-4"><span><small>22 April
-                                        2023</small></span><span><small>Total Pesanan: <span class="text-dark fw-bold">6 pcs</span></small></span>
+                                            <abbr title="Phone">Total Harga: Rp {{ number_format($pesanan->total_harga, 0, ',', '.') }}({{ $pesanan->total_item }})</abbr>
+                                        </address>
+
+                                    </div>
+                                </div>
+                                @endforeach
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </section>
-    </div>
-</section>
 
-<!-- Kategori Kain -->
-<section class="my-lg-14 my-8">
-    <div class="container ">
-        <div class="row">
-            <div class="col-12">
-                <div class="d-md-flex justify-content-between align-items-center mb-8">
-                    <div>
-                        <h3 class=" mb-1">Kain Batik</h3>
-                        <p>Dapatkan kain batik berkualitas tinggi.</p>
-                    </div>
-                    <div>
-                        <a href="{{ route('etalase.kain') }}">Lihat Semua <i class="feather-icon icon-chevron-right"></i></a>
+        <!-- Kategori Kain -->
+        <section class="my-lg-14 my-8">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-md-flex justify-content-between align-items-center mb-8">
+                            <div>
+                                <h3 class=" mb-1">Kain Batik</h3>
+                                <p>Dapatkan kain batik berkualitas tinggi.</p>
+                            </div>
+                            <div>
+                                <a href="{{ route('etalase.kain') }}">Lihat Semua <i class="feather-icon icon-chevron-right"></i></a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-0 border rounded-3 border-2 border-info">
+                    @foreach ($kain->take(5)->reverse() as $satu)
+                    <div class="col mb-lg-0">
+                        <div class="card card-product-v2 h-100">
+                            <div class="card-body position-relative text-center">
+                                <div class="text-center position-relative">
+                                    <!-- img -->
+                                    @if($images->isNotEmpty())
+                                    @foreach($images as $image)
+                                    @if($image->product_id == $satu->id)
+                                    <a href="#!"> <img src="{{ asset('storage/product/' . $image->image_path) }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
+                                    @break
+                                    @endif
+                                    @endforeach
+                                    @endif
+                                    <!-- action btn -->
+                                    <div class="product-action-btn">
+                                        <a href="{{ route('etalase.detail', $satu->id) }}" class="btn-action mb-1"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
+                                    </div>
+                                </div>
+                                <div class="mb-3"><span class="text-dark">Rp {{ number_format($satu->harga, 0, ',', '.') }}</span></div>
+                                <!-- title -->
+                                <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $satu->nama }}</a></h2>
+                                <div class="mt-3"><span class="text-uppercase small text-primary">Tersedia</span></div>
+                                <div class="mt-4">
+                                    <div class="my-3">
+                                        <small>Stok produk tersedia : <span class="text-dark fw-bold">{{ $satu->stok }} pcs</span></small>
+                                    </div>
+                                </div>
+                                <!-- btn -->
+                                <div class="product-fade-block">
+                                    <div class="d-grid mt-4">
+                                        <form action="{{ route('keranjang.add') }}" method="POST" class="d-inline">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $satu->id }}"> <!-- Ganti dengan ID produk yang sesuai -->
+                                            <input type="hidden" name="jumlah" value="1"> <!-- Ganti dengan jumlah produk yang ingin ditambahkan -->
+                                            <button type="submit" class="btn btn-primary rounded-pill">
+                                                Masukkan Keranjang
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-content-fade border-info" style="margin-bottom: -60px;"></div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
             </div>
-        </div>
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-0 border rounded-3 border-2 border-info">
-            @foreach ($kain->take(5)->reverse() as $satu)
-            <div class="col mb-lg-0">
-                <div class="card card-product-v2 h-100">
-                    <div class="card-body position-relative text-center">
-                        <div class="text-center position-relative">
+        </section>
+
+
+        <!-- Kategori Kemeja -->
+        <section class="my-lg-14 my-8">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-md-flex justify-content-between align-items-center mb-8">
+                            <div>
+                                <h3 class=" mb-1">Kemeja Dengan Motif Batik</h3>
+                                <p>Dapatkan kemeja dengan ukuran dan desain yang sesuai dengan anda.</p>
+                            </div>
+                            <div>
+                                <a href="{{ route('etalase.kemeja') }}">Lihat Semua <i class="feather-icon icon-chevron-right"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-0 border rounded-3 border-2 border-info">
+                    @foreach ($kemeja->take(5)->reverse() as $dua)
+                    <div class="col mb-lg-0">
+                        <div class="card card-product-v2 h-100">
+                            <div class="card-body position-relative text-center">
+                                <div class="text-center position-relative">
+                                    <!-- img -->
+                                    @if($images->isNotEmpty())
+                                    @foreach($images as $image)
+                                    @if($image->product_id == $dua->id)
+                                    <a href="#!"> <img src="{{ asset('storage/product/' . $image->image_path) }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
+                                    @break
+                                    @endif
+                                    @endforeach
+                                    @endif
+                                    <!-- action btn -->
+                                    <div class="product-action-btn">
+                                        <a href="{{ route('etalase.detail', $dua->id) }}" class="btn-action mb-1"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
+                                    </div>
+                                </div>
+                                <div class="mb-3"><span class="text-dark">Rp {{ number_format($dua->harga, 0, ',', '.') }}</span></div>
+                                <!-- title -->
+                                <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $dua->nama }}</a></h2>
+                                <div class="mt-3"><span class="text-uppercase small text-primary">Tersedia</span></div>
+                                <div class="mt-4">
+                                    <div class="my-3">
+                                        <small>Stok produk tersedia : <span class="text-dark fw-bold">{{ $dua->stok }} pcs</span></small>
+                                    </div>
+                                </div>
+                                <!-- btn -->
+                                <div class="product-fade-block">
+                                    <div class="d-grid mt-4">
+                                        <form action="{{ route('keranjang.add') }}" method="POST" class="d-inline">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $dua->id }}"> <!-- Ganti dengan ID produk yang sesuai -->
+                                            <input type="hidden" name="jumlah" value="1"> <!-- Ganti dengan jumlah produk yang ingin ditambahkan -->
+                                            <button type="submit" class="btn btn-primary rounded-pill">
+                                                Masukkan Keranjang
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-content-fade border-info" style="margin-bottom: -60px;"></div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
+        <!-- Kategori Kaos -->
+        <section class="my-lg-14 my-8">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-md-flex justify-content-between align-items-center mb-8">
+                            <div>
+                                <h3 class=" mb-1">Kaos Dengan Motif Batik Batik</h3>
+                                <p>Kaos batik dengan berbagai pilihan ukuran.</p>
+                            </div>
+                            <div>
+                                <a href="{{ route('etalase.kaos') }}">Lihat Semua <i class="feather-icon icon-chevron-right"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-0 border rounded-3 border-2 border-info">
+                    @foreach ($kaos->take(5)->reverse() as $tiga)
+                    <div class="col mb-lg-0">
+                        <div class="card card-product-v2 h-100">
+                            <div class="card-body position-relative text-center">
+                                <div class="text-center position-relative">
+                                    <!-- img -->
+                                    @if($images->isNotEmpty())
+                                    @foreach($images as $image)
+                                    @if($image->product_id == $tiga->id)
+                                    <a href="#!"> <img src="{{ asset('storage/product/' . $image->image_path) }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
+                                    @break
+                                    @endif
+                                    @endforeach
+                                    @endif
+                                    <!-- action btn -->
+                                    <div class="product-action-btn">
+                                        <a href="{{ route('etalase.detail', $tiga->id) }}" class="btn-action mb-1"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
+                                    </div>
+                                </div>
+                                <div class="mb-3"><span class="text-dark">Rp {{ number_format($tiga->harga, 0, ',', '.') }}</span></div>
+                                <!-- title -->
+                                <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $tiga->nama }}</a></h2>
+                                <div class="mt-3"><span class="text-uppercase small text-primary">Tersedia</span></div>
+                                <div class="mt-4">
+                                    <div class="my-3">
+                                        <small>Stok produk tersedia : <span class="text-dark fw-bold">{{ $tiga->stok }} pcs</span></small>
+                                    </div>
+                                </div>
+                                <!-- btn -->
+                                <div class="product-fade-block">
+                                    <div class="d-grid mt-4">
+                                        <form action="{{ route('keranjang.add') }}" method="POST" class="d-inline">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $tiga->id }}"> <!-- Ganti dengan ID produk yang sesuai -->
+                                            <input type="hidden" name="jumlah" value="1"> <!-- Ganti dengan jumlah produk yang ingin ditambahkan -->
+                                            <button type="submit" class="btn btn-primary rounded-pill">
+                                                Masukkan Keranjang
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-content-fade border-info" style="margin-bottom: -60px;"></div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <hr class="my-lg-14 my-8">
+                <!-- row -->
+                <div class="row align-items-center">
+                    <div class=" offset-lg-2 col-lg-4 col-md-6">
+                        <div class="text-center">
                             <!-- img -->
-                            @if($images->isNotEmpty())
-                            @foreach($images as $image)
-                            @if($image->product_id == $satu->id)
-                            <a href="#!"> <img src="{{ asset('storage/product/' . $image->image_path) }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                            @break
-                            @endif
-                            @endforeach
-                            @endif
-                            <!-- action btn -->
-                            <div class="product-action-btn">
-                                <a href="{{ route('etalase.detail', $satu->id) }}" class="btn-action mb-1"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
-                            </div>
-                        </div>
-                        <div class="mb-3"><span class="text-dark">Rp {{ number_format($satu->harga, 0, ',', '.') }}</span></div>
-                        <!-- title -->
-                        <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $satu->nama }}</a></h2>
-                        <div class="mt-3"><span class="text-uppercase small text-primary">Tersedia</span></div>
-                        <div class="mt-4">
-                            <div class="my-3">
-                                <small>Stok produk tersedia : <span class="text-dark fw-bold">{{ $satu->stok }} pcs</span></small>
-                            </div>
-                        </div>
-                        <!-- btn -->
-                        <div class="product-fade-block">
-                            <div class="d-grid mt-4">
-                                <form action="{{ route('keranjang.add') }}" method="POST" class="d-inline">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{ $satu->id }}"> <!-- Ganti dengan ID produk yang sesuai -->
-                                    <input type="hidden" name="jumlah" value="1"> <!-- Ganti dengan jumlah produk yang ingin ditambahkan -->
-                                    <button type="submit" class="btn btn-primary rounded-pill">
-                                        Masukkan Keranjang
-                                    </button>
-                                </form>
-                            </div>
+                            <img src="{{ asset('assets/customer/images/png/custom.jpg') }}" alt="" class=" img-fluid">
                         </div>
                     </div>
-                    <div class="product-content-fade border-info" style="margin-bottom: -60px;"></div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-<!-- Kategori Kemeja -->
-<section class="my-lg-14 my-8">
-    <div class="container ">
-        <div class="row">
-            <div class="col-12">
-                <div class="d-md-flex justify-content-between align-items-center mb-8">
-                    <div>
-                        <h3 class=" mb-1">Kemeja Dengan Motif Batik</h3>
-                        <p>Dapatkan kemeja dengan ukuran dan desain yang sesuai dengan anda.</p>
-                    </div>
-                    <div>
-                        <a href="{{ route('etalase.kemeja') }}">Lihat Semua <i class="feather-icon icon-chevron-right"></i></a>
+                    <div class=" col-lg-6 col-md-6">
+                        <div class="mb-6">
+                            <div class="mb-7">
+                                <!-- heading -->
+                                <h2>Custome Desain Batik?</h2>
+                                <p class="mb-0">Anda bisa melakukan custome untuk desain batik yang sesuai dan cocok dengan
+                                    anda,
+                                    silahkan hubungi kami melalui Whatsapp.
+                                </p>
+                            </div>
+                            <!-- form -->
+                            <form class="row g-3 mt-1">
+                                <div class="col-auto">
+                                    <a href="https://wa.me/{{ $whatsappNumber }}" target="_blank" class="btn btn-primary mb-3">Hubungi Kami</a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-
             </div>
-        </div>
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-0 border rounded-3 border-2 border-info">
-            @foreach ($kemeja->take(5)->reverse() as $dua)
-            <div class="col mb-lg-0">
-                <div class="card card-product-v2 h-100">
-                    <div class="card-body position-relative text-center">
-                        <div class="text-center position-relative">
-                            <!-- img -->
-                            @if($images->isNotEmpty())
-                            @foreach($images as $image)
-                            @if($image->product_id == $dua->id)
-                            <a href="#!"> <img src="{{ asset('storage/product/' . $image->image_path) }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                            @break
-                            @endif
-                            @endforeach
-                            @endif
-                            <!-- action btn -->
-                            <div class="product-action-btn">
-                                <a href="{{ route('etalase.detail', $dua->id) }}" class="btn-action mb-1"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
-                            </div>
-                        </div>
-                        <div class="mb-3"><span class="text-dark">Rp {{ number_format($dua->harga, 0, ',', '.') }}</span></div>
-                        <!-- title -->
-                        <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $dua->nama }}</a></h2>
-                        <div class="mt-3"><span class="text-uppercase small text-primary">Tersedia</span></div>
-                        <div class="mt-4">
-                            <div class="my-3">
-                                <small>Stok produk tersedia : <span class="text-dark fw-bold">{{ $dua->stok }} pcs</span></small>
-                            </div>
-                        </div>
-                        <!-- btn -->
-                        <div class="product-fade-block">
-                            <div class="d-grid mt-4">
-                                <form action="{{ route('keranjang.add') }}" method="POST" class="d-inline">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{ $dua->id }}"> <!-- Ganti dengan ID produk yang sesuai -->
-                                    <input type="hidden" name="jumlah" value="1"> <!-- Ganti dengan jumlah produk yang ingin ditambahkan -->
-                                    <button type="submit" class="btn btn-primary rounded-pill">
-                                        Masukkan Keranjang
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-content-fade border-info" style="margin-bottom: -60px;"></div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-<!-- Kategori Kaos -->
-<section class="my-lg-14 my-8">
-    <div class="container ">
-        <div class="row">
-            <div class="col-12">
-                <div class="d-md-flex justify-content-between align-items-center mb-8">
-                    <div>
-                        <h3 class=" mb-1">Kaos Dengan Motif Batik Batik</h3>
-                        <p>Kaos batik dengan berbagai pilihan ukuran.</p>
-                    </div>
-                    <div>
-                        <a href="{{ route('etalase.kaos') }}">Lihat Semua <i class="feather-icon icon-chevron-right"></i></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-0 border rounded-3 border-2 border-info">
-            @foreach ($kaos->take(5)->reverse() as $tiga)
-            <div class="col mb-lg-0">
-                <div class="card card-product-v2 h-100">
-                    <div class="card-body position-relative text-center">
-                        <div class="text-center position-relative">
-                            <!-- img -->
-                            @if($images->isNotEmpty())
-                            @foreach($images as $image)
-                            @if($image->product_id == $tiga->id)
-                            <a href="#!"> <img src="{{ asset('storage/product/' . $image->image_path) }}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid"></a>
-                            @break
-                            @endif
-                            @endforeach
-                            @endif
-                            <!-- action btn -->
-                            <div class="product-action-btn">
-                                <a href="{{ route('etalase.detail', $tiga->id) }}" class="btn-action mb-1"><i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Detail Produk"></i></a>
-                            </div>
-                        </div>
-                        <div class="mb-3"><span class="text-dark">Rp {{ number_format($tiga->harga, 0, ',', '.') }}</span></div>
-                        <!-- title -->
-                        <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">{{ $tiga->nama }}</a></h2>
-                        <div class="mt-3"><span class="text-uppercase small text-primary">Tersedia</span></div>
-                        <div class="mt-4">
-                            <div class="my-3">
-                                <small>Stok produk tersedia : <span class="text-dark fw-bold">{{ $tiga->stok }} pcs</span></small>
-                            </div>
-                        </div>
-                        <!-- btn -->
-                        <div class="product-fade-block">
-                            <div class="d-grid mt-4">
-                                <form action="{{ route('keranjang.add') }}" method="POST" class="d-inline">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{ $tiga->id }}"> <!-- Ganti dengan ID produk yang sesuai -->
-                                    <input type="hidden" name="jumlah" value="1"> <!-- Ganti dengan jumlah produk yang ingin ditambahkan -->
-                                    <button type="submit" class="btn btn-primary rounded-pill">
-                                        Masukkan Keranjang
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-content-fade border-info" style="margin-bottom: -60px;"></div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-<section>
-    <div class="container">
-        <hr class="my-lg-14 my-8">
-        <!-- row -->
-        <div class="row align-items-center">
-            <div class=" offset-lg-2 col-lg-4 col-md-6">
-                <div class="text-center">
-                    <!-- img -->
-                    <img src="{{ asset('assets/customer/images/png/custom.jpg') }}" alt="" class=" img-fluid">
-                </div>
-            </div>
-            <div class=" col-lg-6 col-md-6">
-                <div class="mb-6">
-                    <div class="mb-7">
-                        <!-- heading -->
-                        <h2>Custome Desain Batik?</h2>
-                        <p class="mb-0">Anda bisa melakukan custome untuk desain batik yang sesuai dan cocok dengan
-                            anda,
-                            silahkan hubungi kami melalui Whatsapp.
-                        </p>
-                    </div>
-                    <!-- form -->
-                    <form class="row g-3 mt-1">
-                        <div class="col-auto">
-                            <a href="https://wa.me/{{ $whatsappNumber }}" target="_blank" class="btn btn-primary mb-3">Hubungi Kami</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr class="my-lg-14 my-8">
+            <hr class="my-lg-14 my-8">
     </div>
 </section>
 

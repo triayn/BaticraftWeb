@@ -40,22 +40,30 @@ class LaporanController extends Controller
             Log::info($query->bindings);
         });
 
-        $transactions = Transaction::where(function ($query) use ($request) {
-            $query->where('jenis_transaksi', 'langsung')
-                ->whereBetween('created_at', [Carbon::parse($request->tanggal_awal)->startOfDay(), Carbon::parse($request->tanggal_akhir)->endOfDay()]);
-        })
-            ->orWhere(function ($query) use ($request) {
-                $query->where('jenis_transaksi', 'pesan')
-                    ->whereBetween('updated_at', [Carbon::parse($request->tanggal_awal)->startOfDay(), Carbon::parse($request->tanggal_akhir)->endOfDay()]);
+        // Inisialisasi variabel
+        $transactions = collect(); // Gunakan collect() untuk membuat collection kosong
+        $totalPendapatan = 0;
+        $jumlahCustomer = 0;
+
+        // Memeriksa apakah tanggal awal dan akhir telah dipilih
+        if ($request->has(['tanggal_awal', 'tanggal_akhir']) && $request->tanggal_awal && $request->tanggal_akhir) {
+            $transactions = Transaction::where(function ($query) use ($request) {
+                $query->where('jenis_transaksi', 'langsung')
+                    ->whereBetween('created_at', [Carbon::parse($request->tanggal_awal)->startOfDay(), Carbon::parse($request->tanggal_akhir)->endOfDay()]);
             })
-            ->where('status_transaksi', 'selesai')
-            ->get();
+                ->orWhere(function ($query) use ($request) {
+                    $query->where('jenis_transaksi', 'pesan')
+                        ->whereBetween('updated_at', [Carbon::parse($request->tanggal_awal)->startOfDay(), Carbon::parse($request->tanggal_akhir)->endOfDay()]);
+                })
+                ->where('status_transaksi', 'selesai')
+                ->get();
 
-        // Menghitung total pendapatan
-        $totalPendapatan = $transactions->sum('total_harga');
+            // Menghitung total pendapatan
+            $totalPendapatan = $transactions->sum('total_harga');
 
-        // Menghitung jumlah customer
-        $jumlahCustomer = $transactions->unique('id')->count();
+            // Menghitung jumlah customer
+            $jumlahCustomer = $transactions->unique('id')->count();
+        }
 
         // Mengirim data ke tampilan
         return view('admin.laporan.mingguan', compact('transactions', 'totalPendapatan', 'jumlahCustomer'));

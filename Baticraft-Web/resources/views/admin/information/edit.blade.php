@@ -158,10 +158,16 @@
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Foto</label>
                                 <div class="col-sm-10">
                                     <div class="mb-3">
+                                        <!-- Menampilkan gambar sebelumnya -->
+                                        @if(isset($data->image))
+                                        <div class="mb-3">
+                                            <img src="{{ asset('storage/information/' . $data->image) }}" alt="Gambar Sebelumnya" class="img-fluid" style="max-height: 200px;">
+                                        </div>
+                                        @endif
                                         <!-- Input file tersembunyi -->
                                         <input type="file" id="image" class="form-control" name="image" style="display: none;">
                                         <!-- Area drag and drop -->
-                                        <div id="dragDropArea" class="border border-primary rounded p-5">
+                                        <div id="dragDropArea" class="border border-primary rounded p-5" onclick="document.getElementById('image').click();">
                                             <p class="text-center text-muted">Drag and drop gambar di sini atau klik untuk memilih</p>
                                         </div>
                                         <!-- Pesan error -->

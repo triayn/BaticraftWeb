@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Bulan Mei 2024 pada 01.04
+-- Waktu pembuatan: 16 Bulan Mei 2024 pada 16.27
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -41,11 +41,8 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `user_id`, `product_id`, `jumlah`, `created_at`, `updated_at`) VALUES
-(3, 3, 13, 1, '2024-05-04 15:39:08', '2024-05-04 15:39:08'),
-(4, 3, 15, 1, '2024-05-04 15:40:01', '2024-05-04 15:40:01'),
-(5, 3, 12, 1, '2024-05-05 04:01:16', '2024-05-05 04:01:16'),
-(8, 3, 11, 1, '2024-05-11 22:50:18', NULL),
-(9, 1, 10, 1, '2024-05-11 22:50:51', NULL);
+(9, 1, 10, 1, '2024-05-11 22:50:51', NULL),
+(10, 1, 13, 1, '2024-05-12 17:10:33', '2024-05-12 17:10:33');
 
 -- --------------------------------------------------------
 
@@ -229,13 +226,13 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `kode_product`, `nama`, `deskripsi`, `harga`, `kategori`, `stok`, `ukuran`, `bahan`, `panjang_kain`, `lebar_kain`, `jenis_batik`, `jenis_lengan`, `status`, `created_at`, `updated_at`) VALUES
-(9, 'BTK009', 'Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba', 'Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba , Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba , Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba , Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba', 175000, 'kain', 5, '30', 'Katun', '100 M', '200 M', 'Batik Sarimbitan', NULL, 'tidak tersedia', '2024-04-28 07:29:41', '2024-04-28 11:22:56'),
-(10, 'BTK010', 'Kaos Anak Dengan Desain Khas Batik Jayastamba', 'Kaos Anak Dengan Desain Khas Batik Jayastamba, Kaos Anak Dengan Desain Khas Batik Jayastamba, Kaos Anak Dengan Desain Khas Batik Jayastamba, Kaos Anak Dengan Desain Khas Batik Jayastamba', 90000, 'kaos', 4, '37', 'Katun', NULL, NULL, 'Batik Sarimbitan', 'pendek', 'tersedia', '2024-04-28 08:09:29', '2024-04-28 08:09:29'),
-(11, 'BTK011', 'Kemeja Batik Sarimbitan dengan Motif Khas Batik Jayastamba Warna Coklat', 'Kemeja Batik Sarimbitan dengan Motif Khas Batik Jayastamba Warna Coklat, Kemeja Batik Sarimbitan dengan Motif Khas Batik Jayastamba Warna Coklat, Kemeja Batik Sarimbitan dengan Motif Khas Batik Jayastamba Warna Coklat, Kemeja Batik Sarimbitan dengan Motif Khas Batik Jayastamba Warna Coklat', 175000, 'kemeja', 3, 'XL', 'Katun', NULL, NULL, 'Batik Cap', 'panjang', 'tersedia', '2024-04-28 11:22:21', '2024-04-28 11:22:21'),
-(12, 'BTK012', 'Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba warna magenta', 'Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba Bisa digunakan untuk kondangan, Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba Bisa digunakan untuk kondangan, Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba Bisa digunakan untuk kondangan, Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba Bisa digunakan untuk kondangan, Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba Bisa digunakan untuk kondangan', 240000, 'kain', 2, '2,25 M', 'Katun', '100', '250', 'Batik Sarimbitan', NULL, 'tersedia', '2024-04-28 11:25:56', '2024-04-28 11:25:56'),
-(13, 'BTK013', 'Kain Batik Pekalongan / Kain Batik Sogan', 'Dinamakan batik sogan karena pada awal mulanya, proses pewarnaan batik ini menggunakan pewarna alami yang diambil dari batang kayu pohon soga.', 120000, 'kain', 6, '80 g', 'Katun', '100', '250', 'Batik Tulis', NULL, 'tersedia', '2024-04-28 23:53:16', '2024-04-28 23:53:16'),
-(14, 'BTK014', 'Kemeja Dewasa Dengan Desain Khas Batik Jayastamba', '\"Jayastamba artinya tugu kemenangan,\" ujar Kasi Sejarah, Seni Tradisi, Museum, dan Kepurbakalaan Dinas Pariwisata, Pemuda, Olahraga dan Kebudayaan (Disparporabud) Kabupaten Nganjuk Amin Fuadi.', 90000, 'kemeja', 9, '42', 'Katun', NULL, NULL, 'Batik Cap', 'panjang', 'tersedia', '2024-04-28 23:57:10', '2024-04-28 23:57:10'),
-(15, 'BTK015', 'Kaos dewasa Dengan Desain Khas Batik Jayastamba', '\"Jayastamba artinya tugu kemenangan,\" ujar Kasi Sejarah, Seni Tradisi, Museum, dan Kepurbakalaan Dinas Pariwisata, Pemuda, Olahraga dan Kebudayaan (Disparporabud) Kabupaten Nganjuk Amin Fuadi.', 90000, 'kaos', 3, '37', 'Katun', NULL, NULL, 'Batik Cap', 'pendek', 'tersedia', '2024-04-29 00:01:01', '2024-04-29 00:01:01');
+(9, 'BTK009', 'Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba', 'Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba , Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba , Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba , Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba', 175000, 'kain', 2, '30', 'Katun', '100 M', '200 M', 'Batik Sarimbitan', NULL, 'tidak tersedia', '2024-04-28 07:29:41', '2024-04-28 11:22:56'),
+(10, 'BTK010', 'Kaos Anak Dengan Desain Khas Batik Jayastamba', 'Kaos Anak Dengan Desain Khas Batik Jayastamba, Kaos Anak Dengan Desain Khas Batik Jayastamba, Kaos Anak Dengan Desain Khas Batik Jayastamba, Kaos Anak Dengan Desain Khas Batik Jayastamba', 90000, 'kaos', 8, '37', 'Katun', NULL, NULL, 'Batik Sarimbitan', 'pendek', 'tersedia', '2024-04-28 08:09:29', '2024-05-14 18:09:17'),
+(11, 'BTK011', 'Kemeja Batik Sarimbitan dengan Motif Khas Batik Jayastamba Warna Coklat', 'Kemeja Batik Sarimbitan dengan Motif Khas Batik Jayastamba Warna Coklat, Kemeja Batik Sarimbitan dengan Motif Khas Batik Jayastamba Warna Coklat, Kemeja Batik Sarimbitan dengan Motif Khas Batik Jayastamba Warna Coklat, Kemeja Batik Sarimbitan dengan Motif Khas Batik Jayastamba Warna Coklat', 175000, 'kemeja', 2, 'XL', 'Katun', NULL, NULL, 'Batik Cap', 'panjang', 'tersedia', '2024-04-28 11:22:21', '2024-04-28 11:22:21'),
+(12, 'BTK012', 'Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba warna magenta', 'Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba Bisa digunakan untuk kondangan, Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba Bisa digunakan untuk kondangan, Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba Bisa digunakan untuk kondangan, Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba Bisa digunakan untuk kondangan, Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba Bisa digunakan untuk kondangan', 240000, 'kain', 10, '2,25 M', 'Katun', '100', '250', 'Batik Sarimbitan', NULL, 'tersedia', '2024-04-28 11:25:56', '2024-05-14 18:09:45'),
+(13, 'BTK013', 'Kain Batik Pekalongan / Kain Batik Sogan', 'Dinamakan batik sogan karena pada awal mulanya, proses pewarnaan batik ini menggunakan pewarna alami yang diambil dari batang kayu pohon soga.', 120000, 'kain', 1, '80 g', 'Katun', '100', '250', 'Batik Tulis', NULL, 'tersedia', '2024-04-28 23:53:16', '2024-04-28 23:53:16'),
+(14, 'BTK014', 'Kemeja Dewasa Dengan Desain Khas Batik Jayastamba', '\"Jayastamba artinya tugu kemenangan,\" ujar Kasi Sejarah, Seni Tradisi, Museum, dan Kepurbakalaan Dinas Pariwisata, Pemuda, Olahraga dan Kebudayaan (Disparporabud) Kabupaten Nganjuk Amin Fuadi.', 90000, 'kemeja', 6, '42', 'Katun', NULL, NULL, 'Batik Cap', 'panjang', 'tersedia', '2024-04-28 23:57:10', '2024-04-28 23:57:10'),
+(15, 'BTK015', 'Kaos dewasa Dengan Desain Khas Batik Jayastamba', '\"Jayastamba artinya tugu kemenangan,\" ujar Kasi Sejarah, Seni Tradisi, Museum, dan Kepurbakalaan Dinas Pariwisata, Pemuda, Olahraga dan Kebudayaan (Disparporabud) Kabupaten Nganjuk Amin Fuadi.', 90000, 'kaos', 0, '37', 'Katun', NULL, NULL, 'Batik Cap', 'pendek', 'tersedia', '2024-04-29 00:01:01', '2024-04-29 00:01:01');
 
 -- --------------------------------------------------------
 
@@ -265,10 +262,19 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`id`, `kode_transaksi`, `user_id`, `kasir`, `jenis_transaksi`, `total_item`, `total_harga`, `catatan_customer`, `status_transaksi`, `catatan_admin`, `tanggal_konfirmasi`, `tanggal_expired`, `created_at`, `updated_at`) VALUES
-(2, '20040505JIKU', 3, '1', 'pesan', 3, 270000, 'Pesanan baju batik', 'menunggu', NULL, '2024-04-28 12:01:09', '2024-05-08 00:21:46', '2024-05-04 17:21:46', NULL),
+(2, '20040505JIKU', 3, '1', 'pesan', 3, 270000, 'Pesanan baju batik', 'selesai', NULL, '2024-04-28 12:01:09', '2024-05-08 00:21:46', '2024-05-04 17:21:46', '2024-04-24 23:34:10'),
 (3, '20240805KLSJ', 3, NULL, 'pesan', 3, 385000, 'Pakai aja', 'ditolak', 'maaf yah bro, belum bisa dipesan', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2024-05-08 01:41:25', '2024-05-10 15:19:50'),
-(4, '20240812OKIJ', 3, NULL, 'pesan', 3, 440000, 'bisa nda?', 'selesai', '', '2024-05-31 09:10:00', '2024-06-07 19:10:00', '2024-05-12 01:43:22', '2024-05-11 16:14:54'),
-(5, '20240810', 1, NULL, 'langsung', 3, 270000, NULL, 'selesai', NULL, NULL, NULL, '2024-05-11 01:45:11', NULL);
+(4, '20240812OKIJ', 3, NULL, 'pesan', 3, 440000, 'bisa nda?', 'selesai', '', '2024-05-31 09:10:00', '2024-06-07 19:10:00', '2024-05-12 01:43:22', '2024-05-09 16:14:54'),
+(5, '20240810', 1, NULL, 'langsung', 3, 270000, NULL, 'selesai', NULL, NULL, NULL, '2024-05-01 01:45:11', NULL),
+(6, '20240513JKIU', 1, 'Tria Yunita', 'pesan', 3, 250000, 'Catatan dari customer', 'selesai', 'Catatan dari admin', '2024-05-25 11:45:00', '2024-06-08 11:46:00', '2024-05-16 14:14:59', '2024-05-14 13:08:44'),
+(7, '20240513JKIP', 1, 'Tria Yunita', 'pesan', 3, 250000, 'Gataua deh pokok gtu ya', 'selesai', 'Catatan dari admin', '2024-05-14 20:05:00', '2024-05-15 20:05:00', '2024-05-13 06:05:25', '2024-05-16 02:00:45'),
+(8, '20241305KOLY', 3, 'Tria Yunita', 'pesan', 3, 270000, 'Catatan aja kali ya', 'selesai', '', '2024-05-24 13:53:00', '2024-05-31 13:53:00', '2024-05-13 06:03:15', '2024-05-13 06:54:33'),
+(9, '20241305HJUI', 3, NULL, 'pesan', 3, 270000, 'catatan_customer_value', 'ditolak', 'Maaf stok tidak memenuhi', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2024-05-14 06:06:28', '2024-05-13 06:52:45'),
+(11, '20240514Vw4b', 3, NULL, 'pesan', 2, 360000, NULL, 'diproses', NULL, '2024-05-25 08:59:00', '2024-06-08 08:59:00', '2024-05-14 16:00:36', '2024-05-16 01:59:40'),
+(13, '20240514Sbhi', 3, NULL, 'pesan', 2, 210000, 'aku ini mencoba tok', 'menunggu', NULL, NULL, NULL, '2024-05-14 16:50:07', '2024-05-14 16:50:07'),
+(14, '20240514FlJJ', 3, NULL, 'pesan', 2, 210000, NULL, 'menunggu', NULL, NULL, NULL, '2024-05-14 16:57:06', '2024-05-14 16:57:06'),
+(15, '20240515YGNB', 3, NULL, 'pesan', 4, 475000, NULL, 'menunggu', NULL, NULL, NULL, '2024-05-14 17:28:04', '2024-05-14 17:28:04'),
+(16, '20240516KPQH', 3, NULL, 'pesan', 1, 90000, 'saya ingin menggunakan warna hitam', 'menunggu', NULL, NULL, NULL, '2024-05-16 01:55:45', '2024-05-16 01:55:45');
 
 -- --------------------------------------------------------
 
@@ -296,7 +302,25 @@ INSERT INTO `transaction_details` (`id`, `transaction_id`, `product_id`, `nama_p
 (2, 4, 15, 'Kaos dewasa Dengan Desain Khas Batik Jayastamba', 1, 90000, '2024-05-10 14:33:52', NULL),
 (3, 4, 11, 'Kemeja Batik Sarimbitan dengan Motif Khas Batik Jayastamba Warna Coklat', 2, 350000, '2024-05-10 14:34:42', NULL),
 (4, 3, 14, 'Kemeja Dewasa Dengan Desain Khas Batik Jayastamba', 1, 90000, '2024-05-10 15:12:02', NULL),
-(6, 3, 13, 'Kain Batik Pekalongan / Kain Batik Sogan', 1, 120000, '2024-05-10 15:13:58', NULL);
+(6, 3, 13, 'Kain Batik Pekalongan / Kain Batik Sogan', 1, 120000, '2024-05-10 15:13:58', NULL),
+(9, 9, 9, 'Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba', 3, 270000, NULL, NULL),
+(10, 7, 10, 'Kaos Anak Dengan Desain Khas Batik Jayastamba', 1, 90000, '2024-05-13 06:09:08', NULL),
+(11, 7, 14, 'Kemeja Dewasa Dengan Desain Khas Batik Jayastamba', 1, 90000, '2024-05-13 06:09:08', NULL),
+(12, 8, 15, 'Kaos dewasa Dengan Desain Khas Batik Jayastamba', 2, 180000, '2024-05-13 06:10:57', NULL),
+(13, 8, 13, 'Kain Batik Pekalongan / Kain Batik Sogan', 1, 120000, '2024-05-13 06:10:57', NULL),
+(14, 9, 10, 'Kaos Anak Dengan Desain Khas Batik Jayastamba', 2, 180000, '2024-05-13 06:13:11', NULL),
+(15, 9, 12, 'Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba warna magenta', 1, 240000, '2024-05-13 06:13:11', NULL),
+(16, 11, 13, 'Kain Batik Pekalongan / Kain Batik Sogan', 1, 120000, '2024-05-14 16:00:36', '2024-05-14 16:00:36'),
+(17, 11, 12, 'Kain Batik Sarimbitan dengan Motif Khas Batik Jayastamba warna magenta', 1, 240000, '2024-05-14 16:00:37', '2024-05-14 16:00:37'),
+(18, 13, 13, 'Kain Batik Pekalongan / Kain Batik Sogan', 1, 120000, '2024-05-14 16:50:07', '2024-05-14 16:50:07'),
+(19, 13, 14, 'Kemeja Dewasa Dengan Desain Khas Batik Jayastamba', 1, 90000, '2024-05-14 16:50:07', '2024-05-14 16:50:07'),
+(20, 14, 10, 'Kaos Anak Dengan Desain Khas Batik Jayastamba', 1, 90000, '2024-05-14 16:57:06', '2024-05-14 16:57:06'),
+(21, 14, 13, 'Kain Batik Pekalongan / Kain Batik Sogan', 1, 120000, '2024-05-14 16:57:06', '2024-05-14 16:57:06'),
+(22, 15, 11, 'Kemeja Batik Sarimbitan dengan Motif Khas Batik Jayastamba Warna Coklat', 1, 175000, '2024-05-14 17:28:04', '2024-05-14 17:28:04'),
+(23, 15, 13, 'Kain Batik Pekalongan / Kain Batik Sogan', 1, 120000, '2024-05-14 17:28:04', '2024-05-14 17:28:04'),
+(24, 15, 14, 'Kemeja Dewasa Dengan Desain Khas Batik Jayastamba', 1, 90000, '2024-05-14 17:28:04', '2024-05-14 17:28:04'),
+(25, 15, 15, 'Kaos dewasa Dengan Desain Khas Batik Jayastamba', 1, 90000, '2024-05-14 17:28:04', '2024-05-14 17:28:04'),
+(26, 16, 10, 'Kaos Anak Dengan Desain Khas Batik Jayastamba', 1, 90000, '2024-05-16 01:55:45', '2024-05-16 01:55:45');
 
 --
 -- Trigger `transaction_details`
@@ -339,7 +363,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama`, `no_telpon`, `alamat`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `role`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `image`) VALUES
-(1, 'Tria Yunita', '+62895342743004', 'Desa Gemenggeng Bagor Nganjuk Jawa Timur', 'perempuan', 'Nganjuk', '2003-06-04', 'admin', 'triaynta@gmail.com', NULL, '$2y$10$LTi4d1uP2WP6Fxi6knni2Os3fBZd9QiOEXkBrdugKQKKNLvQEeNCS', 'sOs8xRcdZYAXplYJEU71E6ToyyEIJPmQz34ISk3RjJfM0EqrSpTftsZeCocE', '2024-03-22 23:45:37', '2024-05-11 03:53:02', 'K8yNT6tRpaHm6Tv1tyTXEKpN0cgsavpFi6K7p9Vu.jpg'),
+(1, 'Tria Yunita', '+62895342743004', 'Desa Gemenggeng Bagor Nganjuk Jawa Timur', 'perempuan', 'Nganjuk', '2003-06-04', 'admin', 'triaynta@gmail.com', NULL, '$2y$10$LTi4d1uP2WP6Fxi6knni2Os3fBZd9QiOEXkBrdugKQKKNLvQEeNCS', 'WBqu75OZfOiXMpBTxt1GAM9RlxUtN3PwbMHB1N4TPV7LouHYb38Tp5Vp72oV', '2024-03-22 23:45:37', '2024-05-11 03:53:02', 'K8yNT6tRpaHm6Tv1tyTXEKpN0cgsavpFi6K7p9Vu.jpg'),
 (3, 'Tria Yunita Loh', '089564321234', 'Kauman, Kec. Nganjuk, Kabupaten Nganjuk, Jawa Timur 64411', 'perempuan', 'Nganjuk', '2003-06-04', 'pembeli', 'admin@email.com', NULL, '$2y$10$p7628Ttuo7nYfGSc6gzlcOaQkt.YAESwWC.iTfXZfmaG0nePxYF9y', NULL, '2024-03-22 23:59:53', '2024-05-11 03:42:07', 'zvS8cLyIEGJMEmQCPDpWlGDz3drnUB41B1NajFfi.jpg');
 
 --
@@ -437,7 +461,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
@@ -479,13 +503,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT untuk tabel `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `transaction_details`
 --
 ALTER TABLE `transaction_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

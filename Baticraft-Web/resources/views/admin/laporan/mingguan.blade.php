@@ -92,7 +92,7 @@
                             @if($transactions->count() > 0)
                             @foreach($transactions as $transaction)
                             <tr>
-                                <td><i class="uil uil-calender me-1"></i>{{ $transaction->created_at->format('Y-m-d') }}</td>
+                                <td><i class="uil uil-calender me-1"></i>{{ $transaction->created_at ? $transaction->created_at->format('Y-m-d') : 'N/A' }}</td>
                                 <td>
                                     @if($transaction->jenis_transaksi == 'pesan')
                                     <span class="badge bg-success-lighten text-success">{{ $transaction->jenis_transaksi }}</span>
@@ -121,7 +121,7 @@
                             @endforeach
                             @else
                             <tr>
-                                <td colspan="5" class="text-center">Tidak ada data transaksi untuk periode ini.</td>
+                                <td colspan="5" class="text-center">Silakan pilih tanggal untuk menampilkan data transaksi.</td>
                             </tr>
                             @endif
                         </tbody>
