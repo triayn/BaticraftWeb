@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\API\InformationController as APIInformationController;
+use App\Http\Controllers\API\KeranjangController;
+use App\Http\Controllers\API\PesananController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\ProfilController;
+use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\MobileApi\InformationController;
 use App\Http\Controllers\MobileApi\KelolaPengguna;
 use App\Http\Controllers\MobileApi\LoginMobileController;
@@ -24,13 +29,49 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Product Controller
+// User
+Route::prefix('/pengguna')->group(function () {
+    Route::get('/index', [UserController::class, 'index'])->name('api.user.index');
+    Route::get('/show/{id}', [UserController::class, 'show'])->name('api.user.show');
+    Route::post('/store', [UserController::class, 'store'])->name('api.user.store');
+});
+
+// Product 
 Route::prefix('/product')->group(function () {
     Route::get('/index', [ProductController::class, 'index']);
     Route::get('/show/{id}', [ProductController::class, 'show']);
     Route::post('/store', [ProductController::class, 'store']);
     Route::put('/update/{id}', [ProductController::class, 'update']);
     Route::delete('/destroy/{id}', [ProductController::class, 'destroy']);
+});
+
+// Keranjang
+Route::prefix('keranjang')->group(function () {
+    Route::get('/', [KeranjangController::class, 'cart'])->name('api.keranjang.index');
+    Route::post('/add', [KeranjangController::class, 'addToCart'])->name('api.keranjang.add');
+    Route::delete('/destroy/{id}', [KeranjangController::class, 'destroy'])->name('api.keranjang.delete');
+    Route::post('/checkout', [KeranjangController::class, 'checkout'])->name('api.keranjang.checkout');
+});
+
+// Pesanan 
+Route::prefix('pesanan')->group(function () {
+    Route::get('/', [PesananController::class, 'index'])->name('api.pesanan.index');
+    Route::get('/detail/{id}', [PesananController::class, 'detail'])->name('api.pesanan.detail');
+    Route::post('/konfirmasi/diterima', [PesananController::class, 'konfirmasiDiterima'])->name('api.konfirmasi.diterima');
+    Route::post('/konfirmasi/ditolak', [PesananController::class, 'konfirmasiDitolak'])->name('api.konfirmasi.ditolak');
+    Route::post('/konfirmasi/selesai', [PesananController::class, 'konfirmasiSelesai'])->name('api.konfirmasi.selesai');
+});
+
+Route::prefix('information')->group(function () {
+    Route::get('/', [APIInformationController::class, 'index'])->name('api.information.index');
+    Route::put('/update', [APIInformationController::class, 'update'])->name('api.information.update');
+});
+
+// Profil
+Route::prefix('profil')->group(function () {
+    Route::get('/', [ProfilController::class, 'index'])->name('api.profil.index');
+    Route::put('/{id}', [ProfilController::class, 'update'])->name('api.profil.update');
+    Route::put('/change-password/{id}', [ProfilController::class, 'changePassword'])->name('api.profil.changePassword');
 });
 
 Route::group(['prefix' => '/MobileApi'], function () {

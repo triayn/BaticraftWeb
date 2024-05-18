@@ -36,28 +36,4 @@ class PesananCustomerController extends Controller
         }
         return view('customer.pesanan.menunggu', compact('info', 'transaction', 'detail', 'produk', 'imageArray'));
     }
-
-    public function diproses()
-    {
-        // $data = Transaction::get();
-        // $detail = TransactionDetail::get();
-
-        return view('customer.pesanan.diproses');
-    }
-
-    public function ditolak()
-    {
-        // $data = Transaction::get();
-        // $detail = TransactionDetail::get();
-
-        return view('customer.pesanan.ditolak');
-    }
-
-    public function selesai()
-    {
-        // $data = Transaction::get();
-        // $detail = TransactionDetail::get();
-
-        return view('customer.pesanan.selesai');
-    }
 }

@@ -60,19 +60,15 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('/pesanan')->group(function () {
         Route::get('/', [PesananCustomerController::class, 'index'])->name('pesanan.index');
         Route::get('/detail/{id}', [PesananCustomerController::class, 'detail'])->name('pesanan.detail');
-        // Route::get('/diproses', [PesananCustomerController::class, 'diproses'])->name('pesanan.diproses');
-        // Route::get('/ditolak', [PesananCustomerController::class, 'ditolak'])->name('pesanan.ditolak');
-        // Route::get('/selesai', [PesananCustomerController::class, 'selesai'])->name('pesanan.selesai');
     });
 
+    // Profil
     Route::prefix('/profil')->group(function () {
         Route::get('/customer', [ProfilController::class, 'indexCustomer'])->name('profil.cutomer');
         Route::get('/edit', [ProfilController::class, 'editCustomer'])->name('profil.customer.edit');
         Route::put('/{id}', [ProfilController::class, 'update'])->name('profil.update');
         Route::put('/change-password/{id}', [ProfilController::class, 'changePassword'])->name('profil.change.password');
-        // Route::put('/update', [ProfilController::class, 'updateCustomer'])->name('profil.customer.update');
         Route::get('/ganti', [ProfilController::class, 'gantiCustomer'])->name('profil.customer.ganti');
-        // Route::post('/verifikasi', [ProfilController::class, 'verifikasiCustomer'])->name('profil.customer.verifikasi');
     });
 
     Route::get('/informasi/toko', [InformationController::class, 'customer'])->name('information.customer');
@@ -87,9 +83,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/show/{id}', [UserController::class, 'show'])->name('user.show');
             Route::get('/create', [UserController::class, 'create'])->name('user.create');
             Route::post('/store', [UserController::class, 'store'])->name('user.store');
-            Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
-            Route::put('/update/{id}', [UserController::class, 'update'])->name('user.update');
-            Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('user.delete');
+            // Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+            // Route::put('/update/{id}', [UserController::class, 'update'])->name('user.update');
+            // Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('user.delete');
         });
 
         // CRUD Customer
@@ -115,17 +111,6 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [InformationController::class, 'index'])->name('information.index');
             Route::get('/edit', [InformationController::class, 'edit'])->name('information.edit');
             Route::put('/update', [InformationController::class, 'update'])->name('information.update');
-        });
-
-        // CRUD Pesanan
-        Route::prefix('/product')->group(function () {
-            Route::get('/index', [ProductController::class, 'index'])->name('product.index');
-            Route::get('/show/{id}', [ProductController::class, 'show'])->name('product.show');
-            Route::get('/create', [ProductController::class, 'create'])->name('product.create');
-            Route::post('/store', [ProductController::class, 'store'])->name('product.store');
-            Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
-            Route::put('/update/{id}', [ProductController::class, 'update'])->name('product.update');
-            Route::delete('/destroy/{id}', [ProductController::class, 'destroy'])->name('product.delete');
         });
 
         // CRUD Pesanan Masuk
