@@ -67,29 +67,7 @@ class RegisterController extends Controller
 
     protected function sendFailedRegisterResponse(Request $request)
     {
-        $request->flash();
-
-        $nama = $request->input('nama');
-        $no_telpon  = $request->input('no_telpon');
-        $email = $request->input('email');
-        $password = $request->input('password');
-        $password_confirmation  = $request->input('password_confirmation');
-
-        $user = User::where('nama', $nama)->first();
-
-        if (!$user) {
-            $errors = ['nama' => 'Nama tidak boleh kosong'];
-        } elseif (!password_verify($no_telpon, $user->no_telpon)) {
-            $errors = ['no_telpon' => 'Nomor Handphone tidak boleh kosong.'];
-        } elseif (!password_verify($email, $user->email)) {
-            $errors = ['email' => 'Kata Sandi yang anda masukkan salah. Silakan coba lagi.'];
-        }elseif (!password_verify($password, $user->password)) {
-            $errors = ['password' => 'Kata Sandi yang anda masukkan tidak sesuai.'];
-        }elseif (!password_verify($password_confirmation, $user->password_confirmation)) {
-            $errors = ['password_confirmation' => 'Kata Sandi yang anda masukkan tidak sesuai.'];
-        } else {
-            $errors = ['email' => 'Terjadi kesalahan. Silakan coba lagi.'];
-        }
+        $errors = $this->validator($request->all())->errors()->getMessages();
 
         throw ValidationException::withMessages($errors)
             ->redirectTo($this->registerPath());
@@ -114,10 +92,26 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'nama' => ['required', 'string', 'max:255'],
-            'no_telpon' => ['required', 'numeric'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'nama' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
+            'no_telpon' => ['required', 'string', 'max:15', 'min:11', 'regex:/^\+?[0-9]+$/'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email', 'regex:/^[\w\.-]+@gmail\.com$/'],
+            'password' => ['required', 'string', 'min:6', 'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/', 'confirmed'],
+        ], [
+            'nama.required'             => 'Kolom nama wajib diisi.',
+            'nama.max'                  => 'Panjang nama maksimal 255 karakter.',
+            'nama.regex'                => 'Nama hanya boleh berisi huruf.',
+            'no_telpon.required'        => 'Kolom nomor telepon wajib diisi.',
+            'no_telpon.max'             => 'Panjang nomor telepon maksimal 15 karakter.',
+            'no_telpon.min'             => 'Panjang nomor telepon minimal 11 karakter.',
+            'no_telpon.regex'           => 'Nomor hanya boleh berisi angka dan karakter "+".',
+            'email.required'            => 'Kolom email wajib diisi.',
+            'email.email'               => 'Format email tidak valid.',
+            'email.unique'              => 'Email sudah digunakan.',
+            'email.regex'               => 'Email harus valid dan menggunakan domain .gmail.com.',
+            'password.required'         => 'Kolom password wajib diisi.',
+            'password.min'              => 'Panjang password minimal 6 karakter.',
+            'password.regex'            => 'Password harus minimal 6 karakter dan mengandung huruf serta angka.',
+            'password.confirmed'        => 'Konfirmasi kata sandi tidak sesuai.',
         ]);
     }
 
@@ -136,6 +130,4 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
-
-    
 }

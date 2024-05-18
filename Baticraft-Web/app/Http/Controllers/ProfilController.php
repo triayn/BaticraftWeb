@@ -80,13 +80,12 @@ class ProfilController extends Controller
 
         $validate = [
             'current_password' => 'required',
-            'new_password' => ['required', 'min:6', 'max:12', 'confirmed', 'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/'],
+            'new_password' => ['required', 'min:6', 'confirmed', 'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/'],
         ];
 
         $messages = [
             'required' => 'Data harus diisi.',
             'min' => 'Data harus diisi minimal :min karakter.',
-            'max' => 'Data harus diisi maksimal :max karakter.',
             'new_password.regex' => 'Kata sandi harus terdiri dari setidaknya satu huruf dan satu angka.',
             'new_password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
         ];
