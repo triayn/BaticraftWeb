@@ -170,7 +170,7 @@
                                     <div class="row align-items-center">
                                         <div class="col-2 col-md-2">
                                             @if(isset($imageArray[$item->product_id]))
-                                            <img src="{{ asset('storage/product/' . $imageArray[$item->product_id]->image_path) }}" alt="Ecommerce" class="img-fluid">
+                                            <img src="{{ asset('storage/product/' . $imageArray[$item->product_id]->image_path) }}" alt="" class="img-fluid">
                                             @endif
                                         </div>
                                         <div class="col-5 col-md-5">

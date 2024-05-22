@@ -59,13 +59,6 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="header-title mb-0">Pesanan dan Transaksi</h4>
-                    <div>
-                        <form class="d-flex">
-                            <div class="input-group">
-                                <input type="text" class="form-control form-control-light" id="dash-daterange" readonly>
-                            </div>
-                        </form>
-                    </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-centered table-nowrap mb-0">

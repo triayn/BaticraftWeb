@@ -75,7 +75,7 @@
 
                                     <!-- input -->
                                     <div class="mb-5">
-                                    <label for="no_telpon" class="form-label">No. Handphone</label>
+                                        <label for="no_telpon" class="form-label">No. Handphone</label>
                                         <input type="text" class="form-control" id="no_telpon" name="no_telpon" value="{{ $user->no_telpon }}">
                                         @error('no_telpon')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -83,7 +83,7 @@
                                     </div>
 
                                     <div class="mb-5">
-                                    <label for="alamat" class="form-label">Alamat</label>
+                                        <label for="alamat" class="form-label">Alamat</label>
                                         <textarea class="form-control" id="alamat" name="alamat" rows="4">{{ $user->alamat }}</textarea>
                                         @error('alamat')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -91,7 +91,7 @@
                                     </div>
 
                                     <div class="mb-5">
-                                    <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
+                                        <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
                                         <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{ $user->tempat_lahir }}">
                                         @error('tempat_lahir')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -99,7 +99,7 @@
                                     </div>
 
                                     <div class="mb-5">
-                                    <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+                                        <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
                                         <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{ $user->tanggal_lahir }}">
                                         @error('tanggal_lahir')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -107,7 +107,22 @@
                                     </div>
 
                                     <div class="mb-5">
-                                    <label for="image" class="form-label">Foto</label>
+                                        <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                        <div>
+                                            <input type="radio" id="laki-laki" name="jenis_kelamin" value="laki-laki" {{ $user->jenis_kelamin == 'Laki-laki' ? 'checked' : '' }}>
+                                            <label for="laki-laki">Laki-laki</label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="perempuan" name="jenis_kelamin" value="perempuan" {{ $user->jenis_kelamin == 'Perempuan' ? 'checked' : '' }}>
+                                            <label for="perempuan">Perempuan</label>
+                                        </div>
+                                        @error('jenis_kelamin')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-5">
+                                        <label for="image" class="form-label">Foto</label>
                                         <input type="file" id="image" class="form-control" name="image" style="display: none;">
                                         <div id="dragDropArea" class="border border-primary rounded p-5">
                                             <p class="text-center text-muted">Drag and drop gambar di sini atau klik untuk memilih</p>

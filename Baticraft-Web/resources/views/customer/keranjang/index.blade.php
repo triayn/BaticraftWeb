@@ -41,7 +41,7 @@
                             <div class="row align-items-center">
                                 <div class="col-3 col-md-2">
                                     @if(isset($images->where('product_id', $item->product->id)->first()->image_path))
-                                    <img src="{{ asset('storage/product/' . $images->where('product_id', $item->product->id)->first()->image_path) }}" class="card-img-top" alt="{{ $item->product->nama }}">
+                                    <img src="{{ asset('storage/product/' . $images->where('product_id', $item->product->id)->first()->image_path) }}" class="card-img-top" alt="">
                                     @endif
                                 </div>
                                 <div class="col-4 col-md-6">

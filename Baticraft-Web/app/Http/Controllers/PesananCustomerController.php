@@ -34,6 +34,6 @@ class PesananCustomerController extends Controller
                 $imageArray[$product->id] = $image;
             }
         }
-        return view('customer.pesanan.menunggu', compact('info', 'transaction', 'detail', 'produk', 'imageArray'));
+        return view('customer.pesanan.detail', compact('info', 'transaction', 'detail', 'produk', 'imageArray'));
     }
 }

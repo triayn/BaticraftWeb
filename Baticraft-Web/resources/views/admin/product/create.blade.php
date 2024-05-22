@@ -101,6 +101,13 @@
                             </div>
 
                             <div class="mb-2 row">
+                                <label for="ukuran" class="col-sm-2 col-form-label col-form-label-sm">Ukuran</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control form-control-sm" name="ukuran" id="ukuran" placeholder="Ukuran">
+                                </div>
+                            </div>
+
+                            <div class="mb-2 row">
                                 <label class="col-sm-2 col-form-label col-form-label-sm">Kategori</label>
                                 <div class="col-sm-10">
                                     <div class="form-check">
@@ -118,28 +125,21 @@
                                 </div>
                             </div>
 
-                            <div class="mb-2 row">
-                                <label for="ukuran" class="col-sm-2 col-form-label col-form-label-sm">Ukuran</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm" name="ukuran" id="ukuran" placeholder="Ukuran">
-                                </div>
-                            </div>
-
-                            <div class="mb-2 row">
+                            <div id="panjang_kain_row" class="mb-2 row" style="display: none;">
                                 <label for="panjang_kain" class="col-sm-2 col-form-label col-form-label-sm">Panjang Kain</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control form-control-sm" name="panjang_kain" id="panjang_kain" placeholder="Panjang Kain">
                                 </div>
                             </div>
 
-                            <div class="mb-2 row">
+                            <div id="lebar_kain_row" class="mb-2 row" style="display: none;">
                                 <label for="lebar_kain" class="col-sm-2 col-form-label col-form-label-sm">Lebar Kain</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control form-control-sm" name="lebar_kain" id="lebar_kain" placeholder="Lebar Kain">
                                 </div>
                             </div>
 
-                            <div class="mb-2 row">
+                            <div id="jenis_lengan_row" class="mb-2 row" style="display: none;">
                                 <label class="col-sm-2 col-form-label col-form-label-sm">Jenis Lengan</label>
                                 <div class="col-sm-10">
                                     <div class="form-check">
@@ -152,19 +152,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- <div class="mb-2 row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Foto</label>
-                                <div class="col-sm-10">
-                                    <div class="mb-3">
-                                        <input type="file" name="images[]" id="images[]" class="form-control">
-                                        <input type="file" name="images[]" id="images[]" class="form-control">
-                                        <input type="file" name="images[]" id="images[]" class="form-control">
-                                        <input type="file" name="images[]" id="images[]" class="form-control">
-                                        <input type="file" name="images[]" id="images[]" class="form-control">
-                                    </div>
-                                </div>
-                            </div> -->
 
                             <div class="mb-2 row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Foto</label>
@@ -194,6 +181,7 @@
 @endsection
 
 @section('scripts')
+<!-- Maksimal Jumlah Gambar -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const imageInputsContainer = document.getElementById('imageInputs');
@@ -215,6 +203,40 @@
                 alert('Maksimal jumlah gambar telah tercapai.');
             }
         });
+    });
+</script>
+<!-- Inputan Kategori -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const kategoriInputs = document.querySelectorAll('input[name="kategori"]');
+        const panjangKainRow = document.getElementById('panjang_kain_row');
+        const lebarKainRow = document.getElementById('lebar_kain_row');
+        const jenisLenganRow = document.getElementById('jenis_lengan_row');
+
+        function updateForm() {
+            const selectedKategori = document.querySelector('input[name="kategori"]:checked');
+
+            if (!selectedKategori) {
+                panjangKainRow.style.display = 'none';
+                lebarKainRow.style.display = 'none';
+                jenisLenganRow.style.display = 'none';
+            } else if (selectedKategori.value === 'kain') {
+                panjangKainRow.style.display = 'flex';
+                lebarKainRow.style.display = 'flex';
+                jenisLenganRow.style.display = 'none';
+            } else if (selectedKategori.value === 'kaos' || selectedKategori.value === 'kemeja') {
+                panjangKainRow.style.display = 'none';
+                lebarKainRow.style.display = 'none';
+                jenisLenganRow.style.display = 'flex';
+            }
+        }
+
+        kategoriInputs.forEach(input => {
+            input.addEventListener('change', updateForm);
+        });
+
+        // Initialize form state
+        updateForm();
     });
 </script>
 @endsection
