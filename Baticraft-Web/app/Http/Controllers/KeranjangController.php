@@ -86,28 +86,6 @@ class KeranjangController extends Controller
         }
     }
 
-    public function updateQuantity($id, Request $request)
-    {
-        $request->validate([
-            'jumlah' => 'required|integer|min:1',
-        ]);
-
-        $item = Cart::find($id);
-        if (!$item) {
-            return back()->with('error', 'Produk tidak ditemukan di keranjang.');
-        }
-
-        // Cek apakah jumlah produk yang diminta melebihi stok yang tersedia
-        if ($request->jumlah > $item->product->stok) {
-            return back()->with('error', 'Jumlah produk melebihi stok yang tersedia.');
-        }
-
-        $item->jumlah = $request->input('jumlah');
-        $item->save();
-
-        return back()->with('success', 'Jumlah produk berhasil diperbarui.');
-    }
-
     public function checkout(Request $request)
     {
         DB::beginTransaction();
@@ -176,5 +154,19 @@ class KeranjangController extends Controller
         $data->delete();
 
         return redirect()->route('keranjang.index')->with(['success' => 'Data Berhasil Dihapus']);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $cart = Cart::findOrFail($id);
+        $quantity = $request->input('jumlah');
+
+        // Validate that quantity is a positive integer and not more than product stock
+        if ($quantity > 0 && $quantity <= $cart->product->stok) {
+            $cart->jumlah = $quantity;
+            $cart->save();
+        }
+
+        return redirect()->route('keranjang.index')->with('success', 'Jumlah produk telah diperbarui.');
     }
 }

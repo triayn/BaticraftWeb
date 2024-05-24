@@ -39,7 +39,7 @@ class ProductController extends Controller
             'deskripsi' => 'required',
             'harga' => 'required|numeric',
             'kategori' => 'required',
-            'stok' => 'required|integer',
+            'stok' => 'required|integer|max:3',
             'ukuran' => 'nullable',
             'bahan' => 'nullable',
             'panjang_kain' => 'nullable',

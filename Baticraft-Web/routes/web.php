@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('/keranjang')->group(function () {
         Route::get('/', [KeranjangController::class, 'cart'])->name('keranjang.index');
         Route::post('/add', [KeranjangController::class, 'addToCart'])->name('keranjang.add');
-        Route::put('/update/{id}', [KeranjangController::class, 'updateQuantity'])->name('keranjang.update');
+        Route::put('/keranjang/update/{id}', [KeranjangController::class, 'update'])->name('keranjang.update');
         Route::delete('/destroy/{id}', [KeranjangController::class, 'destroy'])->name('keranjang.delete');
         Route::post('/checkout', [KeranjangController::class, 'checkout'])->name('keranjang.checkout');
     });
@@ -140,7 +140,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/harian', [LaporanController::class, 'harian'])->name('laporan.harian');
             Route::get('/mingguan', [LaporanController::class, 'mingguan'])->name('laporan.mingguan');
             Route::get('/bulanan', [LaporanController::class, 'bulanan'])->name('laporan.bulanan');
-            Route::get('/laporan/bulanan/detail', [LaporanController::class, 'detailLaporan'])->name('laporan.bulanan.detail');
+            Route::get('/bulanan/detail/{bulan}/{tahun}', [LaporanController::class, 'detailLaporanAjax'])->name('laporan.bulanan.detail.ajax');
         });
 
         // Profil

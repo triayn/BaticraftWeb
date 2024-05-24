@@ -68,7 +68,7 @@
                             <div class="mb-2 row">
                                 <label for="stok" class="col-sm-2 col-form-label col-form-label-sm">Stok</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-sm" name="stok" id="stok" placeholder="Stok">
+                                    <input type="number" class="form-control form-control-sm" name="stok" id="stok" placeholder="Stok" min="0">
                                 </div>
                             </div>
 
@@ -237,6 +237,18 @@
 
         // Initialize form state
         updateForm();
+    });
+</script>
+<!-- Stok dan Status -->
+<script>
+    document.getElementById('stok').addEventListener('change', function() {
+        var stok = parseInt(this.value);
+        var statusInput = document.querySelector('input[name="status"]');
+        if (stok === 0) {
+            statusInput.value = 'tidak tersedia';
+        } else {
+            statusInput.value = 'tersedia';
+        }
     });
 </script>
 @endsection

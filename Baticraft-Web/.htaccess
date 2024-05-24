@@ -1,4 +1,9 @@
 <IfModule Litespeed> 
     RewriteEngine On
+    
+    # Menangani permintaan ke folder storage
+    RewriteRule ^storage/(.*)$ public/storage/$1 [L]
+
+    # Mengarahkan semua permintaan lain ke folder public
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule> 

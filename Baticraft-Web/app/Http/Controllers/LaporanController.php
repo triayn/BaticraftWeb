@@ -121,26 +121,5 @@ class LaporanController extends Controller
             'jumlahCustomery',
             'bulanNama'
         ));
-    }
-
-    public function detailLaporan(Request $request)
-    {
-        $bulan = $request->bulan;
-        $tahun = $request->tahun;
-
-        $detailTransactions = Transaction::where(function ($query) use ($bulan, $tahun) {
-            $query->where('jenis_transaksi', 'langsung')
-                ->whereMonth('created_at', $bulan)
-                ->whereYear('created_at', $tahun);
-        })
-            ->orWhere(function ($query) use ($bulan, $tahun) {
-                $query->where('jenis_transaksi', 'pesan')
-                    ->whereMonth('updated_at', $bulan)
-                    ->whereYear('updated_at', $tahun);
-            })
-            ->where('status_transaksi', 'selesai')
-            ->get();
-
-        return view('admin.laporan.bulanan', compact('detailTransactions'));
-    }
+    } 
 }

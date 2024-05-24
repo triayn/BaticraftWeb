@@ -39,13 +39,6 @@
                     <!-- hr -->
                     <hr class="my-6">
                     <div class="mt-5 d-flex justify-content-start">
-                        <!-- <div class="col-lg-2 col-3 ">
-                            <div class="input-group  flex-nowrap justify-content-center ">
-                                <input type="button" value="-" class="button-minus form-control  text-center flex-xl-none w-xl-30 w-xxl-10 px-0  " data-field="quantity">
-                                <input type="number" step="1" max="10" value="1" name="quantity" class="quantity-field form-control text-center flex-xl-none w-xl-30 w-xxl-10 px-0 ">
-                                <input type="button" value="+" class="button-plus form-control  text-center flex-xl-none w-xl-30  w-xxl-10 px-0  " data-field="quantity">
-                            </div>
-                        </div> -->
                         <div class="ms-2 col-lg-8 col-5 d-grid">
                             <form action="{{ route('keranjang.add') }}" method="POST" class="d-inline">
                                 @csrf

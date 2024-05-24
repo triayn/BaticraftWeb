@@ -49,7 +49,7 @@
                                     <h6 class="mb-0">{{ $item->product->nama }}</h6>
                                     <!-- text -->
                                     <div class="mt-2 small">
-                                        <button type="submit" class="btn btn-link text-decoration-none text-inherit" data-bs-toggle="modal" data-bs-target="#info-header-modal-{{ $item->id }}">
+                                        <button type="button" class="btn btn-link text-decoration-none text-inherit" data-bs-toggle="modal" data-bs-target="#info-header-modal-{{ $item->id }}">
                                             <span class="me-1 align-text-bottom">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-success">
                                                     <polyline points="3 6 5 6 21 6"></polyline>
@@ -60,7 +60,6 @@
                                             </span>
                                             <span class="text-muted">Hapus</span>
                                         </button>
-                                        <!-- Modal -->
                                         <div class="modal fade" id="info-header-modal-{{ $item->id }}" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-sm modal-dialog-centered">
                                                 <div class="modal-content">
@@ -85,19 +84,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- input group -->
                                 <div class="col-3 col-md-3 col-lg-2">
                                     <form action="{{ route('keranjang.update', $item->id) }}" method="POST" id="quantity-update-form-{{ $item->id }}">
                                         @csrf
                                         @method('PUT')
-                                        <input type="hidden" name="jumlah" id="quantity-{{ $item->id }}">
                                         <div class="input-group flex-nowrap justify-content-center">
-                                            <button type="button" class="button-minus form-control text-center flex-xl-none w-xl-30 w-xxl-10 px-0" onclick="decreaseQuantity('{{ $item->id }}')">-</button>
-                                            <input type="number" step="1" max="{{ $item->product->stok }}" value="{{ $item->jumlah }}" name="jumlah" id="quantity-{{ $item->id }}" class="quantity-field form-control text-center flex-xl-none w-xl-30 w-xxl-10 px-0">
-                                            <button type="button" class="button-plus form-control text-center flex-xl-none w-xl-30 w-xxl-10 px-0" onclick="increaseQuantity('{{ $item->id }}')">+</button>
+                                            <button type="button" class="button-minus form-control text-center flex-xl-none w-xl-30 w-xxl-10 px-0" onclick="changeQuantity('{{ $item->id }}', -1)">-</button>
+                                            <input type="number" step="1" max="{{ $item->product->stok }}" value="{{ $item->jumlah }}" name="jumlah" id="quantity-{{ $item->id }}" class="quantity-field form-control text-center flex-xl-none w-xl-30 w-xxl-10 px-0" readonly>
+                                            <button type="button" class="button-plus form-control text-center flex-xl-none w-xl-30 w-xxl-10 px-0" onclick="changeQuantity('{{ $item->id }}', 1)">+</button>
                                         </div>
                                     </form>
                                 </div>
+
                                 <!-- price -->
                                 <div class="col-2 text-lg-end text-start text-md-end col-md-2">
                                     <span class="fw-bold">Rp {{ number_format($item->product->harga, 0, ',', '.') }}</span>
@@ -159,21 +157,21 @@
 
 <!-- Notif Berhasil -->
 @if (session('success'))
-<div class="modal fade" id="success-alert-modal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body p-6">
-                <div class="d-flex justify-content-between align-items-start ">
-                    <div>
-                        <h5 class="mb-1">Berhasil!</h5>
-                        <p class="mb-0 small">{{ session('success') }}</p>
+    <div class="modal fade" id="success-alert-modal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body p-6">
+                    <div class="d-flex justify-content-between align-items-start ">
+                        <div>
+                            <h5 class="mb-1">Berhasil!</h5>
+                            <p class="mb-0 small">{{ session('success') }}</p>
+                        </div>
+                        <button type="button" class="btn btn-primary my-2" data-bs-dismiss="modal">Oke</button>
                     </div>
-                    <button type="button" class="btn btn-primary my-2" data-bs-dismiss="modal">Oke</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endif
 @endsection
 
@@ -192,5 +190,24 @@
         quantityInput.value++;
         document.getElementById('quantity-update-form-' + id).submit();
     }
+</script>
+<script>
+    function changeQuantity(itemId, delta) {
+        var quantityInput = document.getElementById('quantity-' + itemId);
+        var newQuantity = parseInt(quantityInput.value) + delta;
+        var maxQuantity = parseInt(quantityInput.max);
+        if (newQuantity > 0 && newQuantity <= maxQuantity) {
+            quantityInput.value = newQuantity;
+            document.getElementById('quantity-update-form-' + itemId).submit();
+        }
+    }
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    @if (session('success'))
+        var successModal = new bootstrap.Modal(document.getElementById('success-alert-modal'));
+        successModal.show();
+    @endif
+});
 </script>
 @endsection

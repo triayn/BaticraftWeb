@@ -33,7 +33,6 @@
             </div>
             <div class="col-lg-9 col-md-8">
                 <p>Semua</p>
-                <!-- row -->
                 <div class="row g-4 row-cols-xl-3 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
                     <!-- col -->
                     @foreach ($data as $row)

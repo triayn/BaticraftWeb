@@ -90,7 +90,7 @@
                             <div class="mb-2 row">
                                 <label for="stok" class="col-sm-2 col-form-label col-form-label-sm">Stok</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="stok" id="stok" value="{{ $data->stok }}" placeholder="Stok">
+                                    <input type="number" class="form-control form-control-sm" value="{{ $data->stok }}" name="stok" id="stok" placeholder="Stok" min="0">
                                     @error('stok')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -228,18 +228,6 @@
                                 </div>
                             </div>
 
-                            <!-- @if ($images)
-                            @foreach ($images as $image)
-                            <div class="mb-2">
-                                <img src="{{ asset('storage/product/' . $image->image_path) }}" alt="Gambar Produk" width="100">
-                                <input type="file" name="edited_images[]" class="form-control mt-2">
-                                @if (count($images) > 0) <p>Tidak ada gambar produk.</p> @endif
-                            </div>
-                            @endforeach
-                            @endif
-                            <button type="button" id="addImageButton" class="btn btn-primary">Tambah Gambar</button> -->
-
-
                             <div class="mb-2 row">
                                 <label for="gambar" class="col-sm-2 col-form-label col-form-label-sm">Gambar Produk</label>
                                 <div class="col-sm-10">
@@ -260,7 +248,7 @@
                                         <!-- Input gambar pertama -->
                                         <input type="file" name="images[]" class="form-control">
                                     </div>
-                                 </div>
+                                </div>
                             </div>
 
 
@@ -271,7 +259,6 @@
                                 </div>
                             </div>
                         </form>
-
                     </div> <!-- end preview-->
                 </div> <!-- end tab-content-->
             </div> <!-- end card-body -->
@@ -282,6 +269,29 @@
 @endsection
 
 @section('scripts')
+<!-- Stok dan Status -->
+<script>
+    // Function to update status based on stock value
+    function updateStatus() {
+        var stok = parseInt(document.getElementById('stok').value);
+        var statusInput = document.querySelector('input[name="status"]');
+        if (stok === 0) {
+            statusInput.value = 'tidak tersedia';
+        } else {
+            statusInput.value = 'tersedia';
+        }
+    }
+
+    // Call the function when the page loads
+    window.addEventListener('load', function() {
+        updateStatus();
+    });
+
+    // Call the function when stock input changes
+    document.getElementById('stok').addEventListener('change', function() {
+        updateStatus();
+    });
+</script>
 <!-- <script>
     document.addEventListener("DOMContentLoaded", function() {
         const imageInputsContainer = document.getElementById('imageInputs');
