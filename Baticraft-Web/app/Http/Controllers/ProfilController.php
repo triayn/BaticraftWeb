@@ -30,6 +30,7 @@ class ProfilController extends Controller
             'tanggal_lahir' => ['required', 'date'],
             'tempat_lahir' => ['required', 'min:3', 'max:50', 'regex:/^[a-zA-Z\s\']+$/'],
             'no_telpon' => ['required', 'string', 'min:9', 'max:15', 'regex:/^(08|\+62)\d{9,15}$/'],
+            'jenis_kelamin' => ['required', 'in:laki-laki,perempuan'],
             'image' => ['image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
         ];
 
@@ -40,6 +41,7 @@ class ProfilController extends Controller
             'nama.regex' => 'Format nama tidak valid',
             'alamat.regex' => 'Alamat hanya boleh berisi huruf, angka, titik, dan koma.',
             'no_telpon.regex' => 'Nomor telepon harus dimulai dengan "08" atau "+62" dan terdiri dari 9-15 digit angka.',
+            'jenis_kelamin.in' => 'Jenis kelamin harus laki-laki atau perempuan.',
             'image.image' => 'File yang diunggah harus berupa gambar.',
             'image.mimes' => 'Format file yang diunggah harus berupa JPG, JPEG, PNG, atau GIF.',
             'image.max' => 'Ukuran file gambar tidak boleh lebih dari 2 MB.',
@@ -54,6 +56,7 @@ class ProfilController extends Controller
         $user->tanggal_lahir = $validatedData['tanggal_lahir'];
         $user->tempat_lahir = $validatedData['tempat_lahir'];
         $user->no_telpon = $validatedData['no_telpon'];
+        $user->jenis_kelamin = $validatedData['jenis_kelamin'];
 
         // Cek apakah ada file gambar yang diunggah
         if ($request->hasFile('image')) {

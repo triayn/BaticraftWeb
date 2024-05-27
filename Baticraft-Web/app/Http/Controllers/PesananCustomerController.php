@@ -7,16 +7,18 @@ use App\Models\Informations;
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PesananCustomerController extends Controller
 {
     public function index()
     {
-        $menunggu = Transaction::where('status_transaksi', 'menunggu')->get();
-        $diproses = Transaction::where('status_transaksi', 'diproses')->get();
-        $ditolak = Transaction::where('status_transaksi', 'ditolak')->get();
-        $selesai = Transaction::where('status_transaksi', 'selesai')->get();
+        $userId = Auth::id(); // Dapatkan ID user yang sedang login
+
+        $menunggu = Transaction::where('status_transaksi', 'menunggu')->where('user_id', $userId)->get();
+        $diproses = Transaction::where('status_transaksi', 'diproses')->where('user_id', $userId)->get();
+        $ditolak = Transaction::where('status_transaksi', 'ditolak')->where('user_id', $userId)->get();
+        $selesai = Transaction::where('status_transaksi', 'selesai')->where('user_id', $userId)->get();
 
         return view('customer.pesanan.index', compact('menunggu', 'diproses', 'ditolak', 'selesai'));
     }

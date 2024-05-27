@@ -49,17 +49,6 @@ class RegisterController extends Controller
 
     protected $redirectTo = 'App\Http\Controllers\Auth\RegisterController@redirectTo';
 
-    // public function register(Request $request)
-    // {
-    //     $this->validateRegister($request);
-
-    //     if ($this->attemptRegister($request)) {
-    //         return $this->sendRegisterResponse($request);
-    //     }
-
-    //     return $this->sendFailedRegisterResponse($request);
-    // }
-
     public function registerPath()
     {
         return property_exists($this, 'registerPath') ? $this->registerPath() : '/register';

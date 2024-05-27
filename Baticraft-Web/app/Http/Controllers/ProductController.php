@@ -86,7 +86,7 @@ class ProductController extends Controller
 
                 // Menyimpan informasi gambar ke database
                 ImageProduct::create([
-                    'product_id' => $product->id,
+                    'product_id' => $product->id, 
                     'image_path' => $image_name  // Simpan hanya hash name ke database
                 ]);
             }

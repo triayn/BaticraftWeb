@@ -79,7 +79,7 @@
                             </div>
                             <div>Belum Memiliki Akun? <a href="{{ route('register') }}"> Daftar Disini</a></div>
                         </div>
-                    </form>
+                    </form> 
                 </div>
             </div>
         </div>

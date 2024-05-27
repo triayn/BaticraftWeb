@@ -41,7 +41,7 @@
                             <tbody>
                                 @php $i = 1; @endphp
                                 @foreach ($data as $row)
-                                <tr>
+                                <tr> 
                                     <td>{{ $i++ }}</td>
                                     <td>
                                         @if($images->isNotEmpty())

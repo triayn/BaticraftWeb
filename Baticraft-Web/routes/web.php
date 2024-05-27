@@ -25,15 +25,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/cek', function () {
-    return view('customer.layouts.main');
-});
+// Route::get('/cek', function () {
+//     return view('customer.layouts.main');
+// });
 
 // LandingPage
 Route::get('/', [LandingpageController::class, 'index'])->name('page.satu');
 
 
 Auth::routes();
+// Login, register, lupa pass
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'pembeli'])->name('home');

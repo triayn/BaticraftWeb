@@ -72,20 +72,49 @@ class HomeController extends Controller
             ->first()
             ->total;
 
+        
         // Statistik hari ini
-        $harian = Transaction::whereDate('created_at', $hari)
-            ->orWhere(function ($query) use ($hari) {
+        $harian = Transaction::where(function ($query) {
+            $query->where('jenis_transaksi', 'langsung')
+                ->whereDate('created_at', Carbon::today());
+        })
+            ->orWhere(function ($query) {
                 $query->where('jenis_transaksi', 'pesan')
-                    ->whereDate('updated_at', $hari);
-            });
+                    ->whereDate('updated_at', Carbon::today());
+            })
+            ->where('status_transaksi', 'selesai')
+            ->get();
 
-        $menunggu = $harian->where('status_transaksi', 'menunggu')->count();
-
-        $selesai = $harian->where('status_transaksi', 'selesai')->count();
-
+        // Menghitung total pendapatan
+        $pendapatanH = $harian->sum('total_harga');
+        // Menghitung total produk terjual
         $item = $harian->sum('total_item');
 
-        $pendapatanH = $harian->sum('total_harga');
+        $today = Carbon::today();
+
+        // Query untuk transaksi dengan status selesai hari ini
+        $selesai = Transaction::where(function ($query) use ($today) {
+            $query->where('jenis_transaksi', 'langsung')
+                ->whereDate('created_at', $today);
+        })
+        ->orWhere(function ($query) use ($today) {
+            $query->where('jenis_transaksi', 'pesan')
+                ->whereDate('updated_at', $today);
+        })
+        ->where('status_transaksi', 'selesai')
+        ->count();
+
+        // Query untuk transaksi dengan status menunggu hari ini
+        $menunggu = Transaction::where(function ($query) use ($today) {
+            $query->where('jenis_transaksi', 'langsung')
+                ->whereDate('created_at', $today);
+        })
+        ->orWhere(function ($query) use ($today) {
+            $query->where('jenis_transaksi', 'pesan')
+                ->whereDate('updated_at', $today);
+        })
+        ->where('status_transaksi', 'menunggu')
+        ->count();
 
         $topProducts = TransactionDetail::select('product_id', 'nama_product', DB::raw('SUM(jumlah) as total_jumlah'))
             ->groupBy('product_id', 'nama_product')
@@ -110,8 +139,8 @@ class HomeController extends Controller
             'pendapatan',
             'menunggu',
             'selesai',
-            'item',
             'pendapatanH',
+            'item',
             'topProducts',
             'salesByCategory',
             'masuk',
