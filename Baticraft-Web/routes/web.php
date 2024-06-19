@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EtalaseProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
@@ -13,6 +14,14 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rules;
+
+use SadiqSalau\LaravelOtp\Facades\Otp;
+
+use App\Models\User;
+use App\Otp\UserRegistrationOtp;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +41,16 @@ use Illuminate\Support\Facades\Route;
 // LandingPage
 Route::get('/', [LandingpageController::class, 'index'])->name('page.satu');
 
+// Route::get('/otp', [RegisterController::class, 'showOTPForm'])->name('otp.form');
+// Route::post('/otp/verify', [RegisterController::class, 'verifyOtp'])->name('otp.verify');
+// Route::post('/otp/resend', [RegisterController::class, 'resendOtp'])->name('otp.resend');
+
 
 Auth::routes();
 // Login, register, lupa pass
+// routes/web.php
+Route::get('/verify-otp', 'Auth\VerificationController@showOTPForm')->name('otp.form');
+Route::post('/verify-otp', 'Auth\VerificationController@verifyOTP')->name('verify.otp');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'pembeli'])->name('home');

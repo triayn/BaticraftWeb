@@ -9,6 +9,7 @@ use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -72,7 +73,7 @@ class HomeController extends Controller
             ->first()
             ->total;
 
-        
+
         // Statistik hari ini
         $harian = Transaction::where(function ($query) {
             $query->where('jenis_transaksi', 'langsung')
@@ -97,24 +98,24 @@ class HomeController extends Controller
             $query->where('jenis_transaksi', 'langsung')
                 ->whereDate('created_at', $today);
         })
-        ->orWhere(function ($query) use ($today) {
-            $query->where('jenis_transaksi', 'pesan')
-                ->whereDate('updated_at', $today);
-        })
-        ->where('status_transaksi', 'selesai')
-        ->count();
+            ->orWhere(function ($query) use ($today) {
+                $query->where('jenis_transaksi', 'pesan')
+                    ->whereDate('updated_at', $today);
+            })
+            ->where('status_transaksi', 'selesai')
+            ->count();
 
         // Query untuk transaksi dengan status menunggu hari ini
         $menunggu = Transaction::where(function ($query) use ($today) {
             $query->where('jenis_transaksi', 'langsung')
                 ->whereDate('created_at', $today);
         })
-        ->orWhere(function ($query) use ($today) {
-            $query->where('jenis_transaksi', 'pesan')
-                ->whereDate('updated_at', $today);
-        })
-        ->where('status_transaksi', 'menunggu')
-        ->count();
+            ->orWhere(function ($query) use ($today) {
+                $query->where('jenis_transaksi', 'pesan')
+                    ->whereDate('updated_at', $today);
+            })
+            ->where('status_transaksi', 'menunggu')
+            ->count();
 
         $topProducts = TransactionDetail::select('product_id', 'nama_product', DB::raw('SUM(jumlah) as total_jumlah'))
             ->groupBy('product_id', 'nama_product')
@@ -157,7 +158,11 @@ class HomeController extends Controller
         $images = ImageProduct::all(); // Ambil semua gambar terlebih dahulu
         $info = Informations::first(); // Ambil data informasi pertama dari tabel
         $whatsappNumber = $info->no_telpon; // Ambil nomor WhatsApp dari data informasi
-        $pesan = Transaction::orderBy('updated_at', 'desc')->limit(3)->get();
+        // $pesan = Transaction::orderBy('updated_at', 'desc')->limit(3)->get();
+        $pesan = Transaction::where('user_id', Auth::id())
+            ->orderBy('updated_at', 'desc')
+            ->limit(3)
+            ->get();
 
         return view('homePembeli', compact(
             'kain',
