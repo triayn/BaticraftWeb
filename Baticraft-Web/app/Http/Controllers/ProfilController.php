@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class ProfilController extends Controller
 {
@@ -22,8 +23,10 @@ class ProfilController extends Controller
 
     public function update(Request $request, $id)
     {
+        // Ambil data user berdasarkan ID
         $user = User::findOrFail($id);
 
+        // Validasi input dari form dengan pesan kesalahan khusus
         $validate = [
             'nama' => ['required', 'string', 'min:3', 'max:50', 'regex:/^[a-zA-Z\s\']+$/'],
             'alamat' => ['required', 'string', 'min:10', 'max:100', 'regex:/^[a-zA-Z0-9\s\.,]+$/'],
@@ -50,7 +53,7 @@ class ProfilController extends Controller
         // Validasi input
         $validatedData = $request->validate($validate, $messages);
 
-        // Update data user
+        // Update data input
         $user->nama = $validatedData['nama'];
         $user->alamat = $validatedData['alamat'];
         $user->tanggal_lahir = $validatedData['tanggal_lahir'];
@@ -58,7 +61,7 @@ class ProfilController extends Controller
         $user->no_telpon = $validatedData['no_telpon'];
         $user->jenis_kelamin = $validatedData['jenis_kelamin'];
 
-        // Cek apakah ada file gambar yang diunggah
+        // Cek apakah ada data file yang diunggah
         if ($request->hasFile('image')) {
             // Hapus gambar lama jika ada
             if ($user->image) {
@@ -67,14 +70,19 @@ class ProfilController extends Controller
 
             // Upload dan simpan gambar baru
             $image = $request->file('image');
-            $imagePath = $image->storeAs('public/user', $image->hashName());
+            $imagePath = $image->store('public/user'); // Menggunakan store untuk menghasilkan nama unik
             $user->image = basename($imagePath);
         }
 
         // Simpan perubahan
-        $user->save();
-
-        return redirect()->back()->with('success', 'Profil berhasil diperbarui');
+        try {
+            $user->save();
+            return redirect()->back()->with('success', 'Profil berhasil diperbarui');
+        } catch (\Exception $e) {
+            // Log kesalahan untuk debugging
+            Log::error('Error updating user profile', ['error' => $e->getMessage()]);
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat memperbarui profil');
+        }
     }
 
     public function changePassword(Request $request, $id)
@@ -124,7 +132,7 @@ class ProfilController extends Controller
     }
 
     public function gantiCustomer()
-    {
+    {   
         $user = auth()->user();
 
         return view('customer.profil.ganti', compact('user'));

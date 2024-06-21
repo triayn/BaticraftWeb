@@ -47,27 +47,31 @@ class HomeController extends Controller
                 $query->where(function ($query) use ($bulan, $tahun) {
                     $query->where('jenis_transaksi', 'langsung')
                         ->whereMonth('created_at', $bulan)
-                        ->whereYear('created_at', $tahun);
+                        ->whereYear('created_at', $tahun)
+                        ->where('status_transaksi', 'selesai');
                 })->orWhere(function ($query) use ($bulan, $tahun) {
                     $query->where('jenis_transaksi', 'pesan')
                         ->whereMonth('updated_at', $bulan)
-                        ->whereYear('updated_at', $tahun);
+                        ->whereYear('updated_at', $tahun)
+                        ->where('status_transaksi', 'selesai');
                 });
             })
             ->distinct()
             ->count();
 
-        // Pendapatan bulan ini
+        // Pendapatan bulan ini 
         $pendapatan = Transaction::select(DB::raw('SUM(total_harga) as total'))
             ->where(function ($query) use ($bulan, $tahun) {
                 $query->where(function ($query) use ($bulan, $tahun) {
                     $query->where('jenis_transaksi', 'langsung')
                         ->whereMonth('created_at', $bulan)
-                        ->whereYear('created_at', $tahun);
+                        ->whereYear('created_at', $tahun)
+                        ->where('status_transaksi', 'selesai');
                 })->orWhere(function ($query) use ($bulan, $tahun) {
                     $query->where('jenis_transaksi', 'pesan')
                         ->whereMonth('updated_at', $bulan)
-                        ->whereYear('updated_at', $tahun);
+                        ->whereYear('updated_at', $tahun)
+                        ->where('status_transaksi', 'selesai');
                 });
             })
             ->first()

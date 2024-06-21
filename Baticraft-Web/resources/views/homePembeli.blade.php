@@ -122,7 +122,7 @@
                         <h3 class=" mb-1">Pesanan anda</h3>
                     </div>
                     <div>
-                        <a href="#">Lihat Semua <i class="feather-icon icon-chevron-right"></i></a>
+                        <a href="{{ route('pesanan.index') }}">Lihat Semua <i class="feather-icon icon-chevron-right"></i></a>
                     </div>
                 </div>
 

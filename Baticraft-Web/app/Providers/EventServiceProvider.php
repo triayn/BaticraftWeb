@@ -11,11 +11,11 @@ use App\Listeners\SendOtpNotification;
 
 class EventServiceProvider extends ServiceProvider
 {
-    protected $listen = [
-        UserRegistered::class => [
-            SendOtpNotification::class,
-        ],
-    ];
+    // protected $listen = [
+    //     UserRegistered::class => [
+    //         SendOtpNotification::class,
+    //     ],
+    // ];
 
     public function boot()
     {

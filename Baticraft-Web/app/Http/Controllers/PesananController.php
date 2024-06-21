@@ -14,6 +14,7 @@ class PesananController extends Controller
         $menunggu = Transaction::with('user')->where('status_transaksi', 'menunggu')->get();
 
         return view('admin.PesananMasuk.index', compact('menunggu'));
+
     }
 
     public function diproses()

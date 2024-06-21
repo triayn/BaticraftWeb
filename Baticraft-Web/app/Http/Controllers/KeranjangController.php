@@ -116,7 +116,7 @@ class KeranjangController extends Controller
                 'kode_transaksi' => $kode_transaksi,
                 'user_id' => $userId,
                 'jenis_transaksi' => 'pesan',
-                'total_item' => $cartItems->count(),
+                'total_item' => $cartItems->sum('jumlah'),
                 'total_harga' => $cartItems->sum(function ($item) {
                     return $item->product->harga * $item->jumlah;
                 }),
