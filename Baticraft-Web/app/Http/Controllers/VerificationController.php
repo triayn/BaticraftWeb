@@ -37,4 +37,5 @@ class VerificationController extends Controller
             return redirect()->back()->with('error', 'Invalid OTP');
         }
     }
+
 }

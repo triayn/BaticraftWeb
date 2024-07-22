@@ -5,8 +5,14 @@
         <li class="side-nav-title side-nav-item"></li>
         <li class="side-nav-item">
             <a href="{{ route('home.admin') }}" class="side-nav-link">
-                <i class="uil-home-alt"></i>
+                <i class="uil-dashboard"></i>
                 <span>Dashboard </span>
+            </a>
+        </li>
+        <li class="side-nav-item">
+            <a href="{{ route('home') }}" class="side-nav-link">
+                <i class="uil-home-alt"></i>
+                <span> Home Customer </span>
             </a>
         </li>
         <li class="side-nav-item">

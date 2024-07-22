@@ -11,7 +11,6 @@
                     <div class="mb-8">
                         <!-- text -->
                         <h1 class="fw-bold mb-0">Detail Pesanan</h1>
-                        <!-- <p class="mb-0">Already have an account? Click here to <a href="#!">Sign in</a>.</p> -->
                     </div>
                 </div>
             </div>
@@ -68,9 +67,13 @@
                             <div id="flush-collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample">
 
                                 <div class="mt-5">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Kode Pesanan</button>
+                                </div>
+
+                                <!-- <div class="mt-5">
                                     <label for="DeliveryInstructions" class="form-label sr-only">Kode Pesanan</label>
                                     <textarea class="form-control" id="DeliveryInstructions" rows="3" placeholder="Write delivery instructions" readonly>{{ $transaction->kode_transaksi }}</textarea>
-                                </div>
+                                </div> -->
                                 <div class="mt-5">
                                     <label for="DeliveryInstructions" class="form-label sr-only">Status Pesanan</label>
                                     <div class="form-check mb-4">
@@ -207,6 +210,27 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Kode Pesanan-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Kode Pesanan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h1 style="text-align: center;">{{ $transaction->kode_transaksi }}</h1>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Kembali</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>
 @endsection
 

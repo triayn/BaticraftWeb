@@ -49,8 +49,8 @@ Route::get('/', [LandingpageController::class, 'index'])->name('page.satu');
 Auth::routes();
 // Login, register, lupa pass
 // routes/web.php
-Route::get('/verify-otp', 'Auth\VerificationController@showOTPForm')->name('otp.form');
-Route::post('/verify-otp', 'Auth\VerificationController@verifyOTP')->name('verify.otp');
+// Route::get('/verify-otp', 'Auth\VerificationController@showOTPForm')->name('otp.form');
+// Route::post('/verify-otp', 'Auth\VerificationController@verifyOTP')->name('verify.otp');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'pembeli'])->name('home');
@@ -153,6 +153,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/ditolak/{id}', [PesananController::class, 'ditolak'])->name('show.ditolak');
         });
 
+        // Laporan
         Route::prefix('/laporan')->group(function () {
             Route::get('/harian', [LaporanController::class, 'harian'])->name('laporan.harian');
             Route::get('/mingguan', [LaporanController::class, 'mingguan'])->name('laporan.mingguan');

@@ -33,6 +33,7 @@ class ProductController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        // dd($request->all());
         $this->validate($request, [
             'kode_product' => 'required|unique:products',
             'nama' => 'required|min:3',
@@ -60,6 +61,7 @@ class ProductController extends Controller
             'stok.integer' => 'Kolom stok harus berupa angka bulat.',
             'kategori.required' => 'Kolom kategori wajib diisi.',
             'ukuran.required' => 'Kolom ukuran wajib diisi.',
+            'images.required' => 'Kolom gambar wajib diisi.'
         ]);
 
         $product = Product::create([
@@ -78,16 +80,13 @@ class ProductController extends Controller
             'status' => $request->status,
         ]);
 
-        // Gambar
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $image_name = $image->hashName();  // Hanya hash name tanpa path
-                $image_path = $image->storeAs('public/product', $image_name);  // Tetapkan path jika diperlukan
-
-                // Menyimpan informasi gambar ke database
+                $image_name = $image->hashName();  
+                $image_path = $image->storeAs('public/product', $image_name);  
                 ImageProduct::create([
                     'product_id' => $product->id, 
-                    'image_path' => $image_name  // Simpan hanya hash name ke database
+                    'image_path' => $image_name 
                 ]);
             }
         }
@@ -155,13 +154,13 @@ class ProductController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         $user = Product::findOrFail($id);
-
+        
         // Hapus file gambar dari penyimpanan jika ada
         // if (Storage::exists('public/user/' . $user->image)) {
         //     Storage::delete('public/user/' . $user->image);
         // }
 
-        // Hapus data pengguna
+        // Hapus data produk
         $user->delete();
 
         return redirect()->route('product.index')->with(['success' => 'Data Berhasil Dihapus']);

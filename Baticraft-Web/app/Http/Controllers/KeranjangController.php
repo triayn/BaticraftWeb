@@ -96,7 +96,7 @@ class KeranjangController extends Controller
             $cartItems = Cart::where('user_id', $userId)->get();
 
             if ($cartItems->isEmpty()) {
-                return response()->json(['message' => 'Cart is empty'], 400);
+                return response()->json(['message' => 'Keranjang Masih Kosong'], 400);
             }
 
             // Cek stok produk 
@@ -116,10 +116,8 @@ class KeranjangController extends Controller
                 'kode_transaksi' => $kode_transaksi,
                 'user_id' => $userId,
                 'jenis_transaksi' => 'pesan',
-                'total_item' => $cartItems->sum('jumlah'),
-                'total_harga' => $cartItems->sum(function ($item) {
-                    return $item->product->harga * $item->jumlah;
-                }),
+                'total_item' => $request->input('total_item'),
+                'total_harga' => $request->input('total_harga'),
                 'catatan_customer' => $request->input('catatan_customer'),
                 'status_transaksi' => 'menunggu',
             ]);
@@ -140,10 +138,10 @@ class KeranjangController extends Controller
 
             DB::commit();
 
-            return redirect()->route('pesanan.index')->with('success', 'Pemesanan berhasil diproses, cek status pemesanan disini');
+            return redirect()->route('pesanan.index')->with('success', 'Pemesanan berhasil diproses, Cek status pesanan disini');
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->with('error', 'Terjadi kesalahan saat memproses transaksi');
+            return back()->with('error', 'Terjadi kesalahan saat memproses pesanan');
         }
     }
 

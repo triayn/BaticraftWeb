@@ -53,7 +53,7 @@
                                         @endforeach
                                         @endif
                                         <p class="m-0 d-inline-block align-middle font-16">
-                                            <a href="apps-ecommerce-products-details.html" class="text-body">{{ $row->nama }}</a>
+                                            <a href="{{ route('product.show', $row->id) }}" class="text-body">{{ $row->nama }}</a>
                                         </p>
                                     </td>
                                     <td>{{ $row->kategori }}</td>

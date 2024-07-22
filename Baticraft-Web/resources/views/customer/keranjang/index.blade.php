@@ -127,7 +127,6 @@
                                         </div>
                                         <span>{{ $totalItems }}</span>
                                     </li>
-
                                     <li class="list-group-item d-flex justify-content-between align-items-start">
                                         <div class="me-auto">
                                             <div>Total Harga</div>
@@ -147,6 +146,9 @@
                                     <input type="text" class="form-control" id="catatan_customer" name="catatan_customer" placeholder="Tulis disini">
                                 </div>
                             </div>
+                            <!-- Tambahkan input hidden untuk total item dan total harga -->
+                            <input type="hidden" name="total_item" value="{{ $totalItems }}">
+                            <input type="hidden" name="total_harga" value="{{ $totalPrice }}">
                         </div>
                     </form>
                 </div>
@@ -157,21 +159,21 @@
 
 <!-- Notif Berhasil -->
 @if (session('success'))
-    <div class="modal fade" id="success-alert-modal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body p-6">
-                    <div class="d-flex justify-content-between align-items-start ">
-                        <div>
-                            <h5 class="mb-1">Berhasil!</h5>
-                            <p class="mb-0 small">{{ session('success') }}</p>
-                        </div>
-                        <button type="button" class="btn btn-primary my-2" data-bs-dismiss="modal">Oke</button>
+<div class="modal fade" id="success-alert-modal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body p-6">
+                <div class="d-flex justify-content-between align-items-start ">
+                    <div>
+                        <h5 class="mb-1">Berhasil!</h5>
+                        <p class="mb-0 small">{{ session('success') }}</p>
                     </div>
+                    <button type="button" class="btn btn-primary my-2" data-bs-dismiss="modal">Oke</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endif
 @endsection
 
@@ -203,11 +205,11 @@
     }
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    @if (session('success'))
+    document.addEventListener('DOMContentLoaded', function() {
+        @if(session('success'))
         var successModal = new bootstrap.Modal(document.getElementById('success-alert-modal'));
         successModal.show();
-    @endif
-});
+        @endif
+    });
 </script>
 @endsection

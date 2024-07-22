@@ -65,7 +65,7 @@
                                 <select class="form-select form-select-light" name="tahun">
                                     @php
                                     $currentYear = date('Y');
-                                    $startYear = $currentYear - 10; // Ubah nilai 10 sesuai dengan rentang tahun yang diinginkan
+                                    $startYear = $currentYear - 10; // Ubah nilai 10 sesuai dengan rentan tahun yang diinginkan
                                     $endYear = $currentYear + 0; // Ubah nilai 10 sesuai dengan rentang tahun yang diinginkan
                                     @endphp
                                     @for ($year = $startYear; $year <= $endYear; $year++) <option value="{{ $year }}" {{ $year == old('tahun', date('Y')) ? 'selected' : '' }}>
@@ -86,6 +86,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Bulan</th>
+                                <th scope="col">Total Customer</th>
                                 <th scope="col">Total Item</th>
                                 <th scope="col">Total Pendapatan</th>
                             </tr>
@@ -95,6 +96,7 @@
                             @foreach($transactions as $transaction)
                             <tr>
                                 <td>{{ $bulanNama[$transaction->Bulan_ke - 1] }}</td>
+                                <td>{{ $transaction->jumlah_baris }}</td>
                                 <td>{{ $transaction->produk }} pcs</td>
                                 <td>Rp {{ number_format($transaction->totalPerbulan, 0, ',', '.') }}</td>
                             </tr>
@@ -106,6 +108,24 @@
                             @endif
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detail Transaksi Bulanan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

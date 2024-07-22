@@ -11,7 +11,7 @@
                     <!-- heading -->
                     <h5 class="mb-3">Kategori</h5>
                     <!-- nav -->
-                    <ul class="nav nav-category" id="categoryCollapseMenu">
+                    <ul class="nav nav-category">
                         <!-- nav item -->
                         <li class="nav-item border-bottom w-100">
                             <a href="{{ route('etalase.index') }}">Semua</a>
@@ -79,11 +79,12 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
+    </div>
 </section>
 
 <div class="modal fade"  id="success-alert-modal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">

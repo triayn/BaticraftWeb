@@ -122,4 +122,9 @@ class LaporanController extends Controller
             'bulanNama'
         ));
     } 
+
+    public function detail()
+    {
+        
+    }
 }

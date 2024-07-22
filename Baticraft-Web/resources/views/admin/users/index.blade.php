@@ -43,13 +43,15 @@
                                 @foreach ($data as $row)
                                 <tr>
                                     <td>{{ $i++ }}</td>
-                                    <td>{{ $row->nama }}</td>
+                                    <td><a href="{{ route('user.show', $row->id) }}"></a>{{ $row->nama }}</td>
                                     <td>{{ $row->no_telpon }}</td>
                                     <td>{{ $row->role }}</td>
                                     <td>{{ $row->email }}</td>
                                     <td>
                                         <a href="{{ route('user.show', $row->id) }}" class="btn btn-info"><i class="uil-eye">
                                             </i>Lihat</a>
+                                            <a href="{{ route('user.show', $row->id) }}" class="btn btn-warning"><i class="uil-pen">
+                                            </i></a>
                                     </td>
                                 </tr>
                                 @endforeach

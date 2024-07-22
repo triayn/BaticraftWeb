@@ -26,7 +26,6 @@
                 <button class="btn btn-info btn-sm mt-1"><i class='uil uil-at'></i> {{ $user->role }}</button>
 
                 <div class="text-start mt-3">
-                    <h4 class="font-13 text-uppercase">Profil :</h4>
                     <p class="mt-4 mb-1"><strong><i class='uil uil-envelope-add me-1'></i> Email:</strong></p>
                     <p>{{ $user->email }}</p>
 
@@ -136,6 +135,25 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="mb-3">
+                                        <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                        <div>
+                                            <input type="radio" id="laki-laki" name="jenis_kelamin" value="laki-laki" {{ $user->jenis_kelamin == 'laki-laki' ? 'checked' : '' }}>
+                                            <label for="laki-laki">Laki-laki</label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="perempuan" name="jenis_kelamin" value="perempuan" {{ $user->jenis_kelamin == 'perempuan' ? 'checked' : '' }}>
+                                            <label for="perempuan">Perempuan</label>
+                                        </div>
+                                        @error('jenis_kelamin')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
                                         <label for="image" class="form-label">Foto</label>
                                         <input type="file" id="image" class="form-control" name="image" style="display: none;">
                                         <div id="dragDropArea" class="border border-primary rounded p-5">
@@ -162,7 +180,7 @@
                             @method('PUT')
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="current_password" class="form-label">Kata Sandi Lama</label>
                                         <input type="password" class="form-control @error('current_password') is-invalid @enderror" id="current_password" name="current_password" placeholder="Masukkan Kata Sandi Lama">
@@ -174,7 +192,7 @@
                             </div> <!-- end row -->
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="new_password" class="form-label">Kata Sandi Baru</label>
                                         <input type="password" class="form-control @error('new_password') is-invalid @enderror" id="new_password" name="new_password" placeholder="Masukkan Kata Sandi Baru">
@@ -186,7 +204,7 @@
                             </div> <!-- end row -->
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="new_password_confirmation" class="form-label">Konfirmasi Kata Sandi Baru</label>
                                         <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" placeholder="Tulis Kembali Kata Sandi Baru">

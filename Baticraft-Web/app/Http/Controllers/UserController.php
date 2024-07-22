@@ -26,6 +26,7 @@ class UserController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        // dd($request->all());
         $this->validate($request, [
             'nama'              => 'required|min:3|regex:/^[a-zA-Z\s]+$/',
             'no_telpon'         => 'required|max:15|min:11|regex:/^\+?[0-9]+$/',
@@ -64,8 +65,6 @@ class UserController extends Controller
             'image.mimes'               => 'Format gambar tidak valid. Hanya diperbolehkan: jpeg, jpg, png.',
             'image.max'                 => 'Ukuran gambar maksimal 2048 KB.',
         ]);
-        
-        
 
         $image = $request->file('image');
         try {
