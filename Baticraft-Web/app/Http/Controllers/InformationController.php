@@ -103,7 +103,6 @@ class InformationController extends Controller
                 'email'             => $request->email
             ]);
         }
-
         return redirect()->route('information.index')->with(['success' => 'Data Berhasil Diedit']);
     }
 }

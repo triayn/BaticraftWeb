@@ -141,7 +141,7 @@ class PesananController extends Controller
         $transaksi->status_transaksi = 'selesai';
         $transaksi->save();
 
-        return redirect()->route('riwayat.index')->with('success', 'Transaksi berhasil diproses');
+        return redirect()->route('riwayat.index')->with('success', 'Transaksi berhasil diselesaikan');
     }
 
     public function pesan($id)

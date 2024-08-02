@@ -36,6 +36,14 @@ return [
             'throw' => false,
         ],
 
+        'public' => [
+            'driver' => 'local',
+            'root' => storage_path('public/storage'),
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         'ftp' => [
             'driver' => 'ftp',
             'host' => env('FTP_HOST'),
@@ -47,13 +55,6 @@ return [
             'timeout' => 300,
         ],
 
-        'public' => [
-            'driver' => 'local',
-            'root' => storage_path('public/storage'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-            'throw' => false,
-        ],
 
         's3' => [
             'driver' => 's3',

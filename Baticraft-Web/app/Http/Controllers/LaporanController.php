@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MonthlyReportExport;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanController extends Controller
 {
@@ -122,6 +124,11 @@ class LaporanController extends Controller
             'bulanNama'
         ));
     } 
+
+    public function exportMonthlyReport($month)
+    {
+        return Excel::download(new MonthlyReportExport($month), 'monthly_report.xlsx');
+    }
 
     public function detail()
     {

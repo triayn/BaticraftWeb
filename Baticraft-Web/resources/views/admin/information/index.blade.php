@@ -16,6 +16,11 @@
         <div class="card">
             @foreach ($data as $row)
             <div class="card-body">
+                @if(session('success'))
+                <div class="alert alert-success" role="alert">
+                    <i class="dripicons-checkmark me-2"></i> <strong>{{ session('success') }}</strong>
+                </div>
+                @endif
                 <div class="row">
                     <div class="col-lg-5">
                         <!-- Product image -->

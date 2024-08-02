@@ -20,6 +20,16 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                @if(session('success'))
+                <div class="alert alert-success" role="alert">
+                    <i class="dripicons-checkmark me-2"></i> <strong>{{ session('success') }}</strong>
+                </div>
+                @endif
+                @if(session('error'))
+                <div class="alert alert-danger" role="alert">
+                    <i class="dripicons-wrong me-2"></i> <strong>{{ session('error') }}</strong>
+                </div>
+                @endif
                 <div class="tab-content">
                     <div class="tab-pane show active" id="state-saving-preview">
                         <a href="{{ route('product.create') }}" class="btn btn-primary btn-sm" style="margin-bottom: 1.5em;">
@@ -41,7 +51,7 @@
                             <tbody>
                                 @php $i = 1; @endphp
                                 @foreach ($data as $row)
-                                <tr> 
+                                <tr>
                                     <td>{{ $i++ }}</td>
                                     <td>
                                         @if($images->isNotEmpty())
@@ -67,13 +77,13 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('product.show', $row->id) }}" class="btn btn-info"><i class="uil-eye"></i> Lihat</a>
+                                        <a href="{{ route('product.show', $row->id) }}" class="btn btn-info"><i class="uil-eye"></i> </a>
                                         <a href="{{ route('product.edit', $row->id) }}" class="btn btn-success">
-                                            <i class="mdi mdi-pencil"></i> Edit
+                                            <i class="mdi mdi-pencil"></i> 
                                         </a>
                                         <!-- Button Hapus dengan Modal -->
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#info-header-modal-{{ $row->id }}">
-                                            <i class="mdi mdi-window-close"></i> Hapus
+                                            <i class="mdi mdi-trash-can"></i> 
                                         </button>
                                         <!-- Modal Hapus-->
                                         <div id="info-header-modal-{{ $row->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="info-header-modalLabel" aria-hidden="true">

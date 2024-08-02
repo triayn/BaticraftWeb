@@ -89,6 +89,7 @@ class ProductController extends Controller
                     'image_path' => $image_name 
                 ]);
             }
+            
         }
 
         return redirect()->route('product.index')->with('success', 'Produk berhasil ditambahkan.');

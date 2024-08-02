@@ -20,6 +20,16 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                @if(session('success'))
+                <div class="alert alert-success" role="alert">
+                    <i class="dripicons-checkmark me-2"></i> <strong>{{ session('success') }}</strong>
+                </div>
+                @endif
+                @if(session('error'))
+                <div class="alert alert-danger" role="alert">
+                    <i class="dripicons-wrong me-2"></i> <strong>{{ session('error') }}</strong>
+                </div>
+                @endif
                 <div class="tab-content">
                     <div class="tab-pane show active" id="state-saving-preview">
                         <table id="state-saving-datatable" class="table table-striped activate-select dt-responsive nowrap w-100">

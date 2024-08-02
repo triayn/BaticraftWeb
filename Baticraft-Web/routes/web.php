@@ -100,9 +100,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/show/{id}', [UserController::class, 'show'])->name('user.show');
             Route::get('/create', [UserController::class, 'create'])->name('user.create');
             Route::post('/store', [UserController::class, 'store'])->name('user.store');
-            // Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
-            // Route::put('/update/{id}', [UserController::class, 'update'])->name('user.update');
-            // Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('user.delete');
+            Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+            Route::put('/update/{id}', [UserController::class, 'update'])->name('user.update');
+            Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('user.delete');
         });
 
         // CRUD Customer
@@ -159,6 +159,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/mingguan', [LaporanController::class, 'mingguan'])->name('laporan.mingguan');
             Route::get('/bulanan', [LaporanController::class, 'bulanan'])->name('laporan.bulanan');
             Route::get('/bulanan/detail/{bulan}/{tahun}', [LaporanController::class, 'detailLaporanAjax'])->name('laporan.bulanan.detail.ajax');
+            Route::get('/bulanan/export/{month}', [LaporanController::class, 'exportMonthlyReport'])->name('laporan.export');
         });
 
         // Profil
